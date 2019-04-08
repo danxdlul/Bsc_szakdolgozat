@@ -1,0 +1,26 @@
+\select@language {magyar} \contentsline {chapter}{\numberline {1}Bevezet\IeC {\'e}s}{1}{chapter.1}% 
+\select@language {magyar} \contentsline {chapter}{\numberline {2}T\IeC {\'e}mak\IeC {\"o}ri \IeC {\'a}ttekint\IeC {\'e}s}{2}{chapter.2}% 
+\select@language {magyar} \contentsline {section}{\numberline {2.1}Hasonl\IeC {\'o} c\IeC {\'e}l\IeC {\'u} szoftverek}{2}{section.2.1}% 
+\select@language {magyar} \contentsline {subsection}{\numberline {2.1.1}Road Traffic Library}{2}{subsection.2.1.1}% 
+\select@language {magyar} \contentsline {subsection}{\numberline {2.1.2}SUMO}{3}{subsection.2.1.2}% 
+\select@language {magyar} \contentsline {section}{\numberline {2.2}Megl\IeC {\'e}v\IeC {\H o} t\IeC {\'e}rk\IeC {\'e}p-adatb\IeC {\'a}zisok modellje}{4}{section.2.2}% 
+\select@language {magyar} \contentsline {section}{\numberline {2.3}GeoSpatial adatb\IeC {\'a}zisok}{5}{section.2.3}% 
+\select@language {magyar} \contentsline {chapter}{\numberline {3}Matematikai modell r\IeC {\'e}szletez\IeC {\'e}se}{6}{chapter.3}% 
+\select@language {magyar} \contentsline {section}{\numberline {3.1}Modell specifik\IeC {\'a}l\IeC {\'a}sa}{6}{section.3.1}% 
+\select@language {magyar} \contentsline {section}{\numberline {3.2}A modellben haszn\IeC {\'a}lt elemek}{6}{section.3.2}% 
+\select@language {magyar} \contentsline {subsection}{\numberline {3.2.1}Egyenes \IeC {\'u}t}{6}{subsection.3.2.1}% 
+\select@language {magyar} \contentsline {subsection}{\numberline {3.2.2}Egyir\IeC {\'a}ny\IeC {\'u} \IeC {\'u}t}{6}{subsection.3.2.2}% 
+\select@language {magyar} \contentsline {subsection}{\numberline {3.2.3}Kanyar}{7}{subsection.3.2.3}% 
+\select@language {magyar} \contentsline {subsection}{\numberline {3.2.4}\IeC {\'U}tkeresztez\IeC {\H o}d\IeC {\'e}s}{7}{subsection.3.2.4}% 
+\select@language {magyar} \contentsline {subsection}{\numberline {3.2.5}Szem\IeC {\'e}lyg\IeC {\'e}pj\IeC {\'a}rm\IeC {\H u}}{7}{subsection.3.2.5}% 
+\select@language {magyar} \contentsline {subsection}{\numberline {3.2.6}Aut\IeC {\'o}busz}{7}{subsection.3.2.6}% 
+\select@language {magyar} \contentsline {subsection}{\numberline {3.2.7}Buszmeg\IeC {\'a}ll\IeC {\'o}}{7}{subsection.3.2.7}% 
+\select@language {magyar} \contentsline {subsection}{\numberline {3.2.8}\IeC {\'E}p\IeC {\"u}letek}{8}{subsection.3.2.8}% 
+\select@language {magyar} \contentsline {section}{\numberline {3.3}A modell c\IeC {\'e}lja}{8}{section.3.3}% 
+\select@language {magyar} \contentsline {subsection}{\numberline {3.3.1}Gener\IeC {\'a}l\IeC {\'a}si szempont}{8}{subsection.3.3.1}% 
+\select@language {magyar} \contentsline {subsection}{\numberline {3.3.2}Szimul\IeC {\'a}ci\IeC {\'o}s szempont}{8}{subsection.3.3.2}% 
+\select@language {magyar} \contentsline {chapter}{\numberline {4}Gener\IeC {\'a}l\IeC {\'a}s}{9}{chapter.4}% 
+\select@language {magyar} \contentsline {chapter}{\numberline {5}Tervez\IeC {\'e}s, implement\IeC {\'a}ci\IeC {\'o}}{10}{chapter.5}% 
+\select@language {magyar} \contentsline {chapter}{\numberline {6}Szimul\IeC {\'a}ci\IeC {\'o}k}{11}{chapter.6}% 
+\select@language {magyar} \contentsline {chapter}{\numberline {7}\IeC {\"O}sszegz\IeC {\'e}s}{12}{chapter.7}% 
+\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\'ek}{13}{chapter*.2}% 

@@ -1,0 +1,26 @@
+\BOOKMARK [0][-]{chapter.1}{Bevezet\351s}{}% 1
+\BOOKMARK [0][-]{chapter.2}{T\351mak\366ri \341ttekint\351s}{}% 2
+\BOOKMARK [1][-]{section.2.1}{Hasonl\363 c\351l\372 szoftverek}{chapter.2}% 3
+\BOOKMARK [2][-]{subsection.2.1.1}{Road Traffic Library}{section.2.1}% 4
+\BOOKMARK [2][-]{subsection.2.1.2}{SUMO}{section.2.1}% 5
+\BOOKMARK [1][-]{section.2.2}{Megl\351vo t\351rk\351p-adatb\341zisok modellje}{chapter.2}% 6
+\BOOKMARK [1][-]{section.2.3}{GeoSpatial adatb\341zisok}{chapter.2}% 7
+\BOOKMARK [0][-]{chapter.3}{Matematikai modell r\351szletez\351se}{}% 8
+\BOOKMARK [1][-]{section.3.1}{Modell specifik\341l\341sa}{chapter.3}% 9
+\BOOKMARK [1][-]{section.3.2}{A modellben haszn\341lt elemek}{chapter.3}% 10
+\BOOKMARK [2][-]{subsection.3.2.1}{Egyenes \372t}{section.3.2}% 11
+\BOOKMARK [2][-]{subsection.3.2.2}{Egyir\341ny\372 \372t}{section.3.2}% 12
+\BOOKMARK [2][-]{subsection.3.2.3}{Kanyar}{section.3.2}% 13
+\BOOKMARK [2][-]{subsection.3.2.4}{\332tkeresztezod\351s}{section.3.2}% 14
+\BOOKMARK [2][-]{subsection.3.2.5}{Szem\351lyg\351pj\341rmu}{section.3.2}% 15
+\BOOKMARK [2][-]{subsection.3.2.6}{Aut\363busz}{section.3.2}% 16
+\BOOKMARK [2][-]{subsection.3.2.7}{Buszmeg\341ll\363}{section.3.2}% 17
+\BOOKMARK [2][-]{subsection.3.2.8}{\311p\374letek}{section.3.2}% 18
+\BOOKMARK [1][-]{section.3.3}{A modell c\351lja}{chapter.3}% 19
+\BOOKMARK [2][-]{subsection.3.3.1}{Gener\341l\341si szempont}{section.3.3}% 20
+\BOOKMARK [2][-]{subsection.3.3.2}{Szimul\341ci\363s szempont}{section.3.3}% 21
+\BOOKMARK [0][-]{chapter.4}{Gener\341l\341s}{}% 22
+\BOOKMARK [0][-]{chapter.5}{Tervez\351s, implement\341ci\363}{}% 23
+\BOOKMARK [0][-]{chapter.6}{Szimul\341ci\363k}{}% 24
+\BOOKMARK [0][-]{chapter.7}{\326sszegz\351s}{}% 25
+\BOOKMARK [0][-]{chapter*.2}{Irodalomjegyz\351k}{}% 26

@@ -1,6 +1,63 @@
-\Chapter{Matematikai modell részletezése}
+﻿\Chapter{Matematikai modell részletezése}
 
 - Modellezési probléma specifikálása
 - Pontosan milyen elemekből kellene felépíteni az adott város/térkép közlekedését?
 - Mi lenne a modell célja?
 - Irányított élek/egyirányú utak, többsávos utak modellje.
+
+\Section{Modell specifikálása}
+A közlekedésre irányuló modell fő tulajdonságai közé kell hogy tartozzon az elegendő információ tárolása ahhoz, hogy alapvetően tudjanak a szimulált 
+járművek rajta közlekedni. Ezt rengeteg féle képpen meg lehet valósítani, sokféle eleme lehet egy adott térképnek, akár minden egyes előforduló úttípusra, 
+szabályra, táblára tekinthetünk úgy mint a modell egyedi része. Ez a megközelítés viszont lehetségesen túlbonyolítaná a modellt, ezáltal a procedurális generálás
+nem adna annyira elfogadható úthálózatot, lehetségesen életszerűtlen helyzetek épülhetnek fel a sok elem megléte, azok elhelyeződése miatt. Sokkal inkább célszerű a 
+modell részeként tekinteni a főbb építőelemeket, melyek elegendőek magához az úthálózat generálásához, valamint néhány alapvető szabályt megvalósító elemet, mint például 
+a lámpás útkereszteződés, az egyirányú út, valamint a többsávos út.
+\Section{A modellben használt elemek}
+\subsection{Egyenes út}
+Alapvető egyenes útszakasz, ennek lehet több paramétere is. Ennek az elemnek elsősorban tartalmaznia kell a rá vonatkozó sebességhatárt, valamint az úton létező sávok számát.
+Egyszerűen jellemezhető az elem a kezdő és a végpontjával, ugyanis az út szélessége annak paramétereiből (sávok száma) már adódik.
+\subsection{Egyirányú út}
+Hasonló az egyenes úthoz, viszont egyértelműen meg kell határozni a két végpont közül melyik a kiindulási, melyik a célpont. Ugyan azok a megkötések vonatkozhatnak rá, mint az egyenes
+út szakaszra, azaz sebességkorlát, valamint sávok száma.
+\subsection{Kanyar}
+Vehető tulajdonképpen külön elemnek, de megvalósításában akár sok egymást követő egyenes szakasz, melyek közt kis folyamatos közelítések vannak a kanyar ívére. Ezen esetben elég
+a kanyar kezdő és végpontját, valamint a használt egyenes szakaszok számát megadni annak jellemzésére. Alternatívaként a kanyar szöge is felhasználható jellemzésre. Különleges eset
+ha a kanyar egy egyirányú úton történik, ilyenkor az egyetlen változtatás az, hogy a kanyar közelítésére használt útszakaszoknak egyirányúnak kell lenniük.
+\subsection{Útkereszteződés}
+Három vagy több út találkozásánál használatos elem. Tulajdonságai közé tartozhat az hogy lámpás útkereszteződés, vagy sem, valamint ha nem lámpás akkor van-e megállási kötelezettség.
+Lehetséges valamint egyszerű esetben, azaz betorkolló útnál eljelölni a felülrendelt és alárendelt utat is. Az útkereszteződés jellemezhető annak középpontjával, valamint az azt érintő utak
+halmazával.
+\subsection{Személygépjármű}
+Legalapvetőbb közlekedési jármű. Az autókról nyilván kell tartani azok jelenlegi pozícióját, ebbe beleértve hogy melyik objektumon tartózkodnak éppen, és annak pontosan milyen pontján. Továbbá azt
+is hogy merre tartanak éppen, lokálisan a jelenlegi útszakasz végpontját, globálisan pedig a városban azon csomópont, ahova el szeretne jutni. Ezen elem jellemzői közé tartozik a sebessége, valamint többsávos úton 
+hanyadik sávban közlekedik éppen. Tudnia kell a vele egy úton közlekedő járművekől is, azok pozíciójától függ a viselkedése. A járművek kezdetben véletlenszerű helyen kezdenek, majd ha sikeresen eljutottak a célpontjukhoz 
+eltűnnek a modelből (leparkolt kocsinak tekintve). Paraméterezést tekintve ilyenkor új jármű jelenik meg ha jelenleg kevesebb van mint a beállított maximális érték.
+\subsection{Autóbusz}
+Kissé különlegesebb járműtípus, vonatkozik rá néhány további szabály. Többek között elsőbbsége van megállóból elindulva, útkereszteződésnél nagy ívben kell fordulnia, tehát többsávos út esetén ilyenkor
+beljebb kell venni. A buszmegállók között megkötött útvonalon kell haladnia, mindegyiknél pedig meg kell állnia. A szimuláció teljes ideje alatt az útvonalat követi, kezdetben egyik véletlenül kijelölt megállóból indul.
+\subsection{Buszmegálló}
+Autóbusznak elhelyezett megállási pont. Útkereszteződésen kívül bármely csomópont eljelölhető buszmegállónak. Szükséges információ a buszmegállók közötti minimum távolság, valamint az összes buszmegálló száma.
+Ezek az adatok paramatérezhetőek is. Köztük az útvonal kiszámítása történhet egy véletlenszerűen választott kezdőponttól a kialakult gráf mohó algoritmussal történő bejárásával.
+\subsection{Épületek}
+Az utak között kialakult üres területek feltöltésére szolgáló objektumok. Jellemzői közé tartozik az épület négy csúcsa, valamint a magassága. Az épület pozíciójának valamint méreteinek meghatározása a változatosság érdekében 
+véletlenszerű.
+\Section{A modell célja}
+\subsection{Generálási szempont}
+Magának a városnak, úthálózatnak a generálására vonatkozóan a következők a célok:
+\begin{itemize}
+\item Viszonylag kevés elemből álljon össze a generált város
+\item Ne legyen életszerűtlen az összeállított úthálózat
+\item Tartalmazza a felvetett közlekedési helyzetek szimulálására szükséges elemeket
+\item Vizuálisan emlékeztessen egy átlagos városra
+\item Bizonyos mértékig paraméterezhető legyen, főleg a méreteket érintve
+\end{itemize}
+\subsection{Szimulációs szempont}
+A már legenerált úthálózaton a szimulációra tekintve ezek a célok:
+\begin{itemize}
+\item A járművek kövessék a modellben definiált alapvető szabályokat
+\item A szimuláció bizonyos mértékben paraméterezhető legyen, főleg a járművek számát illetően
+\item Reagáljanak egymásra a járművek
+\item Ne legyen életszerűtlen a járművek viselkedése
+\item Teljesítmény szempontjából elfogadható legyen egy adott méretig
+\item Felhasználható statisztikai eredményeket le lehessen menteni
+\end{itemize}
