@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.3.31)  9 APR 2019 01:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.3.31)  14 APR 2019 03:57
 entering extended mode
 **./dolgozat.tex
 (dolgozat.tex
@@ -506,28 +506,32 @@ Package: enumitem 2019/02/04 v3.8 Customized lists
 \enit@inbox=\box37
 \enit@count@id=\count136
 \enitdp@description=\count137
-) (dolgozat.aux (cimlap/cimlap.aux) (feladatkiiras/feladatkiiras.aux)
-(fejezetek/1_bevezetes.aux) (fejezetek/2_kozlekedes.aux)
-(fejezetek/3_modellek.aux) (fejezetek/4_generalas.aux)
-(fejezetek/5_tervezes.aux) (fejezetek/6_szimulacio.aux)
-(fejezetek/7_osszegzes.aux) (irodalomjegyzek/irodalom.aux)
-(hasznalat/hasznalat.aux))
+)
+("C:\Users\lord-\AppData\Local\Programs\MiKTeX 2.9\tex/latex/float\float.sty"
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count138
+\float@exts=\toks47
+\float@box=\box38
+\@float@everytoks=\toks48
+\@floatcapt=\box39
+)
+(dolgozat.aux)
 \openout1 = `dolgozat.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
 
 *geometry* detected driver: dvips
 *geometry* verbose mode - [ preamble ] result:
@@ -566,17 +570,17 @@ LaTeX Font Info:    ... okay on input line 16.
 ("C:\Users\lord-\AppData\Local\Programs\MiKTeX 2.9\tex/context/base/mkii\supp-p
 df.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count138
+\scratchcounter=\count139
 \scratchdimen=\dimen146
-\scratchbox=\box38
-\nofMPsegments=\count139
-\nofMParguments=\count140
-\everyMPshowfont=\toks47
-\MPscratchCnt=\count141
+\scratchbox=\box40
+\nofMPsegments=\count140
+\nofMParguments=\count141
+\everyMPshowfont=\toks49
+\MPscratchCnt=\count142
 \MPscratchDim=\dimen147
-\MPnumerator=\count142
-\makeMPintoPDFobject=\count143
-\everyMPtoPDFconversion=\toks48
+\MPnumerator=\count143
+\makeMPintoPDFobject=\count144
+\everyMPtoPDFconversion=\toks50
 )
 ("C:\Users\lord-\AppData\Local\Programs\MiKTeX 2.9\tex/latex/oberdiek\epstopdf-
 base.sty"
@@ -597,8 +601,8 @@ G,.JBIG2,.JB2,.eps]
 LaTeX Warning: Please use \usepackage[latin2]{inputenc} with
                \usepackage[magyar]{babel}.
 
-\AtBeginShipoutBox=\box39
-Package hyperref Info: Link coloring OFF on input line 16.
+\AtBeginShipoutBox=\box41
+Package hyperref Info: Link coloring OFF on input line 17.
 
 ("C:\Users\lord-\AppData\Local\Programs\MiKTeX 2.9\tex/latex/hyperref\nameref.s
 ty"
@@ -608,16 +612,16 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 estring.sty"
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count144
+\c@section@level=\count145
 )
-LaTeX Info: Redefining \ref on input line 16.
-LaTeX Info: Redefining \pageref on input line 16.
-LaTeX Info: Redefining \nameref on input line 16.
+LaTeX Info: Redefining \ref on input line 17.
+LaTeX Info: Redefining \pageref on input line 17.
+LaTeX Info: Redefining \nameref on input line 17.
  (dolgozat.out) (dolgozat.out)
 \@outlinefile=\write4
 \openout4 = `dolgozat.out'.
 
-\c@lstlisting=\count145
+\c@lstlisting=\count146
 
 ("C:\Users\lord-\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\report.cls"
 LaTeX Info: Redefining \cal on input line 576.
@@ -641,7 +645,7 @@ Package epstopdf Info: Output file is already uptodate.
 
 pdfTeX warning: pdflatex.exe (file ./cimlap/ME_logo-eps-converted-to.pdf): PDF 
 inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<cimlap/ME_logo-eps-converted-to.pdf, id=107, 1324.95pt x 1266.7325pt>
+<cimlap/ME_logo-eps-converted-to.pdf, id=3, 1324.95pt x 1266.7325pt>
 File: cimlap/ME_logo-eps-converted-to.pdf Graphic file (type pdf)
 <use cimlap/ME_logo-eps-converted-to.pdf>
 Package pdftex.def Info: cimlap/ME_logo-eps-converted-to.pdf  used on input lin
@@ -708,17 +712,17 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 59.
 
-[3]) [4] (dolgozat.toc)
+[3]) [4]
+
+Package hyperref Warning: old toc file detected, not used; run LaTeX again.
+
 \tf@toc=\write5
 \openout5 = `dolgozat.toc'.
 
- [1
+[1
 
 
 
-
-
-pdfTeX warning: pdflatex.exe: pop empty color page stack 0
 ]
 \openout2 = `fejezetek/1_bevezetes.aux'.
 
@@ -728,7 +732,7 @@ pdfTeX warning: pdflatex.exe: pop empty color page stack 0
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.33 \include{fejezetek/1_bevezetes}
+l.34 \include{fejezetek/1_bevezetes}
                                      [1
 
 
@@ -738,7 +742,7 @@ l.33 \include{fejezetek/1_bevezetes}
 
  (fejezetek/2_kozlekedes.tex
 2. fejezet.
-<RTL.png, id=247, 376.40625pt x 219.82124pt>
+<RTL.png, id=118, 376.40625pt x 219.82124pt>
 File: RTL.png Graphic file (type png)
 <use RTL.png>
 Package pdftex.def Info: RTL.png  used on input line 13.
@@ -747,24 +751,33 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.21 L
-      ehetÅ‘sÃ©g van a geoinformÃ¡ciÃ³s rendszerekben hasznÃ¡lt vektorgrafik...
-[2
+l.20 
+      [2
 
 
 
- <./RTL.png>]
-<SUMO.png, id=254, 557.08125pt x 380.42125pt>
+pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1}) 
+has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.20 
+      <./RTL.png>]
+<SUMO.png, id=128, 557.08125pt x 380.42125pt>
 File: SUMO.png Graphic file (type png)
 <use SUMO.png>
 Package pdftex.def Info: SUMO.png  used on input line 35.
 (pdftex.def)             Requested size: 441.01773pt x 301.168pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.42 
-      [3 <./SUMO.png>]
+l.53 \end{itemize}
+                   [3]
 Overfull \hbox (10.92029pt too wide) in paragraph at lines 55--57
 []\T1/cmr/m/n/12 A szoft-ver al-kal-mas a köz-le-ke-dé-si lám-pák tel-je-sít-mé
 -nyé-nek vizs-gá-la-tá-ra, olyan útvonal-
@@ -778,8 +791,14 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.4}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.73 
-      [4]) [5]
+l.69 
+      [4pdfTeX warning (ext4): destination with the same identifier (name{figur
+e.2.2}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.69 
+      <./SUMO.png>]) [5]
 \openout2 = `fejezetek/3_modellek.aux'.
 
  (fejezetek/3_modellek.tex
@@ -802,16 +821,28 @@ Package hyperref Warning: Glyph not defined in PD1 encoding,
 
  (fejezetek/4_generalas.tex
 4. fejezet.
-) [9
+[9
 
 
 
-]
+] [10]
+<graph.png, id=187, 391.4625pt x 463.7325pt>
+File: graph.png Graphic file (type png)
+<use graph.png>
+Package pdftex.def Info: graph.png  used on input line 64.
+(pdftex.def)             Requested size: 441.01773pt x 522.46198pt.
+ [11]) [12pdfTeX warning (ext4): destination with the same identifier (name{fig
+ure.4.1}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.37 \include{fejezetek/4_generalas}
+                                     <./graph.png>]
 \openout2 = `fejezetek/5_tervezes.aux'.
 
  (fejezetek/5_tervezes.tex
 5. fejezet.
-) [10
+) [13
 
 
 
@@ -820,7 +851,7 @@ Package hyperref Warning: Glyph not defined in PD1 encoding,
 
  (fejezetek/6_szimulacio.tex
 6. fejezet.
-) [11
+) [14
 
 
 
@@ -829,7 +860,7 @@ Package hyperref Warning: Glyph not defined in PD1 encoding,
 
  (fejezetek/7_osszegzes.tex
 7. fejezet.
-) [12
+) [15
 
 
 
@@ -852,42 +883,52 @@ Underfull \hbox (badness 10000) in paragraph at lines 6--9
 topdefault . aspx / tabid-[]9883 / 16931 _
  []
 
-) [13
+) [16
 
 
 
 ]
 \openout2 = `hasznalat/hasznalat.aux'.
 
- (hasznalat/hasznalat.tex) [14
+ (hasznalat/hasznalat.tex) [17
 
 
 ]
 \tf@thm=\write6
 \openout6 = `dolgozat.thm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 45.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 45.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 46.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 46.
  (dolgozat.aux (cimlap/cimlap.aux)
 (feladatkiiras/feladatkiiras.aux) (fejezetek/1_bevezetes.aux)
 (fejezetek/2_kozlekedes.aux) (fejezetek/3_modellek.aux)
 (fejezetek/4_generalas.aux) (fejezetek/5_tervezes.aux)
 (fejezetek/6_szimulacio.aux) (fejezetek/7_osszegzes.aux)
 (irodalomjegyzek/irodalom.aux) (hasznalat/hasznalat.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 45.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 45.
-Package rerunfilecheck Info: File `dolgozat.out' has not changed.
-(rerunfilecheck)             Checksum: 1DCD52FC81F8FE3D4D7B9500E8AC7468;1792.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 45.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 46.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 46.
+
+
+Package rerunfilecheck Warning: File `dolgozat.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `dolgozat.out':
+(rerunfilecheck)             Before: D41D8CD98F00B204E9800998ECF8427E;0
+(rerunfilecheck)             After:  38E10C60ED4209FA6D9924FD97BCFB8F;1987.
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 46.
  ) 
 Here is how much of TeX's memory you used:
- 11490 strings out of 492945
- 171427 string characters out of 3126252
- 291940 words of memory out of 3000000
- 15076 multiletter control sequences out of 15000+200000
+ 11501 strings out of 492945
+ 170476 string characters out of 3126252
+ 299257 words of memory out of 3000000
+ 15095 multiletter control sequences out of 15000+200000
  25371 words of font info for 65 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 39i,11n,45p,479b,391s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 39i,11n,45p,479b,439s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\lord-\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\
 ecrm0800.pk> <C:\Users\lord-\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/
 ec/dpi600\ecsl1200.pk> <C:\Users\lord-\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour
@@ -907,9 +948,9 @@ ocal\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecxc1200.pk><C:/Users/lord-/
 AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:
 /Users/lord-/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
 msy10.pfb>
-Output written on dolgozat.pdf (19 pages, 576780 bytes).
+Output written on dolgozat.pdf (22 pages, 590556 bytes).
 PDF statistics:
- 817 PDF objects out of 1000 (max. 8388607)
- 46 named destinations out of 1000 (max. 500000)
- 224 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 732 PDF objects out of 1000 (max. 8388607)
+ 57 named destinations out of 1000 (max. 500000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 

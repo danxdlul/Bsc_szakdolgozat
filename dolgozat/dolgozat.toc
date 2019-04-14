@@ -20,7 +20,9 @@
 \select@language {magyar} \contentsline {subsection}{\numberline {3.3.1}Gener\IeC {\'a}l\IeC {\'a}si szempont}{8}{subsection.3.3.1}% 
 \select@language {magyar} \contentsline {subsection}{\numberline {3.3.2}Szimul\IeC {\'a}ci\IeC {\'o}s szempont}{8}{subsection.3.3.2}% 
 \select@language {magyar} \contentsline {chapter}{\numberline {4}Gener\IeC {\'a}l\IeC {\'a}s}{9}{chapter.4}% 
-\select@language {magyar} \contentsline {chapter}{\numberline {5}Tervez\IeC {\'e}s, implement\IeC {\'a}ci\IeC {\'o}}{10}{chapter.5}% 
-\select@language {magyar} \contentsline {chapter}{\numberline {6}Szimul\IeC {\'a}ci\IeC {\'o}k}{11}{chapter.6}% 
-\select@language {magyar} \contentsline {chapter}{\numberline {7}\IeC {\"O}sszegz\IeC {\'e}s}{12}{chapter.7}% 
-\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\'ek}{13}{chapter*.2}% 
+\select@language {magyar} \contentsline {section}{\numberline {4.1}\IeC {\'U}th\IeC {\'a}l\IeC {\'o}zat Gener\IeC {\'a}l\IeC {\'a}sa}{9}{section.4.1}% 
+\select@language {magyar} \contentsline {section}{\numberline {4.2}Alapelemek megjelen\IeC {\'\i }t\IeC {\'e}se HTML Canvas seg\IeC {\'\i }ts\IeC {\'e}g\IeC {\'e}vel}{10}{section.4.2}% 
+\select@language {magyar} \contentsline {chapter}{\numberline {5}Tervez\IeC {\'e}s, implement\IeC {\'a}ci\IeC {\'o}}{13}{chapter.5}% 
+\select@language {magyar} \contentsline {chapter}{\numberline {6}Szimul\IeC {\'a}ci\IeC {\'o}k}{14}{chapter.6}% 
+\select@language {magyar} \contentsline {chapter}{\numberline {7}\IeC {\"O}sszegz\IeC {\'e}s}{15}{chapter.7}% 
+\select@language {magyar} \contentsline {chapter}{Irodalomjegyz\'ek}{16}{chapter*.2}% 
