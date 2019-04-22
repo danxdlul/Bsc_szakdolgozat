@@ -1,27 +1,62 @@
-const Nodes = [];
+const myCanvas = document.getElementById("genCanvas");
+const ctx = myCanvas.getContext("2d");
+ctx.moveTo(1000,500);
+class Node{
+    constructor(xpos,ypos,branches,level,connectedfrom,parent){
+        this.x = xpos;
+        this.y = ypos;
+        this.branches = branches;
+        this.level = level;
+        this.connectedFrom = connectedfrom;
+        this.parentNodeIndex = parent;
+    }
+}
+class Edge{
+    constructor(from,to,lanes,oneway){
+        this.from = from;
+        this.to = to;
+        this.lanes = lanes;
+        this.oneway = oneway;
+    }
+}
+class Graph{
+    constructor(){
+        this.Nodes = [];
+        this.Edges = [];
+    }
+    drawAllNodes(){
+        this.Nodes.forEach(node =>{
+            drawCanvasNode(node);
+        });
+    }
+    drawAllEdges(){
+        this.Edges.forEach(edge =>{
+            if(edge.oneway === false){
+                drawCanvasEdge(edge);
+            }
+            else{
+                console.log("123");
+                canvas_arrow(edge);
+            }
+        });
+    }
+}
 $(document).ready(
 
     DrawOnCanvas()
 );
 
 function DrawOnCanvas(){
-    var myCanvas = document.getElementById("genCanvas");
-    var ctx = myCanvas.getContext("2d");
-    var maxBusStop = 0;
+    let graph = new Graph();
     var maxNodes = 50;
-    ctx.moveTo(1000,500);
-    var startNode = {x:1000,y:500,branches:4,level:0, connectedFrom:"none"};
-    Nodes.push(startNode);
-    var Edges =[];
-    ctx.fillRect(1000,500,5,5);
-    var i = 0;
-    while(Nodes.length < maxNodes){
-        var currentNode = Nodes[i];
-        ctx.moveTo(currentNode.x,currentNode.y);
-        var didEast = false;
-        var didWest = false;
-        var didNorth = false;
-        var didSouth = false;
+    var startNode = {x:1000,y:500,branches:4,level:0, connectedFrom:"none",parent: "none"};
+    graph.Nodes.push(startNode);
+    for(let i = 0;graph.Nodes.length < maxNodes;i++){
+        let currentNode = graph.Nodes[i];
+        let didEast = false;
+        let didWest = false;
+        let didNorth = false;
+        let didSouth = false;
         switch (currentNode.connectedFrom) {
             case "south":
                 didSouth = true;
@@ -39,33 +74,33 @@ function DrawOnCanvas(){
                 console.log("No case match!");
         }
 
-        for(j = 0;j<currentNode.branches;j++){
-            var direction;
+        for(let j = 0;j<currentNode.branches;j++){
+            let direction;
             while(true){
                 direction = Math.floor(Math.random()*4);
-                if(direction == 0 && didSouth == false){
+                if(direction === 0 && didSouth === false){
                     didSouth = true;
                     direction = "south";
                     break;
                 }
-                if(direction == 1 && didNorth == false){
+                if(direction === 1 && didNorth === false){
                     didNorth = true;
                     direction = "north";
                     break;
                 }
-                if(direction == 2 && didWest == false){
+                if(direction === 2 && didWest === false){
                     didWest = true;
                     direction = "west";
                     break;
                 }
-                if(direction == 3 && didEast == false) {
+                if(direction === 3 && didEast === false) {
                     didEast = true;
                     direction = "east";
                     break;
                 }
             }
-            var childConnectedFrom;
-            var xpos, ypos;
+            let childConnectedFrom;
+            let xpos, ypos;
             switch (direction) {
                 case "south":
                     childConnectedFrom = "north";
@@ -92,38 +127,36 @@ function DrawOnCanvas(){
             }
 
             //80 60 40 20
-            var branches = getBranchCount(currentNode.level+1);
-            var lanes;
-            if(branches == 3){
+            let branches = getBranchCount(currentNode.level+1);
+            let lanes;
+            if(branches === 3){
                 lanes = 2;
             }else{
                 lanes = 1;
             }
-            let numedges = Edges.length;
-            var invalidedge = false;
-            var corrected = false;
-                for (var k = 0; k < numedges; k++) {
-                    if (numedges != 0) {
-                        var currentEdge = Edges[k];
-                        invalidedge = intersects(currentEdge.from.x,currentEdge.from.y,currentEdge.to.x,currentEdge.to.y,currentNode.x,currentNode.y,xpos,ypos);
+            let numedges = graph.Edges.length;
+            let invalidedge = false;
+            let corrected = false;
+            let newNode = new Node(xpos,ypos,branches,currentNode.level + 1,childConnectedFrom,i);
+            let newEdge = new Edge(currentNode,newNode,lanes,false);
+                for (let k = 0; k < numedges; k++) {
+                    if (numedges !== 0) {
+                        let currentEdge = graph.Edges[k];
+                        invalidedge = intersects(currentEdge,newEdge);
                         if(invalidedge && !corrected){
-                            if(distance(xpos,ypos,currentEdge.from.x,currentEdge.from.y) > distance(xpos,ypos,currentEdge.to.x,currentEdge.to.y)){
-                                if(!maxBranchesReached(currentEdge.to.x,currentEdge.to.y,i)){
-                                    xpos = currentEdge.to.x;
-                                    ypos = currentEdge.to.y;
+                            if(distance(newNode,currentEdge.from) > distance(newNode,currentEdge.to)){
+                                if(!maxBranchesReached(currentEdge.to,graph,i)){
+                                    newEdge.to = currentEdge.to;
                                     invalidedge = false;
                                     corrected = true;
                                 }else{
                                     invalidedge = true;
                                     break;
                                 }
-
-
                             }
                             else{
-                                if(!maxBranchesReached(currentEdge.from.x,currentEdge.from.y,i)) {
-                                    xpos = currentEdge.from.x;
-                                    ypos = currentEdge.from.y;
+                                if(!maxBranchesReached(currentEdge.from,graph,i)) {
+                                    newEdge.to = currentEdge.from;
                                     invalidedge = false;
                                     corrected = true;
                                 }else{
@@ -137,75 +170,40 @@ function DrawOnCanvas(){
                         }
                     }
                 }
-                console.log(branches);
                 if(!invalidedge){
                     if(!corrected){
-                        Nodes.push({
-                            x: xpos,
-                            y: ypos,
-                            branches: branches,
-                            level: currentNode.level + 1,
-                            connectedFrom: childConnectedFrom
-                        });
-                        ctx.fillRect(xpos, ypos, 5, 5);
-                        Edges.push({
-                            from: {x: currentNode.x, y: currentNode.y},
-                            to: {x: xpos, y: ypos},
-                            lanes: lanes,
-                            oneway: false
-                        });
-                        ctx.beginPath();
-                        ctx.moveTo(currentNode.x, currentNode.y);
-                        ctx.lineTo(xpos, ypos);
-                        ctx.strokeStyle = "#000000";
-                        ctx.stroke();
-                        ctx.closePath();
-                        ctx.moveTo(currentNode.x, currentNode.y);
+                        graph.Nodes.push(newNode);
+                        graph.Edges.push(new Edge(currentNode,newNode,lanes,false));
                     }else{
-                        console.log("changing color");
-
-                        Edges.push({
-                            from: {x: currentNode.x, y: currentNode.y},
-                            to: {x: xpos, y: ypos},
-                            lanes: lanes,
-                            oneway: true
-                        });
-                        ctx.beginPath();
-                        ctx.moveTo(currentNode.x, currentNode.y);
-                        canvas_arrow(ctx,currentNode.x,currentNode.y,xpos,ypos);
-                        ctx.strokeStyle = "#0000ff";
-                        ctx.stroke();
-                        ctx.closePath();
-                        ctx.moveTo(currentNode.x, currentNode.y);
+                        newEdge.oneway = true;
+                        graph.Edges.push(newEdge);
                     }
-
-
-
                 }
         }
-        i++;
     }
+    graph.drawAllNodes();
+    graph.drawAllEdges();
+    makeBusStops(graph);
 }
-function intersects(a,b,c,d,p,q,r,s) {
-    var det, gamma, lambda;
-    det = (c - a) * (s - q) - (r - p) * (d - b);
+function intersects(edge1,edge2) {
+    let det, gamma, lambda;
+    det = (edge1.to.x - edge1.from.x) * (edge2.to.y - edge2.from.y) - (edge2.to.x - edge2.from.x) * (edge1.to.y - edge1.from.y);
     if (det === 0) {
         return false;
     } else {
-        lambda = ((s - q) * (r - a) + (p - r) * (s - b)) / det;
-        gamma = ((b - d) * (r - a) + (c - a) * (s - b)) / det;
+        lambda = ((edge2.to.y - edge2.from.y) * (edge2.to.x - edge1.from.x) + (edge2.from.x - edge2.to.x) * (edge2.to.y - edge1.from.y)) / det;
+        gamma = ((edge1.from.y - edge1.to.y) * (edge2.to.x - edge1.from.x) + (edge1.to.x - edge1.from.x) * (edge2.to.y - edge1.from.y)) / det;
         return (0 < lambda && lambda < 1) && (0 < gamma && gamma < 1);
     }
 }
-function distance(a,b,c,d){
-    return Math.sqrt(Math.pow((a-c),2) + Math.pow((b-d),2));
+function distance(node1,node2){
+    return Math.sqrt(Math.pow((node1.x-node2.x),2) + Math.pow((node1.y-node2.y),2));
 }
-function maxBranchesReached(x,y,currentNodeIndex) {
-    for (var i = 0; i < Nodes.length; i++) {
-        if (Nodes[i].x == x && Nodes[i].y == y && i < currentNodeIndex) {
-            if (Nodes[i].branches < 3) {
-                console.log("drawing edge to node, new branch count is "+Nodes[i].branches);
-                Nodes[i].branches++;
+function maxBranchesReached(node,graph,currentNodeIndex) {
+    for (let i = 0; i < graph.Nodes.length; i++) {
+        if (graph.Nodes[i].x === node.x && graph.Nodes[i].y === node.y && i < currentNodeIndex) {
+            if (graph.Nodes[i].branches < 3) {
+                graph.Nodes[i].branches++;
                 return false;
             }
             else {
@@ -223,12 +221,88 @@ function getBranchCount(level){
         return Math.floor((Math.random()*2)+1);
     }
 }
-function canvas_arrow(context, fromx, fromy, tox, toy){
-    var headlen = 10;   // length of head in pixels
-    var angle = Math.atan2(toy-fromy,tox-fromx);
-    context.moveTo(fromx, fromy);
-    context.lineTo(tox, toy);
-    context.lineTo(tox-headlen*Math.cos(angle-Math.PI/6),toy-headlen*Math.sin(angle-Math.PI/6));
-    context.moveTo(tox, toy);
-    context.lineTo(tox-headlen*Math.cos(angle+Math.PI/6),toy-headlen*Math.sin(angle+Math.PI/6));
+function canvas_arrow(edge){
+    const headlen = 10;   // length of head in pixels
+    const angle = Math.atan2(edge.to.y - edge.from.y, edge.to.x - edge.from.x);
+    ctx.beginPath();
+    ctx.strokeStyle = "#2f40ff";
+    ctx.moveTo(edge.from.x, edge.from.y);
+    ctx.lineTo(edge.to.x, edge.to.y);
+    ctx.lineTo(edge.to.x-headlen*Math.cos(angle-Math.PI/6),edge.to.y-headlen*Math.sin(angle-Math.PI/6));
+    ctx.moveTo(edge.to.x, edge.to.y);
+    ctx.lineTo(edge.to.x-headlen*Math.cos(angle+Math.PI/6),edge.to.y-headlen*Math.sin(angle+Math.PI/6));
+    ctx.stroke();
+    ctx.closePath();
+}
+function makeBusStops(graph){
+    let potentialNodes = findMaxLevelNodes(graph);
+    let start = potentialNodes[Math.floor(Math.random()*potentialNodes.length)];
+    DrawBStops(start);
+    var end = potentialNodes[0];
+    for(let i = 0;i<potentialNodes.length;i++){
+        if(distance(start.x,start.y,potentialNodes[i].x,potentialNodes[i].y)>distance(start.x,start.y,end.x,end.y)){
+            end = potentialNodes[i];
+        }
+    }
+    DrawBStops(end);
+    var i = start.level;
+    var currentNode = start;
+
+    while(i !== 0){
+        let nextStop = Math.floor(Math.random()*2)+1;
+        for(let j = 0;j<nextStop;j++){
+            currentNode = graph.Nodes[currentNode.parentNodeIndex];
+        }
+        if(currentNode === undefined){
+            break;
+        }
+        DrawBStops(currentNode);
+        i = currentNode.level;
+    }
+    i = end.level;
+    currentNode = end;
+    while(i !== 0){
+        let nextStop = Math.floor(Math.random()*2)+1;
+        for(let j = 0;j<nextStop;j++){
+            currentNode = graph.Nodes[currentNode.parentNodeIndex];
+        }
+        if(currentNode === undefined){
+            break;
+        }
+        DrawBStops(currentNode);
+        i = currentNode.level;
+    }
+}
+function DrawBStops(node){
+    ctx.beginPath();
+    ctx.strokeStyle = "#12ff03";
+    ctx.strokeRect(node.x,node.y,10,10);
+    ctx.closePath();
+}
+function findMaxLevelNodes(graph) {
+    let max = graph.Nodes[0].level;
+    let maxLevelNodes = [];
+    for(let i = 0;i<graph.Nodes.length;i++){
+        if(graph.Nodes[i].level > max){
+            max = graph.Nodes[i].level;
+        }
+    }
+    for(let i = 0;i<graph.Nodes.length;i++){
+        if(graph.Nodes[i].level === max){
+            maxLevelNodes.push(graph.Nodes[i]);
+        }
+    }
+    return maxLevelNodes;
+}
+function drawCanvasNode(node){
+    ctx.fillRect(node.x, node.y, 5, 5);
+}
+function drawCanvasEdge(edge){
+    ctx.beginPath();
+    ctx.moveTo(edge.from.x, edge.from.y);
+    ctx.lineTo(edge.to.x, edge.to.y);
+    ctx.strokeStyle = "#000000";
+    ctx.stroke();
+    ctx.closePath();
+    ctx.moveTo(edge.from.x, edge.from.y);
 }
