@@ -20,7 +20,7 @@ namespace Assets.Scripts
             {
                 Cars.Add(Instantiate(CarPrefab));
                 Debug.Log("car created");
-                Cars.Last().GetComponent<CarEngine>().Nodes = GameObject.FindGameObjectWithTag("GameController").GetComponent<RoadGenerator>().graph.GenerateRandomPath(5);
+                Cars.Last().GetComponent<CarEngine>().path = GameObject.FindGameObjectWithTag("GameController").GetComponent<RoadGenerator>().graph.GenerateRandomPath(5);
                 currentCars++;
             }
             for(int i = 0;i<Cars.Count;i++)

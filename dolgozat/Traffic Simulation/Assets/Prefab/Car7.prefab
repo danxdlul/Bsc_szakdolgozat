@@ -258,7 +258,7 @@ GameObject:
   - component: {fileID: 6730458575226899004}
   m_Layer: 0
   m_Name: CarBody
-  m_TagString: Untagged
+  m_TagString: Car
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -406,9 +406,13 @@ MonoBehaviour:
   wheelRR: {fileID: 649330553007277940}
   Nodes: []
   maxMotorTorque: 80
+  maxBreakTorque: 350
   currentSpeed: 0
   maxSpeed: 100
   isBraking: 0
+  sensorLength: 20
+  frontSensorPosition: 0.04
+  sideSensorPosition: 0.65
 --- !u!1 &5310900655514960852
 GameObject:
   m_ObjectHideFlags: 0

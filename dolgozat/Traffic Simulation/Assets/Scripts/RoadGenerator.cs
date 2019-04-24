@@ -193,6 +193,7 @@ public class RoadGenerator : MonoBehaviour
             RoadList.Add(GameObject.CreatePrimitive(PrimitiveType.Quad));
             RoadList[RoadList.Count - 1].GetComponent<MeshFilter>().mesh = edge.GetRoadMesh();
             RoadList[RoadList.Count - 1].GetComponent<Renderer>().material = RoadMaterial;
+            RoadList[RoadList.Count - 1].AddComponent<BoxCollider>();
 
         }
     }

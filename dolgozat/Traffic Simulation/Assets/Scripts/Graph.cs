@@ -15,23 +15,25 @@ namespace Assets.Scripts
             this.Nodes = new List<Node>();
             this.Edges = new List<Edge>();
         }
-        public List<Vector3> GenerateRandomPath(int length)
+        public Path GenerateRandomPath(int length)
         {
             int currentsize = 0;
-            List<Vector3> path = new List<Vector3>();
+            List<Node> nodes = new List<Node>();
+            List<Edge> edges = new List<Edge>();
             Node nextnode = Nodes[Random.Range(0, Nodes.Count)];
+            nodes.Add(nextnode);
             Node previousNode = nextnode;
-            path.Add(nextnode.Position);
             if( nextnode.EdgesFromNode.Count > 1)
             {
                 Edge nextedge = nextnode.EdgesFromNode[Random.Range(0, nextnode.EdgesFromNode.Count)];
+                edges.Add(nextedge);
                 nextnode = nextnode == nextedge.From ? nextedge.To : nextedge.From;
-                path.Add(nextnode.Position);
+                nodes.Add(nextnode);
                 currentsize++;
             }
             else
             {
-                return path;
+                return new Path(nodes,edges);
             }
             while(currentsize < length && nextnode.EdgesFromNode.Count > 1)
             {
@@ -40,12 +42,13 @@ namespace Assets.Scripts
                 {
                     previousNode = nextnode;
                     nextnode = nextnode == nextedge.From ? nextedge.To : nextedge.From;
-                    path.Add(nextnode.Position);
+                    edges.Add(nextedge);
+                    nodes.Add(nextnode);
                     currentsize++;
                 }
                 
             }
-            return path;
+            return new Path(nodes,edges);
         }
     }
 }
