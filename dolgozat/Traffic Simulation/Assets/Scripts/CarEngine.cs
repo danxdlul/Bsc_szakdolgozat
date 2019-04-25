@@ -21,6 +21,7 @@ public class CarEngine : MonoBehaviour
     public bool isBraking = false;
     public float watafak = 0f;
     private bool laneSteering;
+    public bool isInCrossRoad = false;
     private float targetSteerAngle = 0;
 
     [Header("Sensors")]
@@ -70,8 +71,12 @@ public class CarEngine : MonoBehaviour
             }
             if (hit.collider.CompareTag("LaneDivider"))
             {
-                Debug.DrawLine(sensorStartPos, hit.point);
-                targetSteerAngle = maxSteerAngle;
+                if (!isInCrossRoad)
+                {
+                    Debug.DrawLine(sensorStartPos, hit.point);
+                    targetSteerAngle = maxSteerAngle;
+                    
+                }
                 laneSteering = true;
             }
             
@@ -92,8 +97,12 @@ public class CarEngine : MonoBehaviour
             }
             if (hit.collider.CompareTag("LaneDivider"))
             {
-                Debug.DrawLine(sensorStartPos, hit.point);
-                targetSteerAngle = maxSteerAngle;
+                if (!isInCrossRoad)
+                {
+                    Debug.DrawLine(sensorStartPos, hit.point);
+                    targetSteerAngle = maxSteerAngle;
+                    
+                }
                 laneSteering = true;
             }
         }
@@ -107,8 +116,12 @@ public class CarEngine : MonoBehaviour
             }
             if (hit.collider.CompareTag("LaneDivider"))
             {
-                Debug.DrawLine(sensorStartPos, hit.point);
-                targetSteerAngle = maxSteerAngle;
+                if (!isInCrossRoad)
+                {
+                    Debug.DrawLine(sensorStartPos, hit.point);
+                    targetSteerAngle = maxSteerAngle;
+                    
+                }
                 laneSteering = true;
             }
         }
@@ -128,8 +141,12 @@ public class CarEngine : MonoBehaviour
             }
             if(hit.collider.CompareTag("LaneDivider"))
             {
-                Debug.DrawLine(sensorStartPos, hit.point);
-                targetSteerAngle = maxSteerAngle;
+                if (!isInCrossRoad)
+                {
+                    Debug.DrawLine(sensorStartPos, hit.point);
+                    targetSteerAngle = maxSteerAngle;
+                    
+                }
                 laneSteering = true;
             }
         }
@@ -148,8 +165,12 @@ public class CarEngine : MonoBehaviour
             }
             else if (hit.collider.CompareTag("LaneDivider"))
             {
-                Debug.DrawLine(sensorStartPos, hit.point);
-                targetSteerAngle = maxSteerAngle;
+                if (!isInCrossRoad)
+                {
+                    Debug.DrawLine(sensorStartPos, hit.point);
+                    targetSteerAngle = maxSteerAngle;
+                    
+                }
                 laneSteering = true;
             }
 
@@ -165,8 +186,12 @@ public class CarEngine : MonoBehaviour
             }
             else if (hit.collider.CompareTag("LaneDivider"))
             {
-                Debug.DrawLine(sensorStartPos, hit.point);
-                targetSteerAngle = maxSteerAngle;
+                if (!isInCrossRoad)
+                {
+                    Debug.DrawLine(sensorStartPos, hit.point);
+                    targetSteerAngle = maxSteerAngle;
+                    
+                }
                 laneSteering = true;
             }
         }
@@ -180,8 +205,12 @@ public class CarEngine : MonoBehaviour
             }
             else if (hit.collider.CompareTag("LaneDivider"))
             {
-                Debug.DrawLine(sensorStartPos, hit.point);
-                targetSteerAngle = maxSteerAngle;
+                if (!isInCrossRoad)
+                {
+                    Debug.DrawLine(sensorStartPos, hit.point);
+                    targetSteerAngle = maxSteerAngle;
+                    
+                }
                 laneSteering = true;
             }
         }
@@ -196,8 +225,12 @@ public class CarEngine : MonoBehaviour
             }
             else if (hit.collider.CompareTag("LaneDivider"))
             {
-                Debug.DrawLine(sensorStartPos, hit.point);
-                targetSteerAngle = maxSteerAngle;
+                if (!isInCrossRoad)
+                {
+                    Debug.DrawLine(sensorStartPos, hit.point);
+                    targetSteerAngle = maxSteerAngle;
+                    
+                }
                 laneSteering = true;
             }
         }
@@ -206,9 +239,13 @@ public class CarEngine : MonoBehaviour
     }
     private void ApplySteer()
     {
-        if (laneSteering)  return;
+        if (laneSteering && !isInCrossRoad)  return;
         Vector3 relativeVector = transform.InverseTransformPoint(path.WayPoints[currentNode]);
         float newSteer = (relativeVector.x / relativeVector.magnitude)*maxSteerAngle;
+        if(laneSteering && isInCrossRoad)
+        {
+            newSteer += 30f;
+        }
         targetSteerAngle = newSteer;
     }
     private void Drive()

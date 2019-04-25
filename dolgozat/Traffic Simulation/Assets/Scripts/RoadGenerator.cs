@@ -200,6 +200,11 @@ public class RoadGenerator : MonoBehaviour
             LaneDividers[LaneDividers.Count - 1].GetComponent<MeshCollider>().sharedMesh = LaneDividers[LaneDividers.Count - 1].GetComponent<MeshFilter>().sharedMesh;
             LaneDividers[LaneDividers.Count - 1].GetComponent<Renderer>().enabled = false;
             LaneDividers[LaneDividers.Count - 1].tag = "LaneDivider";
+            LaneDividers.Add(GameObject.CreatePrimitive(PrimitiveType.Quad));
+            LaneDividers[LaneDividers.Count - 1].GetComponent<MeshFilter>().mesh = edge.GetInverseLaneDividerMesh();
+            LaneDividers[LaneDividers.Count - 1].GetComponent<MeshCollider>().sharedMesh = LaneDividers[LaneDividers.Count - 1].GetComponent<MeshFilter>().sharedMesh;
+            LaneDividers[LaneDividers.Count - 1].GetComponent<Renderer>().enabled = false;
+            LaneDividers[LaneDividers.Count - 1].tag = "LaneDivider";
 
         }
     }

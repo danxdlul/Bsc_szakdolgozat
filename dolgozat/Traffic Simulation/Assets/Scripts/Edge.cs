@@ -126,5 +126,23 @@ namespace Assets.Scripts
             mesh.uv = uv;
             return mesh;
         }
+        public Mesh GetInverseLaneDividerMesh()
+        {
+            Mesh mesh = new Mesh();
+            mesh.vertices = LaneDivider;
+            Array.Reverse(triLane, 0, 6);
+            mesh.triangles = triLane;
+            normals[0] = Vector3.forward;
+            normals[1] = Vector3.forward;
+            normals[2] = Vector3.forward;
+            normals[3] = Vector3.forward;
+            mesh.normals = normals;
+            uv[0] = new Vector2(0, 0);
+            uv[1] = new Vector2(1, 0);
+            uv[2] = new Vector2(0, 1);
+            uv[3] = new Vector2(1, 1);
+            mesh.uv = uv;
+            return mesh;
+        }
     }
 }
