@@ -6,6 +6,7 @@ using UnityEngine;
 public class CarEngine : MonoBehaviour
 {
     public float maxSteerAngle = 45f;
+    public float turnSpeed = 10f;
     public WheelCollider wheelFL;
     public WheelCollider wheelFR;
     public WheelCollider wheelRL;
@@ -16,12 +17,16 @@ public class CarEngine : MonoBehaviour
     public float maxBreakTorque = 350f;
     public float currentSpeed;
     public float maxSpeed = 100f;
+    public float angledSensor = 90f;
     public bool isBraking = false;
     public float watafak = 0f;
+    private bool laneSteering;
+    private float targetSteerAngle = 0;
 
     [Header("Sensors")]
     public float sensorLength = 20f;
-    public float frontSensorPosition = 0.04f;
+    public Vector3 frontSensorPosition = new Vector3(0,0,1.5f);
+    public Vector3 topSensorPosition = new Vector3(0, 6f, 1.5f);
     public float sideSensorPosition = 0.65f;
 
     // Start is called before the first frame update
@@ -42,12 +47,15 @@ public class CarEngine : MonoBehaviour
         Drive();
         CheckWaypointDistance();
         Braking();
+        LerpToSteerAngle();
     }
     private void Sensors()
     {
         RaycastHit hit;
         Vector3 sensorStartPos = transform.position;
-        sensorStartPos.z += frontSensorPosition;
+        sensorStartPos += transform.forward * frontSensorPosition.z;
+        sensorStartPos += transform.up * frontSensorPosition.y;
+        laneSteering = false;
         //center
         if (Physics.Raycast(sensorStartPos, transform.forward, out hit, sensorLength))
         {
@@ -57,17 +65,20 @@ public class CarEngine : MonoBehaviour
             }
             else if (hit.collider.CompareTag("Car"))
             {
+                Debug.DrawLine(sensorStartPos, hit.point);
                 maxSpeed = hit.distance - 10f;
             }
-            else
+            if (hit.collider.CompareTag("LaneDivider"))
             {
-                //maxSpeed = 100f;
+                Debug.DrawLine(sensorStartPos, hit.point);
+                targetSteerAngle = maxSteerAngle;
+                laneSteering = true;
             }
             
         }
         
         //right
-        sensorStartPos.x += sideSensorPosition;
+        sensorStartPos += transform.right * sideSensorPosition;
         if (Physics.Raycast(sensorStartPos, transform.forward, out hit, sensorLength))
         {
             if (hit.collider.CompareTag("Terrain"))
@@ -76,16 +87,34 @@ public class CarEngine : MonoBehaviour
             }
             else if (hit.collider.CompareTag("Car"))
             {
+                Debug.DrawLine(sensorStartPos, hit.point);
                 maxSpeed = hit.distance-10f;
             }
-            else
+            if (hit.collider.CompareTag("LaneDivider"))
             {
-                //maxSpeed = 100f;
+                Debug.DrawLine(sensorStartPos, hit.point);
+                targetSteerAngle = maxSteerAngle;
+                laneSteering = true;
             }
         }
-       
+
+        //angled
+        if (Physics.Raycast(sensorStartPos, Quaternion.AngleAxis(angledSensor,transform.up) * transform.forward, out hit, sensorLength))
+        {
+            if (hit.collider.CompareTag("Terrain"))
+            {
+                Debug.DrawLine(sensorStartPos, hit.point);
+            }
+            if (hit.collider.CompareTag("LaneDivider"))
+            {
+                Debug.DrawLine(sensorStartPos, hit.point);
+                targetSteerAngle = maxSteerAngle;
+                laneSteering = true;
+            }
+        }
+
         //left
-        sensorStartPos.x -= 2 * sideSensorPosition;
+        sensorStartPos -= 2 * transform.right * sideSensorPosition;
         if (Physics.Raycast(sensorStartPos, transform.forward, out hit, sensorLength))
         {
             if (hit.collider.CompareTag("Terrain"))
@@ -94,21 +123,93 @@ public class CarEngine : MonoBehaviour
             }
             else if (hit.collider.CompareTag("Car"))
             {
+                Debug.DrawLine(sensorStartPos, hit.point);
                 maxSpeed = hit.distance - 10f;
             }
-            else
+            if(hit.collider.CompareTag("LaneDivider"))
             {
-                //maxSpeed = 100f;
+                Debug.DrawLine(sensorStartPos, hit.point);
+                targetSteerAngle = maxSteerAngle;
+                laneSteering = true;
+            }
+        }
+
+        //tops
+        sensorStartPos = transform.position;
+        sensorStartPos += transform.forward * topSensorPosition.z;
+        sensorStartPos += transform.up * topSensorPosition.y;
+        laneSteering = false;
+        //center
+        if (Physics.Raycast(sensorStartPos, transform.forward, out hit, sensorLength))
+        {
+            if (hit.collider.CompareTag("Terrain"))
+            {
+                Debug.DrawLine(sensorStartPos, hit.point);
+            }
+            else if (hit.collider.CompareTag("LaneDivider"))
+            {
+                Debug.DrawLine(sensorStartPos, hit.point);
+                targetSteerAngle = maxSteerAngle;
+                laneSteering = true;
+            }
+
+        }
+
+        //right
+        sensorStartPos += transform.right * sideSensorPosition;
+        if (Physics.Raycast(sensorStartPos, transform.forward, out hit, sensorLength))
+        {
+            if (hit.collider.CompareTag("Terrain"))
+            {
+                Debug.DrawLine(sensorStartPos, hit.point);
+            }
+            else if (hit.collider.CompareTag("LaneDivider"))
+            {
+                Debug.DrawLine(sensorStartPos, hit.point);
+                targetSteerAngle = maxSteerAngle;
+                laneSteering = true;
+            }
+        }
+
+        //angled
+        if (Physics.Raycast(sensorStartPos, Quaternion.AngleAxis(angledSensor, transform.up) * transform.forward, out hit, 2))
+        {
+            if (hit.collider.CompareTag("Terrain"))
+            {
+                Debug.DrawLine(sensorStartPos, hit.point);
+            }
+            else if (hit.collider.CompareTag("LaneDivider"))
+            {
+                Debug.DrawLine(sensorStartPos, hit.point);
+                targetSteerAngle = maxSteerAngle;
+                laneSteering = true;
+            }
+        }
+
+        //left
+        sensorStartPos -= 2 * transform.right * sideSensorPosition;
+        if (Physics.Raycast(sensorStartPos, transform.forward, out hit, sensorLength))
+        {
+            if (hit.collider.CompareTag("Terrain"))
+            {
+                Debug.DrawLine(sensorStartPos, hit.point);
+            }
+            else if (hit.collider.CompareTag("LaneDivider"))
+            {
+                Debug.DrawLine(sensorStartPos, hit.point);
+                targetSteerAngle = maxSteerAngle;
+                laneSteering = true;
             }
         }
         
+
     }
     private void ApplySteer()
     {
+        if (laneSteering)  return;
         Vector3 relativeVector = transform.InverseTransformPoint(path.WayPoints[currentNode]);
         float newSteer = (relativeVector.x / relativeVector.magnitude)*maxSteerAngle;
-        wheelFL.steerAngle = newSteer;
-        wheelFR.steerAngle = newSteer;
+        targetSteerAngle = newSteer;
     }
     private void Drive()
     {
@@ -121,6 +222,8 @@ public class CarEngine : MonoBehaviour
         }
         else if(currentSpeed > maxSpeed)
         {
+            wheelFL.motorTorque = 0;
+            wheelFR.motorTorque = 0;
             isBraking = true;
         }
         else
@@ -162,5 +265,23 @@ public class CarEngine : MonoBehaviour
             wheelRL.brakeTorque = 0;
             wheelRR.brakeTorque = 0;
         }
+    }
+
+    private void LerpToSteerAngle()
+    {
+        wheelFL.steerAngle = Mathf.Lerp(wheelFL.steerAngle, targetSteerAngle, Time.deltaTime * turnSpeed);
+        wheelFR.steerAngle = Mathf.Lerp(wheelFR.steerAngle, targetSteerAngle, Time.deltaTime * turnSpeed);
+    }
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.other.CompareTag("Car"))
+        {
+            Invoke("DestroyMyself", 5);
+        }
+    }
+
+    void DestroyMyself()
+    {
+        Destroy(gameObject);
     }
 }

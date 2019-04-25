@@ -10,7 +10,7 @@ namespace Assets.Scripts
     class CarSpawner : MonoBehaviour
     {
         private int currentCars = 0;
-        public int maxCars = 5;
+        public int maxCars = 20;
         public List<GameObject> Cars = new List<GameObject>();
         public GameObject CarPrefab;
 
@@ -18,9 +18,7 @@ namespace Assets.Scripts
         {
             if (currentCars < maxCars)
             {
-                Cars.Add(Instantiate(CarPrefab));
-                Debug.Log("car created");
-                Cars.Last().GetComponent<CarEngine>().path = GameObject.FindGameObjectWithTag("GameController").GetComponent<RoadGenerator>().graph.GenerateRandomPath(5);
+                Invoke("SpawnCar", 2);
                 currentCars++;
             }
             for(int i = 0;i<Cars.Count;i++)
@@ -31,6 +29,12 @@ namespace Assets.Scripts
                     currentCars--;
                 }
             }
+        }
+        void SpawnCar()
+        {
+            Cars.Add(Instantiate(CarPrefab));
+            Debug.Log("car created");
+            Cars.Last().GetComponent<CarEngine>().path = GameObject.FindGameObjectWithTag("GameController").GetComponent<RoadGenerator>().graph.GenerateRandomPath(5);
         }
     }
 }

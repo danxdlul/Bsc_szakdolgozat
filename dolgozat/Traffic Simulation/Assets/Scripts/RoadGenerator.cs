@@ -10,6 +10,7 @@ public class RoadGenerator : MonoBehaviour
     public Material RoadMaterial;
     List<GameObject> RoadList = new List<GameObject>();
     List<GameObject> XRoadList = new List<GameObject>();
+    List<GameObject> LaneDividers = new List<GameObject>();
     int maxnodes = 100;
     public GameObject CrossRoad;
 
@@ -194,6 +195,11 @@ public class RoadGenerator : MonoBehaviour
             RoadList[RoadList.Count - 1].GetComponent<MeshFilter>().mesh = edge.GetRoadMesh();
             RoadList[RoadList.Count - 1].GetComponent<Renderer>().material = RoadMaterial;
             RoadList[RoadList.Count - 1].AddComponent<BoxCollider>();
+            LaneDividers.Add(GameObject.CreatePrimitive(PrimitiveType.Quad));
+            LaneDividers[LaneDividers.Count - 1].GetComponent<MeshFilter>().mesh = edge.GetLaneDividerMesh();
+            LaneDividers[LaneDividers.Count - 1].GetComponent<MeshCollider>().sharedMesh = LaneDividers[LaneDividers.Count - 1].GetComponent<MeshFilter>().sharedMesh;
+            LaneDividers[LaneDividers.Count - 1].GetComponent<Renderer>().enabled = false;
+            LaneDividers[LaneDividers.Count - 1].tag = "LaneDivider";
 
         }
     }

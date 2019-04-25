@@ -8,6 +8,7 @@ TagManager:
   - Terrain
   - Car
   - XRoad
+  - LaneDivider
   layers:
   - Default
   - TransparentFX

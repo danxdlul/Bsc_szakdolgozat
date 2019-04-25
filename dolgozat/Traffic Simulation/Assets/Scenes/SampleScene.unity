@@ -430,7 +430,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b10c48c0b38583b4ba9d3ca43d8f70b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxCars: 10
+  maxCars: 30
   Cars: []
   CarPrefab: {fileID: 5310900655514960850, guid: 4253996f4ac778846a66804b330000c3,
     type: 3}
