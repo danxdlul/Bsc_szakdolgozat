@@ -17,6 +17,8 @@ namespace Assets.Scripts
         private Vector3[] normals = new Vector3[4];
         private Vector2[] uv = new Vector2[4];
         private Vector3[] LaneDivider = new Vector3[4];
+        private Vector3[] MultiLaneLeft = new Vector3[4];
+        private Vector3[] MultiLaneRight = new Vector3[4];
         public int Lanes { get; set; }
         public bool Oneway { get; set; }
         public string Direction { get; set; }
@@ -42,6 +44,17 @@ namespace Assets.Scripts
                     LaneDivider[1] = ((RoadCorners[0] + RoadCorners[1]) / 2) + Vector3.up * 10;
                     LaneDivider[2] = ((RoadCorners[2] + RoadCorners[3]) / 2) + Vector3.up * 5;
                     LaneDivider[3] = ((RoadCorners[2] + RoadCorners[3]) / 2) + Vector3.up * 10;
+                    if (Lanes == 2)
+                    {
+                        MultiLaneLeft[0] = ((RoadCorners[1] + Vector3.up * 5) + LaneDivider[0]) / 2;
+                        MultiLaneLeft[1] = ((RoadCorners[1] + Vector3.up * 10) + LaneDivider[1]) / 2;
+                        MultiLaneLeft[2] = ((RoadCorners[3] + Vector3.up * 5) + LaneDivider[2]) / 2;
+                        MultiLaneLeft[3] = ((RoadCorners[3] + Vector3.up * 10) + LaneDivider[3]) / 2;
+                        MultiLaneRight[0] = ((RoadCorners[0] + Vector3.up * 5) + LaneDivider[0]) / 2;
+                        MultiLaneRight[1] = ((RoadCorners[0] + Vector3.up * 10) + LaneDivider[1]) / 2;
+                        MultiLaneRight[2] = ((RoadCorners[2] + Vector3.up * 5) + LaneDivider[2]) / 2;
+                        MultiLaneRight[3] = ((RoadCorners[2] + Vector3.up * 10) + LaneDivider[3]) / 2;
+                    }
                     break;
                 case "north":
                     RoadCorners[0] = From.WorldCornerTL;
@@ -52,6 +65,17 @@ namespace Assets.Scripts
                     LaneDivider[1] = ((RoadCorners[0] + RoadCorners[1]) / 2) + Vector3.up * 10;
                     LaneDivider[2] = ((RoadCorners[2] + RoadCorners[3]) / 2) + Vector3.up * 5;
                     LaneDivider[3] = ((RoadCorners[2] + RoadCorners[3]) / 2) + Vector3.up * 10;
+                    if (Lanes == 2)
+                    {
+                        MultiLaneLeft[0] = ((RoadCorners[0] + Vector3.up * 5) + LaneDivider[0]) / 2;
+                        MultiLaneLeft[1] = ((RoadCorners[0] + Vector3.up * 10) + LaneDivider[1]) / 2;
+                        MultiLaneLeft[2] = ((RoadCorners[2] + Vector3.up * 5) + LaneDivider[2]) / 2;
+                        MultiLaneLeft[3] = ((RoadCorners[2] + Vector3.up * 10) + LaneDivider[3]) / 2;
+                        MultiLaneRight[0] = ((RoadCorners[1] + Vector3.up * 5) + LaneDivider[0]) / 2;
+                        MultiLaneRight[1] = ((RoadCorners[1] + Vector3.up * 10) + LaneDivider[1]) / 2;
+                        MultiLaneRight[2] = ((RoadCorners[3] + Vector3.up * 5) + LaneDivider[2]) / 2;
+                        MultiLaneRight[3] = ((RoadCorners[3] + Vector3.up * 10) + LaneDivider[3]) / 2;
+                    }
                     break;
                 case "west":
                     RoadCorners[0] = From.WorldCornerBL;
@@ -62,6 +86,17 @@ namespace Assets.Scripts
                     LaneDivider[1] = ((RoadCorners[0] + RoadCorners[1]) / 2) + Vector3.up * 10;
                     LaneDivider[2] = ((RoadCorners[2] + RoadCorners[3]) / 2) + Vector3.up * 5;
                     LaneDivider[3] = ((RoadCorners[2] + RoadCorners[3]) / 2) + Vector3.up * 10;
+                    if (Lanes == 2)
+                    {
+                        MultiLaneLeft[0] = ((RoadCorners[1] + Vector3.up * 5) + LaneDivider[0]) / 2;
+                        MultiLaneLeft[1] = ((RoadCorners[1] + Vector3.up * 10) + LaneDivider[1]) / 2;
+                        MultiLaneLeft[2] = ((RoadCorners[3] + Vector3.up * 5) + LaneDivider[2]) / 2;
+                        MultiLaneLeft[3] = ((RoadCorners[3] + Vector3.up * 10) + LaneDivider[3]) / 2;
+                        MultiLaneRight[0] = ((RoadCorners[0] + Vector3.up * 5) + LaneDivider[0]) / 2;
+                        MultiLaneRight[1] = ((RoadCorners[0] + Vector3.up * 10) + LaneDivider[1]) / 2;
+                        MultiLaneRight[2] = ((RoadCorners[2] + Vector3.up * 5) + LaneDivider[2]) / 2;
+                        MultiLaneRight[3] = ((RoadCorners[2] + Vector3.up * 10) + LaneDivider[3]) / 2;
+                    }
                     break;
                 case "east":
                     RoadCorners[0] = From.WorldCornerTR;
@@ -72,6 +107,17 @@ namespace Assets.Scripts
                     LaneDivider[1] = ((RoadCorners[0] + RoadCorners[1]) / 2) + Vector3.up * 10;
                     LaneDivider[2] = ((RoadCorners[2] + RoadCorners[3]) / 2) + Vector3.up * 5;
                     LaneDivider[3] = ((RoadCorners[2] + RoadCorners[3]) / 2) + Vector3.up * 10;
+                    if (Lanes == 2)
+                    {
+                        MultiLaneLeft[0] = ((RoadCorners[0] + Vector3.up * 5) + LaneDivider[0]) / 2;
+                        MultiLaneLeft[1] = ((RoadCorners[0] + Vector3.up * 10) + LaneDivider[1]) / 2;
+                        MultiLaneLeft[2] = ((RoadCorners[2] + Vector3.up * 5) + LaneDivider[2]) / 2;
+                        MultiLaneLeft[3] = ((RoadCorners[2] + Vector3.up * 10) + LaneDivider[3]) / 2;
+                        MultiLaneRight[0] = ((RoadCorners[1] + Vector3.up * 5) + LaneDivider[0]) / 2;
+                        MultiLaneRight[1] = ((RoadCorners[1] + Vector3.up * 10) + LaneDivider[1]) / 2;
+                        MultiLaneRight[2] = ((RoadCorners[3] + Vector3.up * 5) + LaneDivider[2]) / 2;
+                        MultiLaneRight[3] = ((RoadCorners[3] + Vector3.up * 10) + LaneDivider[3]) / 2;
+                    }
                     break;
                 default:
                     Debug.Log("No case match!");
@@ -118,6 +164,76 @@ namespace Assets.Scripts
             normals[1] = -Vector3.forward;
             normals[2] = -Vector3.forward;
             normals[3] = -Vector3.forward;
+            mesh.normals = normals;
+            uv[0] = new Vector2(0, 0);
+            uv[1] = new Vector2(1, 0);
+            uv[2] = new Vector2(0, 1);
+            uv[3] = new Vector2(1, 1);
+            mesh.uv = uv;
+            return mesh;
+        }
+        public Mesh GetLeftLaneDivider()
+        {
+            Mesh mesh = new Mesh();
+            mesh.vertices = MultiLaneLeft;
+            mesh.triangles = triLane;
+            normals[0] = -Vector3.forward;
+            normals[1] = -Vector3.forward;
+            normals[2] = -Vector3.forward;
+            normals[3] = -Vector3.forward;
+            mesh.normals = normals;
+            uv[0] = new Vector2(0, 0);
+            uv[1] = new Vector2(1, 0);
+            uv[2] = new Vector2(0, 1);
+            uv[3] = new Vector2(1, 1);
+            mesh.uv = uv;
+            return mesh;
+        }
+        public Mesh GetRightLaneDivider()
+        {
+            Mesh mesh = new Mesh();
+            mesh.vertices = MultiLaneRight;
+            mesh.triangles = triLane;
+            normals[0] = -Vector3.forward;
+            normals[1] = -Vector3.forward;
+            normals[2] = -Vector3.forward;
+            normals[3] = -Vector3.forward;
+            mesh.normals = normals;
+            uv[0] = new Vector2(0, 0);
+            uv[1] = new Vector2(1, 0);
+            uv[2] = new Vector2(0, 1);
+            uv[3] = new Vector2(1, 1);
+            mesh.uv = uv;
+            return mesh;
+        }
+        public Mesh GetInverseRightLaneDivider()
+        {
+            Mesh mesh = new Mesh();
+            mesh.vertices = MultiLaneRight;
+            Array.Reverse(triLane, 0, 6);
+            mesh.triangles = triLane;
+            normals[0] = Vector3.forward;
+            normals[1] = Vector3.forward;
+            normals[2] = Vector3.forward;
+            normals[3] = Vector3.forward;
+            mesh.normals = normals;
+            uv[0] = new Vector2(0, 0);
+            uv[1] = new Vector2(1, 0);
+            uv[2] = new Vector2(0, 1);
+            uv[3] = new Vector2(1, 1);
+            mesh.uv = uv;
+            return mesh;
+        }
+        public Mesh GetInverseLeftLaneDivider()
+        {
+            Mesh mesh = new Mesh();
+            mesh.vertices = MultiLaneLeft;
+            Array.Reverse(triLane, 0, 6);
+            mesh.triangles = triLane;
+            normals[0] = Vector3.forward;
+            normals[1] = Vector3.forward;
+            normals[2] = Vector3.forward;
+            normals[3] = Vector3.forward;
             mesh.normals = normals;
             uv[0] = new Vector2(0, 0);
             uv[1] = new Vector2(1, 0);

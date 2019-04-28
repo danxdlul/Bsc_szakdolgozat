@@ -39,7 +39,7 @@ WheelCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 524706999422153095}
   m_Center: {x: 0, y: 0, z: 0}
-  m_Radius: 0.043
+  m_Radius: 0.041
   m_SuspensionSpring:
     spring: 35000
     damper: 4500
@@ -100,7 +100,7 @@ WheelCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 629642053870179560}
   m_Center: {x: 0, y: 0, z: 0}
-  m_Radius: 0.043
+  m_Radius: 0.041
   m_SuspensionSpring:
     spring: 35000
     damper: 4500
@@ -161,7 +161,7 @@ WheelCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3468631875941746910}
   m_Center: {x: 0, y: 0, z: 0}
-  m_Radius: 0.043
+  m_Radius: 0.041
   m_SuspensionSpring:
     spring: 35000
     damper: 4500
@@ -222,7 +222,7 @@ WheelCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4079111243700246389}
   m_Center: {x: 0, y: 0, z: 0}
-  m_Radius: 0.043
+  m_Radius: 0.041
   m_SuspensionSpring:
     spring: 35000
     damper: 4500
@@ -399,19 +399,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1b9c7c5bc47db54fb3730b7b3d7df28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textureNormal: {fileID: 2800000, guid: f0edd3542ec870348997deb676ac9179, type: 3}
+  textureBraking: {fileID: 2800000, guid: 34a4efec4ca9abc47a66611e3168ec57, type: 3}
+  carRenderer: {fileID: 5310900655516900626}
   maxSteerAngle: 45
-  turnSpeed: 10
+  turnSpeed: 7
   wheelFL: {fileID: 8814405162396158795}
   wheelFR: {fileID: 5861980601518262313}
   wheelRL: {fileID: 297403563177259407}
   wheelRR: {fileID: 649330553007277940}
+  currentNode: 0
   maxMotorTorque: 80
-  maxBreakTorque: 350
+  maxBreakTorque: 500
   currentSpeed: 0
-  maxSpeed: 100
+  maxSpeed: 8
   angledSensor: 90
   isBraking: 0
   watafak: 0
+  laneSteering: 0
+  isInCrossRoad: 0
+  WillTurnRight: 0
+  WillGoStraight: 0
+  targetSteerAngle: 0
   sensorLength: 20
   frontSensorPosition: {x: 0, y: 0, z: 1.5}
   topSensorPosition: {x: 0, y: 6, z: 1.5}

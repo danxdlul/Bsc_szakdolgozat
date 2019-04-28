@@ -104,5 +104,26 @@ namespace Assets.Scripts
                 return Random.Range(1, 3);
             }
         }
+
+        public static List<Node> findMaxLevelNodes(List<Node> nodes)
+        {
+            List<Node> maxLevelNodes = new List<Node>();
+            int max = nodes[0].level;
+            foreach (Node node in nodes)
+            {
+                if(node.level > max)
+                {
+                    max = node.level;
+                }
+            }
+            foreach (Node node in nodes)
+            {
+                if(node.level == max)
+                {
+                    maxLevelNodes.Add(node);
+                }
+            }
+            return maxLevelNodes;
+        }
     }
 }

@@ -402,8 +402,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RoadMaterial: {fileID: 2100000, guid: 65add3fd1be47ee4993da4a81754bd38, type: 2}
+  MultiLanes: {fileID: 2100000, guid: 961fd2558e2341742aeac80aa81a78a3, type: 2}
   CrossRoad: {fileID: 7328407984553094940, guid: ea555f797539b354980ca88d778d6697,
     type: 3}
+  BusStop: {fileID: 1934335801786528668, guid: f4ca29ddc9caa024fb5072b16d702ff9, type: 3}
 --- !u!4 &1133441575
 Transform:
   m_ObjectHideFlags: 0
@@ -430,7 +432,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b10c48c0b38583b4ba9d3ca43d8f70b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxCars: 30
+  spawndelay: 3
+  maxCars: 100
+  maxBuses: 2
   Cars: []
+  Buses: []
   CarPrefab: {fileID: 5310900655514960850, guid: 4253996f4ac778846a66804b330000c3,
     type: 3}
+  BusPrefab: {fileID: 1972778503850442, guid: 3e40e63120ffc954b98cd3c4273f271e, type: 3}

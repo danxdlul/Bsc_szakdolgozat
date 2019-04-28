@@ -9,6 +9,9 @@ TagManager:
   - Car
   - XRoad
   - LaneDivider
+  - MultiLaneDivider
+  - BusStop
+  - Bus
   layers:
   - Default
   - TransparentFX

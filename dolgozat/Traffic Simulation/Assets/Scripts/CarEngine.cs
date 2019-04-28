@@ -5,24 +5,30 @@ using UnityEngine;
 
 public class CarEngine : MonoBehaviour
 {
-    public float maxSteerAngle = 45f;
+    public Texture2D textureNormal;
+    public Texture2D textureBraking;
+    public Renderer carRenderer;
+    public float maxSteerAngle = 30f;
     public float turnSpeed = 10f;
     public WheelCollider wheelFL;
     public WheelCollider wheelFR;
     public WheelCollider wheelRL;
     public WheelCollider wheelRR;
-    private int currentNode = 0;
+    public int currentNode = 0;
     public Path path;
     public float maxMotorTorque = 80f;
-    public float maxBreakTorque = 350f;
+    public float maxBreakTorque = 500f;
     public float currentSpeed;
-    public float maxSpeed = 100f;
+    public float maxSpeed = 8f;
     public float angledSensor = 90f;
     public bool isBraking = false;
     public float watafak = 0f;
-    private bool laneSteering;
+    public bool laneSteering;
     public bool isInCrossRoad = false;
-    private float targetSteerAngle = 0;
+    public bool WillTurnRight;
+    public bool WillGoStraight;
+    private bool LastTurnRight = false;
+    public float targetSteerAngle = 0;
 
     [Header("Sensors")]
     public float sensorLength = 20f;
@@ -50,7 +56,7 @@ public class CarEngine : MonoBehaviour
         Braking();
         LerpToSteerAngle();
     }
-    private void Sensors()
+    public void Sensors()
     {
         RaycastHit hit;
         Vector3 sensorStartPos = transform.position;
@@ -64,22 +70,18 @@ public class CarEngine : MonoBehaviour
             {
                 Debug.DrawLine(sensorStartPos, hit.point);
             }
-            else if (hit.collider.CompareTag("Car"))
+            else if (hit.collider.CompareTag("Car") || hit.collider.CompareTag("Bus"))
             {
                 Debug.DrawLine(sensorStartPos, hit.point);
                 maxSpeed = hit.distance - 10f;
             }
-            if (hit.collider.CompareTag("LaneDivider"))
+            else if (hit.collider.CompareTag("BusStop") && hit.collider.gameObject.GetComponent<BusStopController>().busCurrentlyStopped)
             {
-                if (!isInCrossRoad)
+                if(path.Edges[currentNode - 1].Lanes == 2 || !WillTurnRight)
                 {
-                    Debug.DrawLine(sensorStartPos, hit.point);
-                    targetSteerAngle = maxSteerAngle;
-                    
+                    maxSpeed = 0f;
                 }
-                laneSteering = true;
             }
-            
         }
         
         //right
@@ -90,20 +92,10 @@ public class CarEngine : MonoBehaviour
             {
                 Debug.DrawLine(sensorStartPos, hit.point);
             }
-            else if (hit.collider.CompareTag("Car"))
+            else if (hit.collider.CompareTag("Car") || hit.collider.CompareTag("Bus"))
             {
                 Debug.DrawLine(sensorStartPos, hit.point);
                 maxSpeed = hit.distance-10f;
-            }
-            if (hit.collider.CompareTag("LaneDivider"))
-            {
-                if (!isInCrossRoad)
-                {
-                    Debug.DrawLine(sensorStartPos, hit.point);
-                    targetSteerAngle = maxSteerAngle;
-                    
-                }
-                laneSteering = true;
             }
         }
 
@@ -113,16 +105,7 @@ public class CarEngine : MonoBehaviour
             if (hit.collider.CompareTag("Terrain"))
             {
                 Debug.DrawLine(sensorStartPos, hit.point);
-            }
-            if (hit.collider.CompareTag("LaneDivider"))
-            {
-                if (!isInCrossRoad)
-                {
-                    Debug.DrawLine(sensorStartPos, hit.point);
-                    targetSteerAngle = maxSteerAngle;
-                    
-                }
-                laneSteering = true;
+                targetSteerAngle = -5f;
             }
         }
 
@@ -134,20 +117,10 @@ public class CarEngine : MonoBehaviour
             {
                 Debug.DrawLine(sensorStartPos, hit.point);
             }
-            else if (hit.collider.CompareTag("Car"))
+            else if (hit.collider.CompareTag("Car") || hit.collider.CompareTag("Bus"))
             {
                 Debug.DrawLine(sensorStartPos, hit.point);
                 maxSpeed = hit.distance - 10f;
-            }
-            if(hit.collider.CompareTag("LaneDivider"))
-            {
-                if (!isInCrossRoad)
-                {
-                    Debug.DrawLine(sensorStartPos, hit.point);
-                    targetSteerAngle = maxSteerAngle;
-                    
-                }
-                laneSteering = true;
             }
         }
 
@@ -173,6 +146,15 @@ public class CarEngine : MonoBehaviour
                 }
                 laneSteering = true;
             }
+            if (hit.collider.CompareTag("MultiLaneDivider") && WillTurnRight)
+            {
+                if (!isInCrossRoad)
+                {
+                    Debug.DrawLine(sensorStartPos, hit.point);
+                    targetSteerAngle = 5f;
+                }
+                laneSteering = true;
+            }
 
         }
 
@@ -194,10 +176,19 @@ public class CarEngine : MonoBehaviour
                 }
                 laneSteering = true;
             }
+            if (hit.collider.CompareTag("MultiLaneDivider") && WillTurnRight)
+            {
+                if (!isInCrossRoad)
+                {
+                    Debug.DrawLine(sensorStartPos, hit.point);
+                    targetSteerAngle = 5f;
+                }
+                laneSteering = true;
+            }
         }
 
         //angled
-        if (Physics.Raycast(sensorStartPos, Quaternion.AngleAxis(angledSensor, transform.up) * transform.forward, out hit, 2))
+        if (Physics.Raycast(sensorStartPos, Quaternion.AngleAxis(angledSensor, transform.up) * transform.forward, out hit, 3))
         {
             if (hit.collider.CompareTag("Terrain"))
             {
@@ -210,6 +201,15 @@ public class CarEngine : MonoBehaviour
                     Debug.DrawLine(sensorStartPos, hit.point);
                     targetSteerAngle = maxSteerAngle;
                     
+                }
+                laneSteering = true;
+            }
+            if (hit.collider.CompareTag("MultiLaneDivider") && WillTurnRight)
+            {
+                if (!isInCrossRoad)
+                {
+                    Debug.DrawLine(sensorStartPos, hit.point);
+                    targetSteerAngle = 5f;
                 }
                 laneSteering = true;
             }
@@ -233,22 +233,43 @@ public class CarEngine : MonoBehaviour
                 }
                 laneSteering = true;
             }
+            if (hit.collider.CompareTag("MultiLaneDivider") && WillTurnRight)
+            {
+                if (!isInCrossRoad)
+                {
+                    Debug.DrawLine(sensorStartPos, hit.point);
+                    targetSteerAngle = 5f;
+                }
+                laneSteering = true;
+            }
+        }
+        if(Physics.Raycast(sensorStartPos,Quaternion.AngleAxis(-90f,transform.up)*transform.forward,out hit, 3))
+        {
+            if(hit.collider.CompareTag("MultiLaneDivider") && !WillTurnRight)
+            {
+                if (!isInCrossRoad)
+                {
+                    Debug.DrawLine(sensorStartPos, hit.point);
+                    targetSteerAngle = -5f;
+                }
+                laneSteering = true;
+            }
         }
         
 
     }
-    private void ApplySteer()
+    public void ApplySteer()
     {
         if (laneSteering && !isInCrossRoad)  return;
         Vector3 relativeVector = transform.InverseTransformPoint(path.WayPoints[currentNode]);
         float newSteer = (relativeVector.x / relativeVector.magnitude)*maxSteerAngle;
-        if(laneSteering && isInCrossRoad)
+        if(laneSteering && isInCrossRoad && !LastTurnRight)
         {
-            newSteer += 30f;
+            newSteer += 25f;
         }
         targetSteerAngle = newSteer;
     }
-    private void Drive()
+    public void Drive()
     {
         currentSpeed = 2 * Mathf.PI * wheelFL.radius * wheelFL.rpm * 60 / 1000;
         if(currentSpeed < maxSpeed)
@@ -274,37 +295,73 @@ public class CarEngine : MonoBehaviour
     private void CheckWaypointDistance()
     {
         watafak = Vector3.Distance(transform.position, path.WayPoints[currentNode]);
-        if (Vector3.Distance(transform.position,path.WayPoints[currentNode]) < 1f)
+        if (Vector3.Distance(transform.position,path.WayPoints[currentNode]) < 2f)
         {
+            if (WillTurnRight)
+            {
+                LastTurnRight = true;
+            }
+            else
+            {
+                LastTurnRight = false;
+            }
+            WillTurnRight = false;
             if(currentNode == path.WayPoints.Count - 1)
             {
                 Destroy(gameObject);
+                return;
+            }
+            if(currentNode < path.WayPoints.Count - 2)
+            {
+                WillTurnRight = path.WillTurnRight(currentNode);
+                WillGoStraight = path.WillGoStraight(currentNode);
             }
             currentNode++;
-        }else if(Mathf.Abs(Vector3.Distance(transform.position, path.WayPoints[currentNode])) < 40.0f)
+            if (WillTurnRight)
+            {
+                maxSteerAngle = 30f;
+            }
+            else
+            {
+                maxSteerAngle = 45f;
+            }
+            if(path.Edges[currentNode-1].Lanes == 2)
+            {
+                if (WillTurnRight)
+                {
+                    path.WayPoints[currentNode] = path.RightLaneWPs[currentNode];
+                }
+                else
+                {
+                    path.WayPoints[currentNode] = path.LeftLaneWPs[currentNode];
+                }
+            }
+        }else if(Mathf.Abs(Vector3.Distance(transform.position, path.WayPoints[currentNode])) < 40.0f && !WillGoStraight)
         {
             maxSpeed = 3f;
         }
         else
         {
-            maxSpeed = 100f;
+            maxSpeed = 8f;
         }
     }
     private void Braking()
     {
         if (isBraking)
         {
+            carRenderer.material.mainTexture = textureBraking;
             wheelRL.brakeTorque = maxBreakTorque;
             wheelRR.brakeTorque = maxBreakTorque;
         }
         else
         {
+            carRenderer.material.mainTexture = textureNormal;
             wheelRL.brakeTorque = 0;
             wheelRR.brakeTorque = 0;
         }
     }
 
-    private void LerpToSteerAngle()
+    public void LerpToSteerAngle()
     {
         wheelFL.steerAngle = Mathf.Lerp(wheelFL.steerAngle, targetSteerAngle, Time.deltaTime * turnSpeed);
         wheelFR.steerAngle = Mathf.Lerp(wheelFR.steerAngle, targetSteerAngle, Time.deltaTime * turnSpeed);

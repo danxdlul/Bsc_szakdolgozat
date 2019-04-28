@@ -8,21 +8,26 @@ public class RoadGenerator : MonoBehaviour
     // Start is called before the first frame update
     public Graph graph = new Graph();
     public Material RoadMaterial;
+    public Material MultiLanes;
     List<GameObject> RoadList = new List<GameObject>();
     List<GameObject> XRoadList = new List<GameObject>();
     List<GameObject> LaneDividers = new List<GameObject>();
     int maxnodes = 100;
     public GameObject CrossRoad;
+    public GameObject BusStop;
 
     void Start()
     {
-        graph.Nodes.Add(new Node(-500, -500, 4, 0, "none", -1));
+        graph.Nodes.Add(new Node(-500, -500, 4, 0, "none", 0));
         for(int i = 0; graph.Nodes.Count < maxnodes; i++)
         {
             ExpandNode(i);
         }
         SpawnCrossroads();
         spawnRoads();
+        graph.GenerateBusStops();
+        //graph.BusPath.ListAllData();
+        SpawnBusStops();
     }
     void ExpandNode(int i)
     {
@@ -171,6 +176,7 @@ public class RoadGenerator : MonoBehaviour
                 else
                 {
                     newEdge.Oneway = true;
+                    newEdge.Lanes = 1;
                     currentNode.EdgesFromNode.Add(newEdge);
                     graph.Edges.Add(newEdge);
                 }
@@ -205,7 +211,38 @@ public class RoadGenerator : MonoBehaviour
             LaneDividers[LaneDividers.Count - 1].GetComponent<MeshCollider>().sharedMesh = LaneDividers[LaneDividers.Count - 1].GetComponent<MeshFilter>().sharedMesh;
             LaneDividers[LaneDividers.Count - 1].GetComponent<Renderer>().enabled = false;
             LaneDividers[LaneDividers.Count - 1].tag = "LaneDivider";
+            if(edge.Lanes == 2)
+            {
+                RoadList[RoadList.Count - 1].GetComponent<Renderer>().material = MultiLanes;
+                LaneDividers.Add(GameObject.CreatePrimitive(PrimitiveType.Quad));
+                LaneDividers[LaneDividers.Count - 1].GetComponent<MeshFilter>().mesh = edge.GetLeftLaneDivider();
+                LaneDividers[LaneDividers.Count - 1].GetComponent<MeshCollider>().sharedMesh = LaneDividers[LaneDividers.Count - 1].GetComponent<MeshFilter>().sharedMesh;
+                LaneDividers[LaneDividers.Count - 1].GetComponent<Renderer>().enabled = false;
+                LaneDividers[LaneDividers.Count - 1].tag = "MultiLaneDivider";
+                LaneDividers.Add(GameObject.CreatePrimitive(PrimitiveType.Quad));
+                LaneDividers[LaneDividers.Count - 1].GetComponent<MeshFilter>().mesh = edge.GetInverseLeftLaneDivider();
+                LaneDividers[LaneDividers.Count - 1].GetComponent<MeshCollider>().sharedMesh = LaneDividers[LaneDividers.Count - 1].GetComponent<MeshFilter>().sharedMesh;
+                LaneDividers[LaneDividers.Count - 1].GetComponent<Renderer>().enabled = false;
+                LaneDividers[LaneDividers.Count - 1].tag = "MultiLaneDivider";
+                LaneDividers.Add(GameObject.CreatePrimitive(PrimitiveType.Quad));
+                LaneDividers[LaneDividers.Count - 1].GetComponent<MeshFilter>().mesh = edge.GetRightLaneDivider();
+                LaneDividers[LaneDividers.Count - 1].GetComponent<MeshCollider>().sharedMesh = LaneDividers[LaneDividers.Count - 1].GetComponent<MeshFilter>().sharedMesh;
+                LaneDividers[LaneDividers.Count - 1].GetComponent<Renderer>().enabled = false;
+                LaneDividers[LaneDividers.Count - 1].tag = "MultiLaneDivider";
+                LaneDividers.Add(GameObject.CreatePrimitive(PrimitiveType.Quad));
+                LaneDividers[LaneDividers.Count - 1].GetComponent<MeshFilter>().mesh = edge.GetInverseRightLaneDivider();
+                LaneDividers[LaneDividers.Count - 1].GetComponent<MeshCollider>().sharedMesh = LaneDividers[LaneDividers.Count - 1].GetComponent<MeshFilter>().sharedMesh;
+                LaneDividers[LaneDividers.Count - 1].GetComponent<Renderer>().enabled = false;
+                LaneDividers[LaneDividers.Count - 1].tag = "MultiLaneDivider";
+            }
 
+        }
+    }
+    private void SpawnBusStops()
+    {
+        foreach(Vector3 pos in graph.BusStops)
+        {
+            Instantiate(BusStop, pos, Quaternion.identity);
         }
     }
 }
