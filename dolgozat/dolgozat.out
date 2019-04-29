@@ -15,14 +15,20 @@
 \BOOKMARK [2][-]{subsection.3.2.5}{Szem\351lyg\351pj\341rmu}{section.3.2}% 15
 \BOOKMARK [2][-]{subsection.3.2.6}{Aut\363busz}{section.3.2}% 16
 \BOOKMARK [2][-]{subsection.3.2.7}{Buszmeg\341ll\363}{section.3.2}% 17
-\BOOKMARK [2][-]{subsection.3.2.8}{\311p\374letek}{section.3.2}% 18
-\BOOKMARK [1][-]{section.3.3}{A modell c\351lja}{chapter.3}% 19
+\BOOKMARK [2][-]{subsection.3.2.8}{K\366zleked\351si szab\341lyok}{section.3.2}% 18
+\BOOKMARK [1][-]{section.3.3}{A modell krit\351riumai}{chapter.3}% 19
 \BOOKMARK [2][-]{subsection.3.3.1}{Gener\341l\341si szempont}{section.3.3}% 20
 \BOOKMARK [2][-]{subsection.3.3.2}{Szimul\341ci\363s szempont}{section.3.3}% 21
 \BOOKMARK [0][-]{chapter.4}{Gener\341l\341s}{}% 22
 \BOOKMARK [1][-]{section.4.1}{\332th\341l\363zat Gener\341l\341sa}{chapter.4}% 23
-\BOOKMARK [1][-]{section.4.2}{Alapelemek megjelen\355t\351se HTML Canvas seg\355ts\351g\351vel}{chapter.4}% 24
-\BOOKMARK [0][-]{chapter.5}{Tervez\351s, implement\341ci\363}{}% 25
-\BOOKMARK [0][-]{chapter.6}{Szimul\341ci\363k}{}% 26
-\BOOKMARK [0][-]{chapter.7}{\326sszegz\351s}{}% 27
-\BOOKMARK [0][-]{chapter*.2}{Irodalomjegyz\351k}{}% 28
+\BOOKMARK [2][-]{subsection.4.1.1}{Gener\341l\363 algoritmus}{section.4.1}% 24
+\BOOKMARK [2][-]{subsection.4.1.2}{Az egyir\341ny\372 \372t}{section.4.1}% 25
+\BOOKMARK [1][-]{section.4.2}{Alapelemek megjelen\355t\351se HTML Canvas seg\355ts\351g\351vel}{chapter.4}% 26
+\BOOKMARK [2][-]{subsection.4.2.1}{Fejlesztoi k\366rnyezet fel\341ll\355t\341sa}{section.4.2}% 27
+\BOOKMARK [2][-]{subsection.4.2.2}{L\351trehozott oszt\341lyok}{section.4.2}% 28
+\BOOKMARK [2][-]{subsection.4.2.3}{Seg\351df\374ggv\351nyek}{section.4.2}% 29
+\BOOKMARK [2][-]{subsection.4.2.4}{A gener\341l\363 f\374ggv\351ny}{section.4.2}% 30
+\BOOKMARK [0][-]{chapter.5}{Tervez\351s, implement\341ci\363}{}% 31
+\BOOKMARK [0][-]{chapter.6}{Szimul\341ci\363k}{}% 32
+\BOOKMARK [0][-]{chapter.7}{\326sszegz\351s}{}% 33
+\BOOKMARK [0][-]{chapter*.24}{Irodalomjegyz\351k}{}% 34

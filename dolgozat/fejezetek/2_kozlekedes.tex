@@ -1,15 +1,16 @@
 ﻿\Chapter{Témaköri áttekintés}
 
 \section{Hasonló célú szoftverek}
+A feladatot azzal kezdtem, hogy utánanéztem milyen közlekedés modellezésére, annak szimulálására készült szoftverek készültek eddig. Ezek felépítése, valamint működése alapján fogom összeállítani a modellt, és továbbá az alapvető elvárásokat a generálást és a szimulációkat illetően.
 \subsection{Road Traffic Library}
 
 
 Az eddigi közlekedés-szimuláló szoftverek közül kiemelném először az AnyLogic által készített Road Traffic Library-t. Ezen szoftver segítségével létre lehet hozni egy úthálózatot
-különböző elemekből, mint például egyenes, kanyar, útkereszteződés, híd, zebra, lámpás útkereszteződés, valamint buszmegállók és parkolók.
+különböző elemekből, mint például egyenes útszakasz, útkanyarulat, útkereszteződés, híd, gyalogátkelőhely, lámpás útkereszteződés, valamint buszmegállók és parkolók.
 A szoftver képes különböző közlekedési szabályok alkalmazására, valamint a járművek intelligens módon választják meg a haladáshoz szükséges útvonalat.
 Valós-idejű szimuláció futtatására is van lehetőség, 2D-ben és 3D-ben is. 
-
-\begin{figure}[h]
+%Kép forrása: https://www.researchgate.net/publication/316700661_GIS_three-dimensional_Modelling_with_geo-informatics_techniques
+\begin{figure}[H]
 \includegraphics[width=\linewidth]{RTL.png}
 \caption{Kép a Road Traffic Library-ből}
 \label{fig:RTL}
@@ -17,6 +18,12 @@ Valós-idejű szimuláció futtatására is van lehetőség, 2D-ben és 3D-ben i
 
 A szimulációkat felhasználva hőtérkép is előállítható, amely megmutatja mennyire voltak
 forgalmasak az adott területek, így egyértelművé válik hol alakul ki könnyedén forgalmi dugó.
+%Kép forrása: https://cloud.anylogic.com/model/6322b634-2cc5-4d40-90cf-3bb44c825ea7?mode=SETTINGS&tab=GENERAL
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{heatmap.png}
+\caption{Hőtérkép egy metróállomás gyalogosforgalmáról az AnyLogic szimulációs szoftverrel}
+\label{fig:heatmp}
+\end{figure}
 
 Lehetőség van a geoinformációs rendszerekben használt vektorgrafikus formátum, azaz shapefile importálására is. Ezen fájl alapján a szoftver automatikusan
 előállítja az úthálózatot. A szoftver bővíthető még gyalogos- és vasútforgalomra vonatkozó könyvtárakkal is.
@@ -31,7 +38,8 @@ más további esemény is.
 A SUMO, azaz Simulation of Urban MObility egy ingyenes, nyílt, közlekedés-szimuláló C++-ban írt szoftver. Az első verzió 2001-ben került kiadásra, azóta már az 1.1.0-ás verziószámnál jár. Ez a szoftver lehetőséget ad több közlekedési forma (tömegközlekedés, gyalogosok, stb)
 modelezzésére a személygépjárművek mellett. Továbbá nagy eszköztárral bír az olyanokhoz mint útvonaltervezés, káros-anyag kibocsátás, valamint vizuális megjelenítés.
 Lehetséges továbbá meglévő úthálózat importálása fájlból, valamint személyre szabott modellek használata. A SUMO nem tartalmaz semmilyen megkötést az úthálózat méretét, vagy az egyszerre szimulálható járművek számát illetően.
-\begin{figure}[h]
+%Kép forrása: https://sumo.dlr.de/wiki/Tutorials/TraCIPedCrossing
+\begin{figure}[H]
 \includegraphics[width=\linewidth]{SUMO.png}
 \caption{Kép a SUMO programból}
 \label{fig:SUMO}
