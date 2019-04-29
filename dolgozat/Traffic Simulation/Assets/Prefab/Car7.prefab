@@ -410,7 +410,7 @@ MonoBehaviour:
   wheelRR: {fileID: 649330553007277940}
   currentNode: 0
   maxMotorTorque: 80
-  maxBreakTorque: 500
+  maxBreakTorque: 650
   currentSpeed: 0
   maxSpeed: 8
   angledSensor: 90

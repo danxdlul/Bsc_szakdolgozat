@@ -141,10 +141,20 @@ namespace Assets.Scripts
             BusNodes.Reverse();
             BusEdges.Reverse();
             this.ReverseBusPath = new Path(BusNodes, BusEdges);
-            /*foreach(Vector3 wp in BusPath.RightLaneWPs)
+        }
+        public void CalculateActualBranchCount()
+        {
+            foreach (Node n in Nodes)
             {
-                Debug.Log(wp);
-            }*/
+                n.branches = 0;
+                foreach(Edge e in Edges)
+                {
+                    if((e.To.Position == n.Position) || (e.From.Position == n.Position && !e.Oneway))
+                    {
+                        n.branches++;
+                    }
+                }
+            }
         }
     }
 }

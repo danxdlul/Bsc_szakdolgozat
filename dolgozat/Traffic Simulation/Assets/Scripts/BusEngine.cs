@@ -95,7 +95,7 @@ public class BusEngine : CarEngine
         }
         else
         {
-            maxSpeed = 100f;
+            maxSpeed = 50f;
         }
     }
 }

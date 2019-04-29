@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4567434472574080}
   - component: {fileID: 33374892343157266}
   - component: {fileID: 23173908920532158}
+  - component: {fileID: 8857902203932041263}
   m_Layer: 0
   m_Name: BUS_WHEEL_FL
   m_TagString: Untagged
@@ -78,6 +79,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &8857902203932041263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1269857674480728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b6c02ead11ddc94f8f4fa97d6b9cc61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetWheel: {fileID: 6874586631147763732}
 --- !u!1 &1519126113664376
 GameObject:
   m_ObjectHideFlags: 0
@@ -187,6 +201,7 @@ GameObject:
   - component: {fileID: 4500883380514490}
   - component: {fileID: 33511486599237162}
   - component: {fileID: 23734553497471092}
+  - component: {fileID: 5073805275297869828}
   m_Layer: 0
   m_Name: BUS_WHEEL_FR
   m_TagString: Untagged
@@ -254,6 +269,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &5073805275297869828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1690643508983530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b6c02ead11ddc94f8f4fa97d6b9cc61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetWheel: {fileID: 2563610383939011436}
 --- !u!1 &1966157104735772
 GameObject:
   m_ObjectHideFlags: 0
@@ -265,6 +293,7 @@ GameObject:
   - component: {fileID: 4799449076983778}
   - component: {fileID: 33035331884419870}
   - component: {fileID: 23177916717524218}
+  - component: {fileID: 219170278451215481}
   m_Layer: 0
   m_Name: BUS_WHEEL_BR
   m_TagString: Untagged
@@ -332,6 +361,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &219170278451215481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966157104735772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b6c02ead11ddc94f8f4fa97d6b9cc61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetWheel: {fileID: 5294168482142043141}
 --- !u!1 &1969389616572042
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,6 +385,7 @@ GameObject:
   - component: {fileID: 4169502583715224}
   - component: {fileID: 33776426127399382}
   - component: {fileID: 23547738473429038}
+  - component: {fileID: 4114158105042574086}
   m_Layer: 0
   m_Name: BUS_WHEEL_BL
   m_TagString: Untagged
@@ -410,6 +453,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &4114158105042574086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1969389616572042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b6c02ead11ddc94f8f4fa97d6b9cc61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetWheel: {fileID: 8857832699712586372}
 --- !u!1 &1972778503850442
 GameObject:
   m_ObjectHideFlags: 0
@@ -493,11 +549,13 @@ MonoBehaviour:
   laneSteering: 0
   isInCrossRoad: 0
   WillTurnRight: 0
+  WillGoStraight: 0
   targetSteerAngle: 0
   sensorLength: 20
   frontSensorPosition: {x: 0, y: 0, z: 1.5}
   topSensorPosition: {x: 0, y: 6, z: 1.5}
   sideSensorPosition: 0.65
+  isWaitingAtStop: 0
 --- !u!1 &403571894899976006
 GameObject:
   m_ObjectHideFlags: 0

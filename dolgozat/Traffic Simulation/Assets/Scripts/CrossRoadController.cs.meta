@@ -3,7 +3,13 @@ guid: a56a814a202f6864ab802dbfe7fc3dbc
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - Red: {fileID: 2100000, guid: 63af2d1550aeaab4386e6e4cc1fcafc7, type: 2}
+  - Green: {fileID: 2100000, guid: 382dbcc8db10e4341952b55bfdda10fa, type: 2}
+  - NorthLight: {instanceID: 0}
+  - SouthLight: {instanceID: 0}
+  - WestLight: {instanceID: 0}
+  - EastLight: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

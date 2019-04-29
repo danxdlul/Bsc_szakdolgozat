@@ -17,7 +17,7 @@ public class CarEngine : MonoBehaviour
     public int currentNode = 0;
     public Path path;
     public float maxMotorTorque = 80f;
-    public float maxBreakTorque = 500f;
+    public float maxBreakTorque = 700f;
     public float currentSpeed;
     public float maxSpeed = 8f;
     public float angledSensor = 90f;
@@ -66,6 +66,13 @@ public class CarEngine : MonoBehaviour
         //center
         if (Physics.Raycast(sensorStartPos, transform.forward, out hit, sensorLength))
         {
+            if (hit.collider.CompareTag("XRoad"))
+            {
+                if (!hit.collider.gameObject.GetComponent<CrossRoadController>().CarCanGo(path.Edges[currentNode-1].Direction))
+                {
+                    maxSpeed = 0f;
+                }
+            }
             if (hit.collider.CompareTag("Terrain"))
             {
                 Debug.DrawLine(sensorStartPos, hit.point);
@@ -73,7 +80,7 @@ public class CarEngine : MonoBehaviour
             else if (hit.collider.CompareTag("Car") || hit.collider.CompareTag("Bus"))
             {
                 Debug.DrawLine(sensorStartPos, hit.point);
-                maxSpeed = hit.distance - 10f;
+                maxSpeed = Mathf.Clamp(hit.distance - 20f,0,8);
             }
             else if (hit.collider.CompareTag("BusStop") && hit.collider.gameObject.GetComponent<BusStopController>().busCurrentlyStopped)
             {
@@ -95,7 +102,7 @@ public class CarEngine : MonoBehaviour
             else if (hit.collider.CompareTag("Car") || hit.collider.CompareTag("Bus"))
             {
                 Debug.DrawLine(sensorStartPos, hit.point);
-                maxSpeed = hit.distance-10f;
+                maxSpeed = Mathf.Clamp(hit.distance - 20f, 0, 8);
             }
         }
 
@@ -120,7 +127,7 @@ public class CarEngine : MonoBehaviour
             else if (hit.collider.CompareTag("Car") || hit.collider.CompareTag("Bus"))
             {
                 Debug.DrawLine(sensorStartPos, hit.point);
-                maxSpeed = hit.distance - 10f;
+                maxSpeed = Mathf.Clamp(hit.distance - 20f, 0, 8);
             }
         }
 
@@ -204,7 +211,7 @@ public class CarEngine : MonoBehaviour
                 }
                 laneSteering = true;
             }
-            if (hit.collider.CompareTag("MultiLaneDivider") && WillTurnRight)
+           else if (hit.collider.CompareTag("MultiLaneDivider") && WillTurnRight)
             {
                 if (!isInCrossRoad)
                 {
@@ -336,11 +343,11 @@ public class CarEngine : MonoBehaviour
                     path.WayPoints[currentNode] = path.LeftLaneWPs[currentNode];
                 }
             }
-        }else if(Mathf.Abs(Vector3.Distance(transform.position, path.WayPoints[currentNode])) < 40.0f && !WillGoStraight)
+        }else if(Mathf.Abs(Vector3.Distance(transform.position, path.WayPoints[currentNode])) < 40.0f && !WillGoStraight && !isBraking)
         {
             maxSpeed = 3f;
         }
-        else
+        else if (!isBraking)
         {
             maxSpeed = 8f;
         }
@@ -352,10 +359,14 @@ public class CarEngine : MonoBehaviour
             carRenderer.material.mainTexture = textureBraking;
             wheelRL.brakeTorque = maxBreakTorque;
             wheelRR.brakeTorque = maxBreakTorque;
+            wheelFL.brakeTorque = maxBreakTorque;
+            wheelFR.brakeTorque = maxBreakTorque;
         }
         else
         {
             carRenderer.material.mainTexture = textureNormal;
+            wheelFL.brakeTorque = 0;
+            wheelFR.brakeTorque = 0;
             wheelRL.brakeTorque = 0;
             wheelRR.brakeTorque = 0;
         }

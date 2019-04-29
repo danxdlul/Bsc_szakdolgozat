@@ -9,9 +9,11 @@ public class RoadGenerator : MonoBehaviour
     public Graph graph = new Graph();
     public Material RoadMaterial;
     public Material MultiLanes;
+    public Material OneWayMaterial;
     List<GameObject> RoadList = new List<GameObject>();
     List<GameObject> XRoadList = new List<GameObject>();
     List<GameObject> LaneDividers = new List<GameObject>();
+    List<GameObject> BusStops = new List<GameObject>();
     int maxnodes = 100;
     public GameObject CrossRoad;
     public GameObject BusStop;
@@ -23,10 +25,10 @@ public class RoadGenerator : MonoBehaviour
         {
             ExpandNode(i);
         }
+        graph.CalculateActualBranchCount();
         SpawnCrossroads();
         spawnRoads();
         graph.GenerateBusStops();
-        //graph.BusPath.ListAllData();
         SpawnBusStops();
     }
     void ExpandNode(int i)
@@ -191,6 +193,7 @@ public class RoadGenerator : MonoBehaviour
         {
             XRoadList.Add(Instantiate(CrossRoad, node.Position,CrossRoad.transform.rotation));
             node.CalculateWorldCorners(XRoadList[XRoadList.Count - 1].GetComponent<Renderer>());
+            XRoadList[XRoadList.Count - 1].GetComponent<CrossRoadController>().node = node;
         }
     }
     private void spawnRoads()
@@ -199,7 +202,14 @@ public class RoadGenerator : MonoBehaviour
         {
             RoadList.Add(GameObject.CreatePrimitive(PrimitiveType.Quad));
             RoadList[RoadList.Count - 1].GetComponent<MeshFilter>().mesh = edge.GetRoadMesh();
-            RoadList[RoadList.Count - 1].GetComponent<Renderer>().material = RoadMaterial;
+            if (!edge.Oneway)
+            {
+                RoadList[RoadList.Count - 1].GetComponent<Renderer>().material = RoadMaterial;
+            }
+            else
+            {
+                RoadList[RoadList.Count - 1].GetComponent<Renderer>().material = OneWayMaterial;
+            }
             RoadList[RoadList.Count - 1].AddComponent<BoxCollider>();
             LaneDividers.Add(GameObject.CreatePrimitive(PrimitiveType.Quad));
             LaneDividers[LaneDividers.Count - 1].GetComponent<MeshFilter>().mesh = edge.GetLaneDividerMesh();
@@ -242,7 +252,48 @@ public class RoadGenerator : MonoBehaviour
     {
         foreach(Vector3 pos in graph.BusStops)
         {
-            Instantiate(BusStop, pos, Quaternion.identity);
+            BusStops.Add(Instantiate(BusStop, pos, Quaternion.identity));
+        }
+    }
+    public void GenerateANew()
+    {
+        foreach (GameObject obj in XRoadList)
+        {
+            Destroy(obj);
+        }
+        foreach (GameObject obj in LaneDividers)
+        {
+            Destroy(obj);
+        }
+        foreach (GameObject obj in BusStops)
+        {
+            Destroy(obj);
+        }
+        foreach (GameObject obj in RoadList)
+        {
+            Destroy(obj);
+        }
+        graph = new Graph();
+        foreach (GameObject obj in gameObject.GetComponent<CarSpawner>().Cars)
+        {
+            Destroy(obj);
+        }
+        foreach (GameObject obj in gameObject.GetComponent<CarSpawner>().Buses)
+        {
+            Destroy(obj);
+        }
+        Start();
+    }
+    public void setMaxNodes(string n)
+    {
+        maxnodes = int.Parse(n);
+    }
+    public void setLightTime(string t)
+    {
+        GameObject[] xroads = GameObject.FindGameObjectsWithTag("XRoad");
+        foreach (GameObject xroad in xroads)
+        {
+            xroad.GetComponent<CrossRoadController>().LightSwitchTime = int.Parse(t);
         }
     }
 }

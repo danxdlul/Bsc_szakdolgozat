@@ -12,6 +12,7 @@ namespace Assets.Scripts
     {
         private int currentCars = 0;
         private int currentBuses = 0;
+        public int carPathMaxLength = 5;
         public int spawndelay = 3;
         public int maxCars = 20;
         public int maxBuses = 2;
@@ -34,7 +35,7 @@ namespace Assets.Scripts
                 {
                     Cars.Add(Instantiate(CarPrefab));
                     Debug.Log("car created");
-                    Cars.Last().GetComponent<CarEngine>().path = gameObject.GetComponent<RoadGenerator>().graph.GenerateRandomPath(5);
+                    Cars.Last().GetComponent<CarEngine>().path = gameObject.GetComponent<RoadGenerator>().graph.GenerateRandomPath(carPathMaxLength);
                     currentCars++;
                 }
                 for (int i = 0; i < Cars.Count; i++)
@@ -70,6 +71,18 @@ namespace Assets.Scripts
                 }
             }
 
+        }
+        public void setMaxCars(string n)
+        {
+            maxCars = int.Parse(n);
+        }
+        public void setMaxBuses(string n)
+        {
+            maxBuses = int.Parse(n);
+        }
+        public void setSpawnDelay(string t)
+        {
+            spawndelay = int.Parse(t);
         }
     }
 }
