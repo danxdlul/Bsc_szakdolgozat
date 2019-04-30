@@ -22,6 +22,55 @@ namespace Assets.Scripts
             LeftLaneWPs = new Vector3[Nodes.Count];
             RightLaneWPs = new Vector3[Nodes.Count];
             WayPoints.Add(nodes[0].Position);
+            if(edges.Count > 0)
+            {
+                switch (edges[0].Direction)
+                {
+                    case "south":
+                        if (nodes[1] == edges[0].From)
+                        {
+                            WayPoints[0] = (nodes[0].WorldCornerBR + WayPoints[0]) / 2;
+                        }
+                        else
+                        {
+                            WayPoints[0] = (nodes[0].WorldCornerTL + WayPoints[0]) / 2;
+                        }
+                        break;
+                    case "north":
+                        if (nodes[1] == edges[0].From)
+                        {
+                            WayPoints[0] = (nodes[0].WorldCornerTL + WayPoints[0]) / 2;
+                        }
+                        else
+                        {
+                            WayPoints[0] = (nodes[0].WorldCornerBR + WayPoints[0]) / 2;
+                        }
+                        break;
+                    case "west":
+                        if (nodes[1] == edges[0].From)
+                        {
+                            WayPoints[0] = (nodes[0].WorldCornerBL + WayPoints[0]) / 2;
+                        }
+                        else
+                        {
+                            WayPoints[0] = (nodes[0].WorldCornerTR + WayPoints[0]) / 2;
+                        }
+                        break;
+                    case "east":
+                        if (nodes[1] == edges[0].From)
+                        {
+                            WayPoints[0] = (nodes[0].WorldCornerTR + WayPoints[0]) / 2;
+                        }
+                        else
+                        {
+                            WayPoints[0] = (nodes[0].WorldCornerBL + WayPoints[0]) / 2;
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+            
             for(int i = 1; i < nodes.Count; i++)
             {
                 switch (edges[i - 1].Direction)
@@ -36,6 +85,28 @@ namespace Assets.Scripts
                                 LeftLaneWPs[i] = (point + WayPoints[WayPoints.Count - 1]) / 2;
                                 RightLaneWPs[i] = (nodes[i].WorldCornerBR + WayPoints[WayPoints.Count - 1]) / 2;
                             }
+                            if (WillTurnRight(i-1))
+                            {
+                                if(edges[i - 1].Lanes == 2)
+                                {
+                                    WayPoints[WayPoints.Count - 1] = RightLaneWPs[i];
+                                }
+                                point = (nodes[i].WorldCornerBR + nodes[i].WorldCornerTR) / 2;
+                                WayPoints.Add((nodes[i].WorldCornerBR + point) / 2);
+                            }
+                            else if(!WillGoStraight(i-1))
+                            {
+                                if (edges[i - 1].Lanes == 2)
+                                {
+                                    WayPoints[WayPoints.Count - 1] = LeftLaneWPs[i];
+                                }
+                                point = (nodes[i].WorldCornerBL + nodes[i].WorldCornerTL) / 2;
+                                WayPoints.Add((nodes[i].WorldCornerTL + point) / 2);
+                            }
+                            else if(edges[i - 1].Lanes == 2)
+                            {
+                                WayPoints[WayPoints.Count - 1] = LeftLaneWPs[i];
+                            }
                         }
                         else
                         {
@@ -45,6 +116,28 @@ namespace Assets.Scripts
                             {
                                 LeftLaneWPs[i] = (point + WayPoints[WayPoints.Count - 1]) / 2;
                                 RightLaneWPs[i] = (nodes[i].WorldCornerTL + WayPoints[WayPoints.Count - 1]) / 2;
+                            }
+                            if (WillTurnRight(i-1))
+                            {
+                                if (edges[i - 1].Lanes == 2)
+                                {
+                                    WayPoints[WayPoints.Count - 1] = RightLaneWPs[i];
+                                }
+                                point = (nodes[i].WorldCornerTL + nodes[i].WorldCornerBL) / 2;
+                                WayPoints.Add((nodes[i].WorldCornerTL + point) / 2);
+                            }
+                            else if (!WillGoStraight(i-1))
+                            {
+                                if (edges[i - 1].Lanes == 2)
+                                {
+                                    WayPoints[WayPoints.Count - 1] = LeftLaneWPs[i];
+                                }
+                                point = (nodes[i].WorldCornerTR + nodes[i].WorldCornerBR) / 2;
+                                WayPoints.Add((nodes[i].WorldCornerBR + point) / 2);
+                            }
+                            else if (edges[i - 1].Lanes == 2)
+                            {
+                                WayPoints[WayPoints.Count - 1] = LeftLaneWPs[i];
                             }
                         }
                         
@@ -59,6 +152,28 @@ namespace Assets.Scripts
                                 LeftLaneWPs[i] = (point + WayPoints[WayPoints.Count - 1]) / 2;
                                 RightLaneWPs[i] = (nodes[i].WorldCornerTL + WayPoints[WayPoints.Count - 1]) / 2;
                             }
+                            if (WillTurnRight(i-1))
+                            {
+                                if (edges[i - 1].Lanes == 2)
+                                {
+                                    WayPoints[WayPoints.Count - 1] = RightLaneWPs[i];
+                                }
+                                point = (nodes[i].WorldCornerTL + nodes[i].WorldCornerBL) / 2;
+                                WayPoints.Add((nodes[i].WorldCornerTL + point) / 2);
+                            }
+                            else if (!WillGoStraight(i-1))
+                            {
+                                if (edges[i - 1].Lanes == 2)
+                                {
+                                    WayPoints[WayPoints.Count - 1] = LeftLaneWPs[i];
+                                }
+                                point = (nodes[i].WorldCornerTR + nodes[i].WorldCornerBR) / 2;
+                                WayPoints.Add((nodes[i].WorldCornerBR + point) / 2);
+                            }
+                            else if (edges[i - 1].Lanes == 2)
+                            {
+                                WayPoints[WayPoints.Count - 1] = LeftLaneWPs[i];
+                            }
                         }
                         else
                         {
@@ -68,6 +183,28 @@ namespace Assets.Scripts
                             {
                                 LeftLaneWPs[i] = (point + WayPoints[WayPoints.Count - 1]) / 2;
                                 RightLaneWPs[i] = (nodes[i].WorldCornerBR + WayPoints[WayPoints.Count - 1]) / 2;
+                            }
+                            if (WillTurnRight(i-1))
+                            {
+                                if (edges[i - 1].Lanes == 2)
+                                {
+                                    WayPoints[WayPoints.Count - 1] = RightLaneWPs[i];
+                                }
+                                point = (nodes[i].WorldCornerBR + nodes[i].WorldCornerTR) / 2;
+                                WayPoints.Add((nodes[i].WorldCornerBR + point) / 2);
+                            }
+                            else if (!WillGoStraight(i-1))
+                            {
+                                if (edges[i - 1].Lanes == 2)
+                                {
+                                    WayPoints[WayPoints.Count - 1] = LeftLaneWPs[i];
+                                }
+                                point = (nodes[i].WorldCornerBL + nodes[i].WorldCornerTL) / 2;
+                                WayPoints.Add((nodes[i].WorldCornerTL + point) / 2);
+                            }
+                            else if (edges[i - 1].Lanes == 2)
+                            {
+                                WayPoints[WayPoints.Count - 1] = LeftLaneWPs[i];
                             }
                         }
                         break;
@@ -81,6 +218,28 @@ namespace Assets.Scripts
                                 LeftLaneWPs[i] = (point + WayPoints[WayPoints.Count - 1]) / 2;
                                 RightLaneWPs[i] = (nodes[i].WorldCornerBL + WayPoints[WayPoints.Count - 1]) / 2;
                             }
+                            if (WillTurnRight(i-1))
+                            {
+                                if (edges[i - 1].Lanes == 2)
+                                {
+                                    WayPoints[WayPoints.Count - 1] = RightLaneWPs[i];
+                                }
+                                point = (nodes[i].WorldCornerBL + nodes[i].WorldCornerBR) / 2;
+                                WayPoints.Add((nodes[i].WorldCornerBL + point) / 2);
+                            }
+                            else if (!WillGoStraight(i-1))
+                            {
+                                if (edges[i - 1].Lanes == 2)
+                                {
+                                    WayPoints[WayPoints.Count - 1] = LeftLaneWPs[i];
+                                }
+                                point = (nodes[i].WorldCornerTL + nodes[i].WorldCornerTR) / 2;
+                                WayPoints.Add((nodes[i].WorldCornerTR + point) / 2);
+                            }
+                            else if (edges[i - 1].Lanes == 2)
+                            {
+                                WayPoints[WayPoints.Count - 1] = LeftLaneWPs[i];
+                            }
                         }
                         else
                         {
@@ -90,6 +249,28 @@ namespace Assets.Scripts
                             {
                                 LeftLaneWPs[i] = (point + WayPoints[WayPoints.Count - 1]) / 2;
                                 RightLaneWPs[i] = (nodes[i].WorldCornerTR + WayPoints[WayPoints.Count - 1]) / 2;
+                            }
+                            if (WillTurnRight(i-1))
+                            {
+                                if (edges[i - 1].Lanes == 2)
+                                {
+                                    WayPoints[WayPoints.Count - 1] = RightLaneWPs[i];
+                                }
+                                point = (nodes[i].WorldCornerTL + nodes[i].WorldCornerTR) / 2;
+                                WayPoints.Add((nodes[i].WorldCornerTR + point) / 2);
+                            }
+                            else if (!WillGoStraight(i-1))
+                            {
+                                if (edges[i - 1].Lanes == 2)
+                                {
+                                    WayPoints[WayPoints.Count - 1] = LeftLaneWPs[i];
+                                }
+                                point = (nodes[i].WorldCornerBL + nodes[i].WorldCornerBR) / 2;
+                                WayPoints.Add((nodes[i].WorldCornerBL + point) / 2);
+                            }
+                            else if (edges[i - 1].Lanes == 2)
+                            {
+                                WayPoints[WayPoints.Count - 1] = LeftLaneWPs[i];
                             }
                         }
                         break;
@@ -103,6 +284,28 @@ namespace Assets.Scripts
                                 LeftLaneWPs[i] = (point + WayPoints[WayPoints.Count - 1]) / 2;
                                 RightLaneWPs[i] = (nodes[i].WorldCornerTR + WayPoints[WayPoints.Count - 1]) / 2;
                             }
+                            if (WillTurnRight(i-1))
+                            {
+                                if (edges[i - 1].Lanes == 2)
+                                {
+                                    WayPoints[WayPoints.Count - 1] = RightLaneWPs[i];
+                                }
+                                point = (nodes[i].WorldCornerTL + nodes[i].WorldCornerTR) / 2;
+                                WayPoints.Add((nodes[i].WorldCornerTR + point) / 2);
+                            }
+                            else if (!WillGoStraight(i-1))
+                            {
+                                if (edges[i - 1].Lanes == 2)
+                                {
+                                    WayPoints[WayPoints.Count - 1] = LeftLaneWPs[i];
+                                }
+                                point = (nodes[i].WorldCornerBL + nodes[i].WorldCornerBR) / 2;
+                                WayPoints.Add((nodes[i].WorldCornerBL + point) / 2);
+                            }
+                            else if (edges[i - 1].Lanes == 2)
+                            {
+                                WayPoints[WayPoints.Count - 1] = LeftLaneWPs[i];
+                            }
                         }
                         else
                         {
@@ -113,6 +316,28 @@ namespace Assets.Scripts
                                 LeftLaneWPs[i] = (point + WayPoints[WayPoints.Count - 1]) / 2;
                                 RightLaneWPs[i] = (nodes[i].WorldCornerBL + WayPoints[WayPoints.Count - 1]) / 2;
                             }
+                            if (WillTurnRight(i-1))
+                            {
+                                if (edges[i - 1].Lanes == 2)
+                                {
+                                    WayPoints[WayPoints.Count - 1] = RightLaneWPs[i];
+                                }
+                                point = (nodes[i].WorldCornerBL + nodes[i].WorldCornerBR) / 2;
+                                WayPoints.Add((nodes[i].WorldCornerBL + point) / 2);
+                            }
+                            else if (!WillGoStraight(i-1))
+                            {
+                                if (edges[i - 1].Lanes == 2)
+                                {
+                                    WayPoints[WayPoints.Count - 1] = LeftLaneWPs[i];
+                                }
+                                point = (nodes[i].WorldCornerTL + nodes[i].WorldCornerTR) / 2;
+                                WayPoints.Add((nodes[i].WorldCornerTR + point) / 2);
+                            }
+                            else if (edges[i - 1].Lanes == 2)
+                            {
+                                WayPoints[WayPoints.Count - 1] = LeftLaneWPs[i];
+                            }
                         }
                         break;
                 }
@@ -120,23 +345,30 @@ namespace Assets.Scripts
         }
         public bool WillTurnRight(int idx)
         {
-            string currentlyGoing = GetRealDirection(idx);
-            string willGo = GetRealDirection(idx + 1);
-            if((currentlyGoing == "north" && willGo == "east") || (currentlyGoing == "east" && willGo == "south") || (currentlyGoing == "south" && willGo == "west") || (currentlyGoing == "west" && willGo == "north"))
+            if(idx < Nodes.Count - 2)
             {
-                return true;
+                string currentlyGoing = GetRealDirection(idx);
+                string willGo = GetRealDirection(idx + 1);
+                if ((currentlyGoing == "north" && willGo == "east") || (currentlyGoing == "east" && willGo == "south") || (currentlyGoing == "south" && willGo == "west") || (currentlyGoing == "west" && willGo == "north"))
+                {
+                    return true;
+                }
             }
+            
             return false;
         }
         public bool WillGoStraight(int idx)
         {
-            
-            string currentlyGoing = GetRealDirection(idx);
-            string willGo = GetRealDirection(idx + 1);
-            if (currentlyGoing == willGo)
+            if (idx < Nodes.Count - 2)
             {
-                return true;
+                string currentlyGoing = GetRealDirection(idx);
+                string willGo = GetRealDirection(idx + 1);
+                if (currentlyGoing == willGo)
+                {
+                    return true;
+                }
             }
+            
             return false;
         }
         public string GetRealDirection(int idx)

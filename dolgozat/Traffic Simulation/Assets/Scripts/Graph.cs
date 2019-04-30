@@ -137,10 +137,10 @@ namespace Assets.Scripts
             BusEdges.AddRange(edgesfromEnd);
             Debug.Log(BusNodes.Count);
             Debug.Log(BusEdges.Count);
-            this.BusPath = new Path(BusNodes, BusEdges);
-            BusNodes.Reverse();
-            BusEdges.Reverse();
             this.ReverseBusPath = new Path(BusNodes, BusEdges);
+            BusEdges.Reverse();
+            BusNodes.Reverse();
+            this.BusPath = new Path(BusNodes, BusEdges);
         }
         public void CalculateActualBranchCount()
         {

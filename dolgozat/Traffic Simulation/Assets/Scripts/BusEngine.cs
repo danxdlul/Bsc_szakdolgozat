@@ -12,12 +12,16 @@ public class BusEngine : CarEngine
     // Start is called before the first frame update
     private void Start()
     {
+        foreach (Edge e in path.Edges)
+        {
+            Debug.Log(e.Direction);
+        }
         transform.position = path.WayPoints[0];
         if (path.WayPoints.Count > 1)
         {
             transform?.LookAt(path.WayPoints[1]);
         }
-        frontSensorPosition = new Vector3(0, 0.8f, 1.5f);
+        frontSensorPosition = new Vector3(0, 0.8f, 2.8f);
     }
     
     // Update is called once per frame
@@ -55,34 +59,27 @@ public class BusEngine : CarEngine
     }
     private void CheckWaypointDistance()
     {
-        watafak = Vector3.Distance(transform.position, path.WayPoints[currentNode]);
-        if (Vector3.Distance(transform.position, path.WayPoints[currentNode]) < 2f)
+        watafak = Vector3.Distance(transform.position, path.WayPoints[currentWayPoint]);
+        if (Vector3.Distance(transform.position, path.WayPoints[currentWayPoint]) < 3.5f)
         {
             WillTurnRight = true;
-            if (currentNode == path.WayPoints.Count - 1)
+            
+            WillGoStraight = path.WillGoStraight(currentNode);
+            currentWayPoint++;
+            if (!isInCrossRoad)
+            {
+                currentNode++;
+            }
+            if (currentNode == path.Nodes.Count)
             {
                 temp = path;
                 path = reversePath;
                 reversePath = temp;
-                currentNode = 0;
+                currentNode = 1;
+                currentWayPoint = 1;
                 transform.position = path.WayPoints[0];
                 transform.LookAt(path.WayPoints[1]);
-            }
-            if (path.WillTurnRight(currentNode))
-            {
-                maxSteerAngle = 30f;
-            }
-            else
-            {
-                maxSteerAngle = 45f;
-            }
-            WillGoStraight = path.WillGoStraight(currentNode);
-            currentNode++;
-            if(path.RightLaneWPs[currentNode] != Vector3.zero)
-            {
-                Debug.Log(path.WayPoints[currentNode]);
-                Debug.Log(path.RightLaneWPs[currentNode]);
-                path.WayPoints[currentNode] = path.RightLaneWPs[currentNode];
+                return;
             }
         }
         else if (Mathf.Abs(Vector3.Distance(transform.position, path.WayPoints[currentNode])) < 15.0f && !WillGoStraight)

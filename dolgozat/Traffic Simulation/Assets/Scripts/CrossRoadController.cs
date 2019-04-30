@@ -50,10 +50,12 @@ public class CrossRoadController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         other.GetComponentInParent<CarEngine>().isInCrossRoad = true;
+        other.GetComponentInParent<CarEngine>().sensorLength = 4f;
     }
     private void OnTriggerExit(Collider other)
     {
         other.GetComponentInParent<CarEngine>().isInCrossRoad = false;
+        other.GetComponentInParent<CarEngine>().sensorLength = 20f;
     }
     public bool CarCanGo(string direction)
     {

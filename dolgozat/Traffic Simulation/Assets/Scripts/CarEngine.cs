@@ -15,6 +15,7 @@ public class CarEngine : MonoBehaviour
     public WheelCollider wheelRL;
     public WheelCollider wheelRR;
     public int currentNode = 0;
+    public int currentWayPoint = 0;
     public Path path;
     public float maxMotorTorque = 80f;
     public float maxBreakTorque = 700f;
@@ -68,7 +69,7 @@ public class CarEngine : MonoBehaviour
         {
             if (hit.collider.CompareTag("XRoad"))
             {
-                if (!hit.collider.gameObject.GetComponent<CrossRoadController>().CarCanGo(path.Edges[currentNode-1].Direction))
+                if (!hit.collider.gameObject.GetComponent<CrossRoadController>().CarCanGo(path.Edges[currentNode - 1].Direction))
                 {
                     maxSpeed = 0f;
                 }
@@ -136,6 +137,39 @@ public class CarEngine : MonoBehaviour
         sensorStartPos += transform.forward * topSensorPosition.z;
         sensorStartPos += transform.up * topSensorPosition.y;
         laneSteering = false;
+        //angled
+        if (Physics.Raycast(sensorStartPos, Quaternion.AngleAxis(angledSensor, transform.up) * transform.forward, out hit, 3))
+        {
+            if (hit.collider.CompareTag("Terrain"))
+            {
+                Debug.DrawLine(sensorStartPos, hit.point);
+            }
+            
+            else if (hit.collider.CompareTag("MultiLaneDivider") && WillTurnRight)
+            {
+                if (!isInCrossRoad)
+                {
+                    Debug.DrawLine(sensorStartPos, hit.point);
+                    targetSteerAngle = 5f;
+                    laneSteering = true;
+                }
+
+            }
+        }
+        //angledleft
+        if (Physics.Raycast(sensorStartPos, Quaternion.AngleAxis(-angledSensor, transform.up) * transform.forward, out hit, 3))
+        {
+            if (hit.collider.CompareTag("MultiLaneDivider") && !WillTurnRight)
+            {
+                if (!isInCrossRoad)
+                {
+                    Debug.DrawLine(sensorStartPos, hit.point);
+                    targetSteerAngle = -5f;
+                    laneSteering = true;
+                }
+
+            }
+        }
         //center
         if (Physics.Raycast(sensorStartPos, transform.forward, out hit, sensorLength))
         {
@@ -143,24 +177,25 @@ public class CarEngine : MonoBehaviour
             {
                 Debug.DrawLine(sensorStartPos, hit.point);
             }
-            else if (hit.collider.CompareTag("LaneDivider"))
-            {
-                if (!isInCrossRoad)
-                {
-                    Debug.DrawLine(sensorStartPos, hit.point);
-                    targetSteerAngle = maxSteerAngle;
-                    
-                }
-                laneSteering = true;
-            }
-            if (hit.collider.CompareTag("MultiLaneDivider") && WillTurnRight)
+            else if (hit.collider.CompareTag("LaneDivider") && !laneSteering)
             {
                 if (!isInCrossRoad)
                 {
                     Debug.DrawLine(sensorStartPos, hit.point);
                     targetSteerAngle = 5f;
+                    laneSteering = true;
                 }
-                laneSteering = true;
+                
+            }
+            if (hit.collider.CompareTag("MultiLaneDivider") && WillTurnRight && !laneSteering)
+            {
+                if (!isInCrossRoad)
+                {
+                    Debug.DrawLine(sensorStartPos, hit.point);
+                    targetSteerAngle = 5f;
+                    laneSteering = true;
+                }
+                
             }
 
         }
@@ -173,55 +208,29 @@ public class CarEngine : MonoBehaviour
             {
                 Debug.DrawLine(sensorStartPos, hit.point);
             }
-            else if (hit.collider.CompareTag("LaneDivider"))
-            {
-                if (!isInCrossRoad)
-                {
-                    Debug.DrawLine(sensorStartPos, hit.point);
-                    targetSteerAngle = maxSteerAngle;
-                    
-                }
-                laneSteering = true;
-            }
-            if (hit.collider.CompareTag("MultiLaneDivider") && WillTurnRight)
+            else if (hit.collider.CompareTag("LaneDivider") && !laneSteering)
             {
                 if (!isInCrossRoad)
                 {
                     Debug.DrawLine(sensorStartPos, hit.point);
                     targetSteerAngle = 5f;
+                    laneSteering = true;
                 }
-                laneSteering = true;
+                
             }
-        }
-
-        //angled
-        if (Physics.Raycast(sensorStartPos, Quaternion.AngleAxis(angledSensor, transform.up) * transform.forward, out hit, 3))
-        {
-            if (hit.collider.CompareTag("Terrain"))
-            {
-                Debug.DrawLine(sensorStartPos, hit.point);
-            }
-            else if (hit.collider.CompareTag("LaneDivider"))
-            {
-                if (!isInCrossRoad)
-                {
-                    Debug.DrawLine(sensorStartPos, hit.point);
-                    targetSteerAngle = maxSteerAngle;
-                    
-                }
-                laneSteering = true;
-            }
-           else if (hit.collider.CompareTag("MultiLaneDivider") && WillTurnRight)
+            if (hit.collider.CompareTag("MultiLaneDivider") && WillTurnRight && !laneSteering)
             {
                 if (!isInCrossRoad)
                 {
                     Debug.DrawLine(sensorStartPos, hit.point);
                     targetSteerAngle = 5f;
+                    laneSteering = true;
                 }
-                laneSteering = true;
+                
             }
         }
 
+        
         //left
         sensorStartPos -= 2 * transform.right * sideSensorPosition;
         if (Physics.Raycast(sensorStartPos, transform.forward, out hit, sensorLength))
@@ -230,36 +239,25 @@ public class CarEngine : MonoBehaviour
             {
                 Debug.DrawLine(sensorStartPos, hit.point);
             }
-            else if (hit.collider.CompareTag("LaneDivider"))
-            {
-                if (!isInCrossRoad)
-                {
-                    Debug.DrawLine(sensorStartPos, hit.point);
-                    targetSteerAngle = maxSteerAngle;
-                    
-                }
-                laneSteering = true;
-            }
-            if (hit.collider.CompareTag("MultiLaneDivider") && WillTurnRight)
+            else if (hit.collider.CompareTag("LaneDivider") && !laneSteering)
             {
                 if (!isInCrossRoad)
                 {
                     Debug.DrawLine(sensorStartPos, hit.point);
                     targetSteerAngle = 5f;
+                    laneSteering = true;
                 }
-                laneSteering = true;
+                
             }
-        }
-        if(Physics.Raycast(sensorStartPos,Quaternion.AngleAxis(-90f,transform.up)*transform.forward,out hit, 3))
-        {
-            if(hit.collider.CompareTag("MultiLaneDivider") && !WillTurnRight)
+            if (hit.collider.CompareTag("MultiLaneDivider") && WillTurnRight && !laneSteering)
             {
                 if (!isInCrossRoad)
                 {
                     Debug.DrawLine(sensorStartPos, hit.point);
-                    targetSteerAngle = -5f;
+                    targetSteerAngle = 5f;
+                    laneSteering = true;
                 }
-                laneSteering = true;
+                
             }
         }
         
@@ -268,12 +266,8 @@ public class CarEngine : MonoBehaviour
     public void ApplySteer()
     {
         if (laneSteering && !isInCrossRoad)  return;
-        Vector3 relativeVector = transform.InverseTransformPoint(path.WayPoints[currentNode]);
+        Vector3 relativeVector = transform.InverseTransformPoint(path.WayPoints[currentWayPoint]);
         float newSteer = (relativeVector.x / relativeVector.magnitude)*maxSteerAngle;
-        if(laneSteering && isInCrossRoad && !LastTurnRight)
-        {
-            newSteer += 25f;
-        }
         targetSteerAngle = newSteer;
     }
     public void Drive()
@@ -301,49 +295,26 @@ public class CarEngine : MonoBehaviour
     }
     private void CheckWaypointDistance()
     {
-        watafak = Vector3.Distance(transform.position, path.WayPoints[currentNode]);
-        if (Vector3.Distance(transform.position,path.WayPoints[currentNode]) < 2f)
+        watafak = Vector3.Distance(transform.position, path.WayPoints[currentWayPoint]);
+        if (Vector3.Distance(transform.position,path.WayPoints[currentWayPoint]) < 2.5f)
         {
-            if (WillTurnRight)
-            {
-                LastTurnRight = true;
-            }
-            else
-            {
-                LastTurnRight = false;
-            }
             WillTurnRight = false;
-            if(currentNode == path.WayPoints.Count - 1)
+            if(currentNode == path.Nodes.Count - 1)
             {
                 Destroy(gameObject);
                 return;
             }
-            if(currentNode < path.WayPoints.Count - 2)
+            if(currentNode < path.Nodes.Count - 2)
             {
                 WillTurnRight = path.WillTurnRight(currentNode);
                 WillGoStraight = path.WillGoStraight(currentNode);
             }
-            currentNode++;
-            if (WillTurnRight)
+            currentWayPoint++;
+            if (!isInCrossRoad)
             {
-                maxSteerAngle = 30f;
+                currentNode++;
             }
-            else
-            {
-                maxSteerAngle = 45f;
-            }
-            if(path.Edges[currentNode-1].Lanes == 2)
-            {
-                if (WillTurnRight)
-                {
-                    path.WayPoints[currentNode] = path.RightLaneWPs[currentNode];
-                }
-                else
-                {
-                    path.WayPoints[currentNode] = path.LeftLaneWPs[currentNode];
-                }
-            }
-        }else if(Mathf.Abs(Vector3.Distance(transform.position, path.WayPoints[currentNode])) < 40.0f && !WillGoStraight && !isBraking)
+        }else if(Mathf.Abs(Vector3.Distance(transform.position, path.WayPoints[currentWayPoint])) < 40.0f && !WillGoStraight && !isBraking)
         {
             maxSpeed = 3f;
         }

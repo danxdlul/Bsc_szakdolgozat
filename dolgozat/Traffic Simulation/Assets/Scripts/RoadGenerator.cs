@@ -30,6 +30,7 @@ public class RoadGenerator : MonoBehaviour
         spawnRoads();
         graph.GenerateBusStops();
         SpawnBusStops();
+        GameObject.FindGameObjectWithTag("Terrain").transform.localScale = new Vector3(1000 + 2*maxnodes, 1f,1000 + 2*maxnodes);
     }
     void ExpandNode(int i)
     {
