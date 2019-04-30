@@ -4,3 +4,27 @@
 - UML osztálydiagram, szekvencia diagramok, blokkvázlat és hasonló dolgok.
 - JavaScript implementációval kapcsolatos tudnivalók.
 - WebGL-ről részletesen írni.
+\section{A WebGL-ről}
+A WebGL, azaz Web Graphics Library, egy 2D és 3D grafikus renderelésre képes JavaScript alapú API, amely lehetőséget ad interaktív grafika megjelenítésére a webböngészőkben, bármilyen más harmadik féltől származó bővítmény használata nélkül. Képes teljes mértékben hasznát venni a hardveres gyorsításnak, a képfeldolgozási utasításokat a GPU-val hajtatja végre. 
+
+Első verzióját 2011 március 3.-án adta ki a Khronos Group, azóta is ők fejlesztik. A Khronos Group emelett még sok más grafikai alkalmazásprogramozási felületet készít, melyek közül a két legismertebb talán az OpenGL és a Vulkan.
+
+A WebGL az OpenGL ES-en alapszik, mely amint a nevéből is adódik, beágyazott rendszerekhez készült. Széles körben használatos főleg mobiltelefonok, tableteken, és más hordozható készülékeken. A WebGL első verziója az OpenGL ES 2.0-án alapult, azóta már kiadták a 2.0-ás verziót, amely az OpenGL ES 3.0-t vette alapul.
+
+Az 1.0-ás verziót már szinte az összes modern webböngésző támogatja, valamint a HTML5 szabványnak is része. A 2.0-ás verziót még sok böngésző csak részlegesen támogatja, néhány pedig, mint például a Microsoft Edge, egyáltalán nem.
+
+A WebGL API nagyon alacsony szintű természete miatt nem célszerű natívan programozni. Az alap alakzatok megjelenítése is rengeteg időt venne igénybe ilyen megvalósítással. Emiatt is készült rengeteg függvénykönyvtár hozzá, amelyek lényegesen megkönnyítik a fejlesztési folyamatot, magasszintű felületet biztosítanak egyszerű alakzatok megjelenítésére, textúra beolvasására, UV map előállításához, projekciós és modelview mátrixok kiszámolásához.
+
+Az egyik ilyen híres függvénykönyvtár a Three.js. A Three.js nagyon bő funkcionalitással rendelkezik, egyszerűen létrehozható vele scene, renderer, kamera. Képes irányított és pontszerű fényforrások kezelésére. Megkönnyíti a materialok használatát, animációk létrehozását, és még sok más hasznos funkciót tartalmaz.
+
+A Three.js-ben először is egy scene-t kell létrehoznunk, ebben az objektumban fog történni a kirajzolás. Ezután jön a renderer létrehozása, majd egy kamera objektum hozzáadása a scenehez. Ha ezek megvannak, a meglévő scenehez hozzá lehet adni a kívánt objektumokat, azaz fényforrásokat, irányítást megvalósító objektumokat, valamint mesheket. A mesheket a Three.js-ben lehetőség van JSON objektumokból betölteni, majd dinamikusan hozzájuk rendelni materialt. Az animate függvényben meghívva a renderer kirajzoló függvényét frissül a megjelenés.
+\section{Unity}
+\subsection{Unity WebGL}
+unity webgl implementáció
+\subsection{Unity Editor}
+az editor működése
+\section{Szimuláció tervezése}
+\subsection{Szükséges objektumok}
+autó, busz objektum felépítése
+\subsection{Szimulációs szkriptek}
+carwheel, carengine, carspawner, szenzorok, stb

@@ -40,7 +40,7 @@ Egy könnyű módszer annak megoldására, hogy mely utak lehetnek egyirányúak
 Az algoritmus működését, eredményét egy HTML Canvas objektumon szemléltetem. Magát a kódot JavaScript-ben írtam, annak ECMAScript 6-os verziójában. Fejlesztői környezetnek A JetBrains által készített WebStormot használtam. Először is 
 létrehoztam egy HTML fájlt, ahol a body tag-en belül elhelyeztem a canvas elemet. Erre az elemre JavaScriptből a HTML-ben megadott id-je alapján lehet hivatkozni. Ezután létrehoztam egy JavaScript fájlt, melyben egy (document).ready() szintaktikában 
 elhelyezett függvényhívással indítom a generálást. A (document).ready() a jQuery függvénykönyvtárnak része. Azért szükséges ebben az esetben, mert ameddig a html fájl nem töltött be teljesen, a script nem futtatható mert a canvas elemre nem létezne 
-semmilyen referencia. Ez a részlet biztosítja hogy csak akkor kezdődjön a script futtatása, ha a HTML documentum teljesen betöltött. 
+semmilyen referencia. Ez a részlet biztosítja hogy csak akkor kezdődjön a script futtatása, ha a HTML documentum teljesen betöltött. A js fájlban globálisan eltárolom egy változóba a canvasre mutató referenciát, majd egy másik váltózóba lekérem ennek a kontextusát.
 \subsection{Létrehozott osztályok}
 \subsubsection{Node}
 A gráfon egy csomópontot leíró objektum. Egy konstruktort tartalmaz, amely beállítja az osztály 6 adattagjának értéket. Ezek az adattagok a következőek:
@@ -91,28 +91,123 @@ Egy paraméterként megkapott csomópont koordinátáinak megfelelő helyre nég
 \subsubsection{drawCanvasEdge}
 Egy élt kap meg paraméterként, melynek kezdő és végpontjai között egyenes vonalat húz a canvasre.
 \subsection{A generáló függvény}
-Ha ez megtörtént, meghívódik a DrawOnCanvas függvény. Először is ez eltárolja változóként a canvas-ra vonatkozó referenciát.
-szintén új változóba, utána a myCanvas.getContext("2d") létrehoz egy CanvasRenderingContext2D objektumot, mellyel a canvasra rajzolni lehet. A következő lépésben megtörténik a paraméterek beállítása, azaz mennyi legyen a maximális csomópontok száma, átlagosan milyen hosszúak legyenek az utak. 
-A kontextust elmozdítjuk alapértelmezett helyéről, (0,0)-ról az (1000,500) pontba. Létrehozzuk a kezdő csomópontot ezen a pozíción%, és hozzáadjuk a csomópontokat tartalmazó tömbhöz. Létrehozzuk az éleket tartalmazó tömböt, majd kirajzoljuk az első csomópontot, melyet egy négyzettel ábrázolok a kontextus .fillRect() függvényével. 
-%A többi csomópont generálásához itt egy ciklust indítok, mely addig fog futni ameddig a csomópontokat tartalmazó tömb elemszáma el nem éri a paraméterként megadott értéket. Minden iterációban a csomópontok tömbjéből a következő elemet választja ki első lépésben, a 0-tól indulva. 
-%A kontextust áthelyezem a jelenlegi csomópont pozíciójába, majd beállítok négy logikai változót, melyek megadják hogy ebből a csomópontból a négy irány közül valamelyikébe mentünk-e már tovább. Kezdetben mindegyik hamis értéket kap. Ezt követően egy switch utasítással megkeresem melyik az az irány ahonnan az adott 
-%csomópontot kiterjesztettük, és ennek megfelelően arra nem mehet tovább. Akár úgy is lehet venni hogy a jelenlegi pontból arrafelé már "húztunk élet", a logikai változó értéke erre vonatkozóan hamissá válik. Különleges eset a kiindulási pont viszont, 
-%ahol egyik irányra sem igaz ez, ezért csak szimplán továbbmegy a program. Ezután következik egy újabb ciklus, mely a csomópontból húzandó éleken iterál végig, tehát a kiindulási pontnál 4 alkalommal fog ismétlődni. Legelőször is belép egy végtelen ciklusba, %ahonnan csak akkor szabadulhat 
-%break utasítással, ha a ciklus elején véletlenszerűen kisorsolt irányba húzható él. Ha nem akkor újat sorsol. Ezután egy switch szerkezet következik a direction nevű változóra, mely az előbb kapott irányt tárolja. Észak és dél esetén az új csomópont X %koordinátája egy 
-%előre definiált (minimális) értékek közötti véletlen szám, melyhez hozzáadjuk a jelenlegi pont X koordinátáját. Ez a szám negatív is lehet. Az Y koordináta kiszámításánál is hasonló a helyzet, de itt nagyobb számokat várunk, amelyek csak pozitívak lehetnek. Ha észak felé terjeszkedünk, 
-%a kapott véletlen számot beszorozzuk -1-el, ehhez hozzáadva a kiindulási Y értéket, megkapjuk az új pont koordinátáját. Nyugat és Kelet esetében annyi a különbség, hogy a két koordináta generálásában az eljárás felcserélt.
-%Ezek után gráf mélységének függvényében generálódik egy szám, amely megadja hogy az új csomópont hányfelé fog szétágazni. Annak az esélye hogy négyfelé ágazik kezdetben 100\%, majd minden egyes mélységi szinttel 20\%-al csökken, végül 20\% esélynél megáll. 
-%Ha egy csomópont nem teljes, azaz 4-felé ágazó, akkor véletlenszerűen adódik hogy 2, vagy 3 ágú. Ez után beállítunk egy invalidedge nevű logikai változó hamis értékre, és elkezdjük végigiterálni egy újabb ciklusban az eddig létező élek tömbjét.
-%Ha még nem léteznek élek, azaz ez az első él generálása, ezt a részt átugorja. Ellenkező esetben minden élre meghívódik egy külön függvény intersects néven. Ennek a függvénynek argumentumaiként meg kell adni mindkét él két végpontjának az x és y koordinátáit, azaz 
-%összesen 8 argumentumot. Ez a függvény igaz értéket ad vissza ha a két szakasznak van közös pontja. Működésének alapja az ezen pontok által kapott két egyenes feltételezett közös pontjára vonatkozó egyenletrendszer. Ezen egyenletrendszer mátrixának a determinánsát nézi meg elsősorban. Ha ez 0, nem létezik a metszéspont. 
-%Ha nem 0, akkor tudnunk kell hogy a metszéspont a szakaszokon van-e. Az egyenletből kapott lambda és gamma értékeknek egyaránt 0 és 1 közé kell esnie, ha a pont a két szakasz közé esik. Ha ez teljesül igaz értéket, ha nem akkor hamis értéket ad vissza a függvény. 
-%Abban az esetben ha a kapott él metszett más élt, a végpontját áthelyezzük a hozzá legközelebbi csomópontra, viszont ha így is metszi az egyik másik élt, akkor elvetjük. Ha nem metszette semelyik élt, akkor Nodes.push()-al hozzáadjuk a tömbhöz az új pontot, felrajzoljuk a 
-%canvas-ra, az Edges tömbhöz szintén hozzáadjuk a hozzá vezető élt, majd a kontextusnak a .lineto() és .stroke() metódusával felrajzoljuk a canvas-ra.
-%Ezen alap eljárással a következő képhez hasonló eredményhez jutunk:
+A generálás kódjának fő része ebben a függvényben van. Ez egy paraméter nélküli függvény, visszatérési érték nélkül. A következőkben vázolom a működését. 
 
+Először inicializálja a gráfot az osztály példányosításával, majd kijelöli a kezdő csomópontot, annak paramétereit beállítva fix értékekre, tehát 4 elágazású lesz, az 1000,500 koordinátákon. 
+
+Ezután egy for ciklussal végig iterál a csomópontokat tároló vektoron, minden csomóponton kezdetben megadja a connectedFrom értéket, tehát hogy az adott csomópont melyik irányból lett kiterjesztve. 
+
+Ha ez megvan, újabb ciklus kezdődik, mely a csomópont elágazásait terjeszti ki egyesével. Ezen belül megkapja minden iterációban a kiterjesztés irányát, az új csomópont elágazásainak számát a getBranchCount függvénnyel, valamint az új élen lévő sávok száma is kiszámítódik. Ilyenkor már létezik az új él és csomópont mint objektum, következő lépésben megnézi hogy az új él metszi-e bármely meglévő élt. Ez egy szimpla iteráció az éleket tartalmazó vektoron, az intersects függvény segítségével eldönti hogy történt-e metszés.
+
+Amennyiben volt metszés, de az élt be lehetett húzni a metszett élnek a metszésponthoz közelebb álló csomópontjához, az új él megmarad, és egyirányú lesz, a csomópontot pedig elvetjük. Ha nem lehetett behúzni, vagy még így is történt metszés, akkor mindkettőt elvetjük. Ezen vizsgálat után az új él és csomópont amennyiben valamelyik is alkalmas maradt, hozzáadásra kerülnek a gráfbeli vektorhoz.
+
+Miután a kellő mennyiségű csomópont ki lett terjesztve, a függvény meghívja a gráfon belüli drawAllNodes és drawAllEdges függvényeket, majd végül a makeBusStops függvényt. Ezzel kész a generálás, az elemek felkerültek a canvasre.
 \begin{figure}[H]
 \includegraphics[width=\linewidth]{graph.png}
 \caption{Kép a generáló algoritmus eddigi eredményéről}
 \label{fig:graph}
 \end{figure}
-Ezek után következik az utak sávszámának kiadása, az egyirányú utak elhelyezése, valamint a buszmegállók generálása.
+\section{Az algoritmus implementálása Unity-ben}
+Mivel a szimulációt a Unity Enginel fogom elkészíteni, első lépésben az előbbi JavaScript implementációt ki kell bővíteni. Ez főleg a kirajzoló függvények átírását fogja jelenteni, amelyben 2D canvas helyett most már 3D-s megjelenítésben kell gondolkozni, de ezen kívül a C\# programnyelvre való áttérés miatt lehetnek még minimális változtatások.
+\subsection{Osztályok}
+\subsubsection{Util}
+Létrehoztam egy Util nevű statikus osztályt, melynek fő célja az lenne hogy külön osztályba összegyűjti az összes használt matematikai Segédfüggvényt. Ebbe az osztályba került bele a maxBranchesReached, a distance, az intersects mostmár hasIntersected néven, a getBranchCount, valamint a findMaxLevelNodes függvények. 
+
+Továbbá bővült egy újab fügvénnyel, a FindDistanceToSegment-el. Ez a függvény paraméterként egy élt és egy csomópontot vár. Visszatérési értékként a csomópont és a szakasz közötti legrövidebb távolságot adja.
+\subsubsection{Node}
+Ez az osztály az eredeti implementációhoz nagy mértékben hasonló. Egy lényeges különbség, hogy a csomópont pozícióját egy Vector3 típusú adattagban tárolom. Ez a típus 3 float típusú koordinátát tárol, az x,y, és z koordinátákat.
+
+Hozzáadtam valamint 5 új adattagot, amelyek közül 4 a csomópont négy sarkát jelőlik. Ezek az adattagok Vector3 típusúak, kiszámításukra az osztályon belül elhelyeztem egy CalculateWorldCorners függvényt, melynek paraméterül meg kell adni a létező csomópont objektum Renderer komponensét.
+
+Az ötödik új adattag egy Edge lista, mely a csomópontból kiinduló éleket tartalmazza, nem beleértve az ide érkezőket.
+
+A CalculateWorldCorners függvény a következő képpen használja fel a renderert: a renderer objektum képes visszaadni a hozzá tartozó 3D mesht behatároló téglatestet. Ennek a téglatestnek lekérdezhető a maximum és minimum értéke, mely rendszerint a jobb felső és a bal alsó sarkát adja vissza. Ezen két pont tudatában kiszámítható a maradék két sarok is, a koordináták vegyes felhasználásával.
+\subsubsection{Edge}
+Ez az osztály esett át a legnagyobb átalakításon, ugyanis az utat ábrázoló mesht dinamikusan kell kirajzolni, amelyhez először el kell végezni néhány számítást.
+
+A konstruktora változatlan maradt, viszont az osztály rengeteg adattaggal bővült. Először is a RoadCorners Vector3 típusú tömbbel, amely az útszakasz négy sarkának koordinátáit tárolja. A mesh megalkotásához szükséges a poligont alkotó háromszögek megadása, erre létrehoztam egy egész típusú tri tömböt.
+
+Szintén hasonlóan, az úton jelen lévő felezővonalak, sávelválasztó vonalak jelölésére is szükség van egy objektumra. A felezővonal sarkait a LaneDivider tömbbe, a bal és jobb oldali sávelválasztó sarkait pedig a MultiLaneLeft és MultiLaneRight Vector3 típusú tömbben tárolom. Ezeknek a válaszvonalaknak külön háromszög tömböt is deklaráltam triLane néven.
+
+A meshez szükséges még normálvektorok tartalmazó, illetve uv tömböket is bevezettem.
+
+Az osztály új metódusokkal bővült, ezek közül első a GetWorldCoords void típusú paraméter nélküli metódus. Ez a metódus annak függvényében, hogy a Direction adattagban milyen irány van megadva, kiszámolja az általa összekötött csomópontok sarkai alapján az útszakasz sarkainak koordinátáit.
+
+Példa esetként, ha észak felé tart az út, akkor a kiindulási pont bal és jobb felső, a célpont bal és jobb alsó koordinátáira lesz szükség.
+
+Ha az út két sávos, ezen sarkok alapján kiszámolja a felező- és sávelválasztó vonalak sarkait. Ezek megjelenésével nem kell foglalkozni, csak jelző értékkel rendelkeznek a járművek számára, ezért az útszakasz felett foglalnak helyet.
+
+Ezek után beállítja a tri és triLane értékeit, azaz hogy a háromszögek megalkotásához milyen sorrendbe járja be az adott pontokat.
+
+
+A GetRoadMesh metódus maga az utat reprezentáló Mesh objektummal tér vissza. Paraméter nélküli metódus. Első lépésben meghívja a GetWorldCoords függvényt, ezzel beállítva az út sarkainak értéket. Majd létrehoz egy új Mesh objektumot, melynek csúcsait beállítja az előbb kiszámolt pontokra, háromszögek értéket pedig a tri tömbre. A normálvektorok itt nem kapnak nagy jelentőséget, Z tengely szerinti negatív egyenes értéket adtam nekik. Az uv koordinátákat szimplán a mesh négy sarkának jelöltem el.
+
+A GetLaneDividerMesh, GetLeftLaneDivider, valamint a GetRightLaneDivider metódusok az előbbivel hasonló módon funkcionálnak, csak a csúcsok halmaza változik.
+
+Ám ezekkel a vonalakkal kapcsolatban szükség volt létrehoznom három Inverse metódust is, a GetInverseLeftLaneDivider, GetInverseRightLaneDivider, és a GetInverseLaneDividerMesh függvényeket. Erre az a magyarázat, hogy ezek alapvetően síkok, azaz a hátlapjaik nem láthatóak. 
+
+Bár a Unity tartalmaz megoldást ütközők konvexé alakítására, ez ebben az esetben nem mindig működik, mert gyakran a válaszvonal négy csúcsai koplanáris pontok. Ezért a következő megoldást választottam: a létrehozott síkokkal megegyező pozícióban létrehozom a síkok ellentétes irányba néző változatát. Ezt a feladatot látják el ezek az inverse metódusok, melyek az adott háromszög tömböt visszafelé járják be.
+
+\subsubsection{Graph}
+A gráfot leíró osztály bővült néhány új adattaggal. 
+
+Külön Node és Edge listában tartalmazza mostmár a buszok útvonalát leíró csomópontokat és éleket. A buszmegállok koordinátái tárolására egy Vector3 típusú listát is bevezettem.
+
+Továbbá ebben az osztályban tárolom a buszok számára kirendelt útvonalat is, melyet egy Path nevű osztállyal írok le. Ezt a későbbiekben részletezném a szimulációval kapcsolatban.
+
+Az osztály konstruktora üres listával inicializálja az összes adattagot.
+
+Egy új metódus került az osztályba, a GenerateRandomPath. Ennek egy egész szám típusú paramétert kell megadni, ez lesz az útvonal maximális hossza. A metódus visszatérési értéke Path típusú, ez fogja tartalmazni az útvonal adatait.
+
+Működésében egy Node és egy Edge listában tárolja el az útvonal által bejárt csomópontokat és éleket. Először választ egy véletlenszerű csomópontot, majd a csomópontból kiinduló élek közül választ egyet, és az él túlsó végén lévő csomóponthoz megy tovább. Végül a Node és Edge listát felhasználva visszadja a Path objektumot.
+
+A GenerateBusStops metódusban történt pár változtatás. Ezt is úgy írtam meg, hogy a Path objektumot használja, ezért a metódus az osztályon belüli két busz útvonalat leíró adattag értékét állítja be.
+
+Működésében nagyjából azonos, egy fontos változtatással, miszerint a megállók elhelyezése közben bejárt csomópontokat és éleket eltárolja listában. Az útvonal vége felőli bejárt utat megfordítás után hozzáadom a kiindulás felőli úthoz, ez adja a busz teljes útvonalát.
+
+Ezt az útvonalat megfordítom teljes egészében, így megkapom a buszok útvonalát ellentétes irányban. Mindkettő útvonal tárolódik a végén.
+
+A CalculataActualBranchCount metódusra azért volt szükség, mert generálás után a csomópont branches adattagja nem minden esetben reflektálja a hozzá tartozó tényleges élek számát, például ha az egyik kiterjesztése érvénytelen volt. Ez a metódus megszámolja ténylegesen hány él indul és/vagy érkezik az adott csomópontba, és ez alapján beállítja a branches értékét.
+\subsubsection{RoadGenerator}
+Többek között ebbe az osztályba került a fő generáló függvény, valamint a kirajzolásért felelő függvények.
+
+Adattagjai közé tartozik maga a gráf, mint Graph típus, külön Material típus három féle útra (egy sávos, két sávos, egyirányú), négy GameObject lista, melyek az útszakaszok, az útkereszteződések, a választóvonalak, és a buszmegállók tárolására vannak, valamint egy sablon objektum elhelyezésére alkalmas CrossRoad és BusStop GameObject típusú adattag.
+
+Az osztályon belüli Start metódus az ezen osztály komponensként tartalmazó objektum létrejötte utáni legelső képkockában fut le, pontosan egyszer.
+
+Ebben a metódusban először elhelyezem a kezdeti csomópontot, majd ameddig kevesebb csomópont létezik mint a megadott maximum, az ExpandNode metódussal kiterjesztem a soron következő csomópontot.
+
+Ha ez megtörtént, újra számoltatom a csomópontok elágazásainak számát a gráfon belüli CalculataActualBranchCount metódussal, majd meghívom a SpawnCrossroads, spawnRoads, a gráfon belüli GenerateBusStops, majd végül a SpawnBusStops metódusokat a csomópontok, útszakaszok, és a buszmegállók kirajzolásához.
+
+Az ExpandNode metódusba került bele a generáló algoritmus fő része, ez egy visszatérési érték nélküli metódus, mely egy egész számot vár paraméterként. Ez az egész szám annak a csomópontnak az indexét jelöli, amelyet ki fog terjeszteni. Funkcionalitásában nem történt változás.
+
+A SpawnCrossRoads metódus felelős az útkereszteződések kirajzolásáért. Visszatérési érték nélküli, paraméter nélküli metódus. Az Instantiate metódussal létrehozza egy megadott pontban, az eltárolt sablon útkereszteződés egy másolatát. Ezután kiszámolja a sarkait a CalculateWorldCorners metódussal. Végül a jelzőlámpa irányításáért felelős CrossRoadController szkriptnek átadja a csomópontot.
+
+A spawnRoads void visszatérésű, paraméter nélküli függvény dinamikusan képez mesheket az Edge listában tárolt élek adataiból. A materiált beállítja annak függvényében, hogy az út egyirányú, két sávú, vagy egy sávú. A választóvonalak renderer komponensét kikapcsolja, mivel azok megjelenítésére nincs szükség. 
+
+A SpawnBusStops metódus void típusú, és paraméter nélküli. Az Instantiate metódus segítségével létrehozza a sablonként eltárolt megálló objektum másolatát a buszmegállók pozíciót tartalmazó listának megfelelő helyeken.
+
+A GenerateANew metódus a felhasználói felület kezelését látja el. A Generate Anew gombra kattintva lefut ez a metódus, mely törli az összes létrehozott objektumot, a gráf tartalmát üríti, majd meghívja a start metódust amellyel egy új úthálózatot generál.
+
+Szintén a UI-hoz kapcsolódó két metódus a setMaxNodes, mely a beírt értékre beállítja a maximálisan generálandó csomópontokat. Valamint a setLightTime, amely átadja a jelzőlámpák szkriptjének a váltáshoz használandó időtartamot.
+\subsection{A Scene létrehozása}
+Ahhoz hogy a megírt metódusokat használni lehessen, hozzá kell rendelni valamilyen GameObject objektumhoz. Ezeket az objektumokat lehet dinamikusan is létrehozni C\# szkripten belül, de minden esetben szükség van legalább egy GameObjectet létrehozni a Unity editorjában, enélkül nem lehet szkriptet futtatni.
+
+A GameObjecthez rendelt szkriptek az objektum létrejöttekor meghívják a Start metódusokat, majd minden egyes képkockafrissítés után az Update metódust.
+
+Az alap scene tartalmaz egy Main Camera objektumot, valamint egy Directional Light fényforrást. Létrehoztam ezek mellé egy üres GameObjectet, melyhez komponensként hozzárendeltem a RoadGenerator forrásfájlját. Ezt az objektumot elneveztem Manager-nek, ezt fogom használni a szimuláció kezelésére, ezen keresztül hozok létre, illetve törlök objektumokat. A Managerhez hozzárendelt szkript a Scene betöltődésekor most már meghívja a Start metódust, mely végrehajtja a generálás lépéseit.
+
+Viszont ehhez még szükség van a szkript adattagjainak feltöltésére. Amint írtam, ez az osztály tartalmaz 3 Material típust, és 2 GameObject típust amelyet az editorból fel kell tölteni. 
+
+Először is elkészítettem a materialokat, felhasználva egy alap útburkolat textúrát. Ezt a textúrát kissé átszerkesztve előállítottam a 3 úttípushoz szükséges materialokat, majd hozzárendeltem őket a szkripthez.
+
+Ezek után létrehoztam egy új objektumot a scene-ben, mely egy egyszerű négyzet alakú síklap. Ezen síklapot fogom felhasználni a csomópont jelölésére alkalmas sablonként. Létrehoztam ennek az objektumnak négy gyerekelemét, ezek a négy oldalán lévő jelzőlámpáknak felelnek meg. Ezeket az egyszerűség kedvéért egy alap kapszula alakzattal reprezentálom. Elheyeztem rajta egy sötétszürke, útra emlékeztető materialt. Ezt az objektumot a projekt fájljai közé helyezve létrejön róla egy sablon, ezt már hozzá lehet rendelni a generáló szkripthez.
+
+A buszmegállók sablonját is hasonlóan készítettem el, egy szimpla kapszula alakzattal jelölöm. Ehhez az objektumhoz adtam egy új BoxCollider komponenst, mellyel a megálló által behatárolt területet tudom eljelölni. Ennek a komponensnek az isTrigger tulajdonságát engedélyezve lehet a fizikai motor igénybe vétele nélkül ellenőrizni azt, hogy mely objektumok léptek a területére. Ezzel készen léve hozzáadtam a sablont a szkripthez.
+
+A működést kipróbálva az alábbi eredményhez jutottam:
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{unitygraph.png}
+\caption{Kép a generáló algoritmus eredményéről Unityben}
+\label{fig:ugraph}
+\end{figure}

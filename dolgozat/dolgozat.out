@@ -28,7 +28,17 @@
 \BOOKMARK [2][-]{subsection.4.2.2}{L\351trehozott oszt\341lyok}{section.4.2}% 28
 \BOOKMARK [2][-]{subsection.4.2.3}{Seg\351df\374ggv\351nyek}{section.4.2}% 29
 \BOOKMARK [2][-]{subsection.4.2.4}{A gener\341l\363 f\374ggv\351ny}{section.4.2}% 30
-\BOOKMARK [0][-]{chapter.5}{Tervez\351s, implement\341ci\363}{}% 31
-\BOOKMARK [0][-]{chapter.6}{Szimul\341ci\363k}{}% 32
-\BOOKMARK [0][-]{chapter.7}{\326sszegz\351s}{}% 33
-\BOOKMARK [0][-]{chapter*.24}{Irodalomjegyz\351k}{}% 34
+\BOOKMARK [1][-]{section.4.3}{Az algoritmus implement\341l\341sa Unity-ben}{chapter.4}% 31
+\BOOKMARK [2][-]{subsection.4.3.1}{Oszt\341lyok}{section.4.3}% 32
+\BOOKMARK [2][-]{subsection.4.3.2}{A Scene l\351trehoz\341sa}{section.4.3}% 33
+\BOOKMARK [0][-]{chapter.5}{Tervez\351s, implement\341ci\363}{}% 34
+\BOOKMARK [1][-]{section.5.1}{A WebGL-rol}{chapter.5}% 35
+\BOOKMARK [1][-]{section.5.2}{Unity}{chapter.5}% 36
+\BOOKMARK [2][-]{subsection.5.2.1}{Unity WebGL}{section.5.2}% 37
+\BOOKMARK [2][-]{subsection.5.2.2}{Unity Editor}{section.5.2}% 38
+\BOOKMARK [1][-]{section.5.3}{Szimul\341ci\363 tervez\351se}{chapter.5}% 39
+\BOOKMARK [2][-]{subsection.5.3.1}{Sz\374ks\351ges objektumok}{section.5.3}% 40
+\BOOKMARK [2][-]{subsection.5.3.2}{Szimul\341ci\363s szkriptek}{section.5.3}% 41
+\BOOKMARK [0][-]{chapter.6}{Szimul\341ci\363k}{}% 42
+\BOOKMARK [0][-]{chapter.7}{\326sszegz\351s}{}% 43
+\BOOKMARK [0][-]{chapter*.29}{Irodalomjegyz\351k}{}% 44
