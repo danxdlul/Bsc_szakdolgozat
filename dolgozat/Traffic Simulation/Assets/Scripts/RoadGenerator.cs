@@ -30,6 +30,8 @@ public class RoadGenerator : MonoBehaviour
         spawnRoads();
         graph.GenerateBusStops();
         SpawnBusStops();
+        gameObject.GetComponent<BuildingGenerator>().graph = this.graph;
+        gameObject.GetComponent<BuildingGenerator>().GenerateBuildings();
         GameObject.FindGameObjectWithTag("Terrain").transform.localScale = new Vector3(1000 + 2*maxnodes, 1f,1000 + 2*maxnodes);
     }
     void ExpandNode(int i)
@@ -179,15 +181,45 @@ public class RoadGenerator : MonoBehaviour
                 else
                 {
                     newEdge.Oneway = true;
+                    
                     newEdge.Lanes = 1;
                     currentNode.EdgesFromNode.Add(newEdge);
                     graph.Edges.Add(newEdge);
+                    AddPark(newEdge);
                 }
             }
         }
     }
 
-    
+    private void AddPark(Edge edge)
+    {
+        Node node1 = edge.From;
+        Node node2 = edge.To;
+        Node node3;
+        Node node4;
+        foreach(Edge e in graph.Edges)
+        {
+            if((e.From == node1 || e.To == node1) &&  e != edge)
+            {
+                foreach(Edge ed in graph.Edges)
+                {
+                    if(ed.From == node2 || e.To == node2 && e != edge && e != ed)
+                    {
+                        foreach(Edge edg in graph.Edges)
+                        {
+                            if(edg != ed && edg != e && (edg.From == ed.From || edg.From == ed.To || edg.To == ed.From || edg.To == ed.To) && (edg.From == ed.From || edg.From == ed.To || edg.To == ed.From || edg.To == ed.To))
+                            {
+                                node3 = edg.From;
+                                node4 = edg.To;
+                                gameObject.GetComponent<ParkGenerator>().GeneratePark(node1, node2, node3, node4);
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
     private void SpawnCrossroads()
     {
         foreach(Node node in graph.Nodes)
@@ -280,6 +312,10 @@ public class RoadGenerator : MonoBehaviour
             Destroy(obj);
         }
         foreach (GameObject obj in gameObject.GetComponent<CarSpawner>().Buses)
+        {
+            Destroy(obj);
+        }
+        foreach (GameObject obj in gameObject.GetComponent<ParkGenerator>().worldtrees)
         {
             Destroy(obj);
         }

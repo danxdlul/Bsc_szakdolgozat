@@ -12,6 +12,7 @@ TagManager:
   - MultiLaneDivider
   - BusStop
   - Bus
+  - tree
   layers:
   - Default
   - TransparentFX
