@@ -1725,6 +1725,8 @@ MonoBehaviour:
   RoadMaterial: {fileID: 2100000, guid: 65add3fd1be47ee4993da4a81754bd38, type: 2}
   MultiLanes: {fileID: 2100000, guid: 961fd2558e2341742aeac80aa81a78a3, type: 2}
   OneWayMaterial: {fileID: 2100000, guid: afb547c54355ee9458beee2a6e65c15d, type: 2}
+  vertRoad: {fileID: 2100000, guid: 8583cb0be0006f24d8ff706d6422518f, type: 2}
+  horRoad: {fileID: 2100000, guid: 38b5640da896e8245b4904e038640fbf, type: 2}
   CrossRoad: {fileID: 7328407984553094940, guid: ea555f797539b354980ca88d778d6697,
     type: 3}
   BusStop: {fileID: 1934335801786528668, guid: f4ca29ddc9caa024fb5072b16d702ff9, type: 3}
@@ -1802,6 +1804,7 @@ MonoBehaviour:
   houses:
   - {fileID: 1000010315956650, guid: 1560075f917727c46a8546367a2f3132, type: 3}
   - {fileID: 1000013289884710, guid: f0cf8146888c5ba4ebd406d6a76baeb7, type: 3}
+  buildings: []
 --- !u!1 &1233681806
 GameObject:
   m_ObjectHideFlags: 0

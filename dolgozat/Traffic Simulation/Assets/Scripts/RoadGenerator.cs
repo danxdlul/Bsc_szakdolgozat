@@ -10,6 +10,7 @@ public class RoadGenerator : MonoBehaviour
     public Material RoadMaterial;
     public Material MultiLanes;
     public Material OneWayMaterial;
+    public Material vertRoad, horRoad;
     List<GameObject> RoadList = new List<GameObject>();
     List<GameObject> XRoadList = new List<GameObject>();
     List<GameObject> LaneDividers = new List<GameObject>();
@@ -32,25 +33,32 @@ public class RoadGenerator : MonoBehaviour
         SpawnBusStops();
         gameObject.GetComponent<BuildingGenerator>().graph = this.graph;
         gameObject.GetComponent<BuildingGenerator>().GenerateBuildings();
+        gameObject.GetComponent<ParkGenerator>().graph = this.graph;
+        gameObject.GetComponent<ParkGenerator>().PlantTrees();
+        AddParks();
         GameObject.FindGameObjectWithTag("Terrain").transform.localScale = new Vector3(1000 + 2*maxnodes, 1f,1000 + 2*maxnodes);
     }
     void ExpandNode(int i)
     {
         Node currentNode = graph.Nodes[i];
-        bool didEast = false, didWest = false, didNorth = false, didSouth = false;
+
+        currentNode.didEast = false;
+        currentNode.didWest = false;
+        currentNode.didNorth = false;
+        currentNode.didSouth = false;
         switch (currentNode.ConnectedFrom)
         {
             case "south":
-                didSouth = true;
+                currentNode.didSouth = true;
                 break;
             case "north":
-                didNorth = true;
+                currentNode.didNorth = true;
                 break;
             case "west":
-                didWest = true;
+                currentNode.didWest = true;
                 break;
             case "east":
-                didEast = true;
+                currentNode.didEast = true;
                 break;
             default:
                 Debug.Log("No case match!");
@@ -63,27 +71,23 @@ public class RoadGenerator : MonoBehaviour
             while (true)
             {
                 random = Random.Range(0, 4);
-                if (random == 0 && didSouth == false)
+                if (random == 0 && currentNode.didSouth == false)
                 {
-                    didSouth = true;
                     direction = "south";
                     break;
                 }
-                if (random == 1 && didNorth == false)
+                if (random == 1 && currentNode.didNorth == false)
                 {
-                    didNorth = true;
                     direction = "north";
                     break;
                 }
-                if (random == 2 && didWest == false)
+                if (random == 2 && currentNode.didWest == false)
                 {
-                    didWest = true;
                     direction = "west";
                     break;
                 }
-                if (random == 3 && didEast == false)
+                if (random == 3 && currentNode.didEast == false)
                 {
-                    didEast = true;
                     direction = "east";
                     break;
                 }
@@ -136,11 +140,29 @@ public class RoadGenerator : MonoBehaviour
                     {
                         if(Util.distance(newNode,currentEdge.From) > Util.distance(newNode, currentEdge.To))
                         {
-                            if (!Util.maxBranchesReached(graph,currentEdge.To, i))
+                            if (!Util.maxBranchesReached(graph,currentEdge.To, i) && ((direction == "south" && !currentEdge.To.didNorth) || (direction == "north" && !currentEdge.To.didSouth) || (direction == "west" && !currentEdge.To.didEast) || (direction == "east" && !currentEdge.To.didWest)))
                             {
                                 newEdge.To = currentEdge.To;
                                 invalidedge = false;
                                 corrected = true;
+                                switch (direction)
+                                {
+                                    case "south":
+                                        currentEdge.To.didNorth = true;
+                                        break;
+                                    case "north":
+                                        currentEdge.To.didSouth = true;
+                                        break;
+                                    case "west":
+                                        currentEdge.To.didEast = true;
+                                        break;
+                                    case "east":
+                                        currentEdge.To.didWest = true;
+                                        break;
+                                    default:
+                                        Debug.Log("No case match!");
+                                        break;
+                                }
                             }
                             else
                             {
@@ -150,11 +172,29 @@ public class RoadGenerator : MonoBehaviour
                         }
                         else
                         {
-                            if (!Util.maxBranchesReached(graph,currentEdge.From, i))
+                            if (!Util.maxBranchesReached(graph,currentEdge.From, i) && ((direction == "south" && !currentEdge.From.didNorth) || (direction == "north" && !currentEdge.From.didSouth) || (direction == "west" && !currentEdge.From.didEast) || (direction == "east" && !currentEdge.From.didWest)))
                             {
                                 newEdge.To = currentEdge.From;
                                 invalidedge = false;
                                 corrected = true;
+                                switch (direction)
+                                {
+                                    case "south":
+                                        currentEdge.From.didNorth = true;
+                                        break;
+                                    case "north":
+                                        currentEdge.From.didSouth = true;
+                                        break;
+                                    case "west":
+                                        currentEdge.From.didEast = true;
+                                        break;
+                                    case "east":
+                                        currentEdge.From.didWest = true;
+                                        break;
+                                    default:
+                                        Debug.Log("No case match!");
+                                        break;
+                                }
                             }
                             else
                             {
@@ -177,6 +217,24 @@ public class RoadGenerator : MonoBehaviour
                     newNode.EdgesFromNode.Add(newEdge);
                     graph.Nodes.Add(newNode);
                     graph.Edges.Add(newEdge);
+                    switch (direction)
+                    {
+                        case "north":
+                            currentNode.didNorth = true;
+                            break;
+                        case "south":
+                            currentNode.didSouth = true;
+                            break;
+                        case "east":
+                            currentNode.didEast = true;
+                            break;
+                        case "west":
+                            currentNode.didWest = true;
+                            break;
+                        default:
+                            Debug.Log("No case match!");
+                            break;
+                    }
                 }
                 else
                 {
@@ -185,34 +243,59 @@ public class RoadGenerator : MonoBehaviour
                     newEdge.Lanes = 1;
                     currentNode.EdgesFromNode.Add(newEdge);
                     graph.Edges.Add(newEdge);
-                    AddPark(newEdge);
+                    switch (direction)
+                    {
+                        case "north":
+                            currentNode.didNorth = true;
+                            break;
+                        case "south":
+                            currentNode.didSouth = true;
+                            break;
+                        case "east":
+                            currentNode.didEast = true;
+                            break;
+                        case "west":
+                            currentNode.didWest = true;
+                            break;
+                        default:
+                            Debug.Log("No case match!");
+                            break;
+                    }
                 }
             }
         }
     }
 
-    private void AddPark(Edge edge)
+    private void AddParks()
     {
-        Node node1 = edge.From;
-        Node node2 = edge.To;
-        Node node3;
-        Node node4;
-        foreach(Edge e in graph.Edges)
+        foreach(Edge edge in graph.Edges)
         {
-            if((e.From == node1 || e.To == node1) &&  e != edge)
+            if (edge.Oneway)
             {
-                foreach(Edge ed in graph.Edges)
+                Debug.Log("this oneway");
+                Node node1 = edge.From;
+                Node node2 = edge.To;
+                Node node3;
+                Node node4;
+                foreach (Edge e in graph.Edges)
                 {
-                    if(ed.From == node2 || e.To == node2 && e != edge && e != ed)
+                    if ((e.From == node1 || e.To == node1) && e != edge)
                     {
-                        foreach(Edge edg in graph.Edges)
+                        foreach (Edge ed in graph.Edges)
                         {
-                            if(edg != ed && edg != e && (edg.From == ed.From || edg.From == ed.To || edg.To == ed.From || edg.To == ed.To) && (edg.From == ed.From || edg.From == ed.To || edg.To == ed.From || edg.To == ed.To))
+                            if (ed.From == node2 || e.To == node2 && e != edge && e != ed)
                             {
-                                node3 = edg.From;
-                                node4 = edg.To;
-                                gameObject.GetComponent<ParkGenerator>().GeneratePark(node1, node2, node3, node4);
-                                return;
+                                foreach (Edge edg in graph.Edges)
+                                {
+                                    Debug.Log(edg.From.Position);
+                                    Debug.Log(edg.To.Position);
+                                    if (edg != ed && edg != edge && edg != e && (edg.From == ed.From || edg.From == ed.To || edg.To == ed.From || edg.To == ed.To) && (edg.From == e.From || edg.From == e.To || edg.To == e.From || edg.To == e.To))
+                                    {
+                                        node3 = edg.From;
+                                        node4 = edg.To;
+                                        gameObject.GetComponent<ParkGenerator>().GeneratePark(node1, node2, node3, node4);
+                                    }
+                                }
                             }
                         }
                     }
@@ -227,6 +310,14 @@ public class RoadGenerator : MonoBehaviour
             XRoadList.Add(Instantiate(CrossRoad, node.Position,CrossRoad.transform.rotation));
             node.CalculateWorldCorners(XRoadList[XRoadList.Count - 1].GetComponent<Renderer>());
             XRoadList[XRoadList.Count - 1].GetComponent<CrossRoadController>().node = node;
+            if(node.didNorth && node.didSouth && !node.didWest && !node.didEast)
+            {
+                XRoadList[XRoadList.Count - 1].GetComponent<Renderer>().sharedMaterial = horRoad;
+            }
+            if(node.didEast && node.didWest && !node.didNorth && !node.didSouth)
+            {
+                XRoadList[XRoadList.Count - 1].GetComponent<Renderer>().sharedMaterial = vertRoad;
+            }
         }
     }
     private void spawnRoads()
@@ -319,18 +410,28 @@ public class RoadGenerator : MonoBehaviour
         {
             Destroy(obj);
         }
-        Start();
+        foreach(GameObject obj in gameObject.GetComponent<BuildingGenerator>().buildings)
+        {        
+            Destroy(obj);
+        }
+        Invoke("Start", 0.2f);
     }
     public void setMaxNodes(string n)
     {
-        maxnodes = int.Parse(n);
+        if (int.Parse(n) > 0)
+        {
+            maxnodes = int.Parse(n);
+        }      
     }
     public void setLightTime(string t)
     {
-        GameObject[] xroads = GameObject.FindGameObjectsWithTag("XRoad");
-        foreach (GameObject xroad in xroads)
+        if(int.Parse(t) > 0)
         {
-            xroad.GetComponent<CrossRoadController>().LightSwitchTime = int.Parse(t);
-        }
+            GameObject[] xroads = GameObject.FindGameObjectsWithTag("XRoad");
+            foreach (GameObject xroad in xroads)
+            {
+                xroad.GetComponent<CrossRoadController>().LightSwitchTime = int.Parse(t);
+            }
+        }       
     }
 }

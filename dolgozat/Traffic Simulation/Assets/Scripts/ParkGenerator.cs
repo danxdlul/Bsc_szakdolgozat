@@ -21,6 +21,23 @@ public class ParkGenerator : MonoBehaviour
     private float minZ;
     float xpos;
     float zpos;
+    public void PlantTrees()
+    {
+        float minx = graph.Nodes.OrderByDescending(x => x.Position.x).LastOrDefault().Position.x;
+        float maxx = graph.Nodes.OrderByDescending(x => x.Position.x).FirstOrDefault().Position.x;
+        float minz = graph.Nodes.OrderByDescending(x => x.Position.z).LastOrDefault().Position.z;
+        float maxz = graph.Nodes.OrderByDescending(x => x.Position.z).FirstOrDefault().Position.z;
+        for (int i = 0; i < 5 * graph.Nodes.Count; i++)
+        {
+            xpos = Random.Range(minx, maxx);
+            zpos = Random.Range(minz, maxz);
+            treepoint = new Vector2(xpos, zpos);
+            if (!Physics.CheckBox(new Vector3(treepoint.x, 6f, treepoint.y), new Vector3(5f, 5f, 5f)))
+            {
+                worldtrees.Add(Instantiate(trees[Random.Range(0, 3)], new Vector3(treepoint.x, 0.1f, treepoint.y), Quaternion.identity));
+            }
+        }
+    }
     public void GeneratePark(Node node1,Node node2,Node node3, Node node4)
     {
         this.node1 = node1;
@@ -31,7 +48,7 @@ public class ParkGenerator : MonoBehaviour
         poly[2] = new Vector2(node3.Position.x, node3.Position.z);
         this.node4 = node4;
         poly[3] = new Vector2(node4.Position.x, node4.Position.z);
-
+        nodelist.Clear();
         nodelist.Add(node1);
         nodelist.Add(node2);
         nodelist.Add(node3);
@@ -41,38 +58,33 @@ public class ParkGenerator : MonoBehaviour
         Debug.Log(node3.Position);
         Debug.Log(node4.Position);
         GetBoundingBox();
-        for(int i = 0; i < 300; i++)
+        for(int i = 0; i < 100; i++)
         {
-            //do
-            //{
+            do
+            {
                 xpos = Random.Range(minX, maxX);
                 zpos = Random.Range(minZ, maxZ);
                 treepoint = new Vector2(xpos, zpos);
-            //} while (!IsPointInPolygon(treepoint, poly));
-            worldtrees.Add(Instantiate(trees[Random.Range(0, 3)], new Vector3(treepoint.x, 0.1f, treepoint.y), Quaternion.identity));
+            } while (!IsPointInPolygon(treepoint, poly));
+            if (!Physics.CheckBox(new Vector3(treepoint.x, 6f, treepoint.y), new Vector3(5f, 5f, 5f)))
+            {
+                worldtrees.Add(Instantiate(trees[Random.Range(0, 3)], new Vector3(treepoint.x, 0.1f, treepoint.y), Quaternion.identity));
+            }
         }
-        //do
-        //{
+        do
+        {
             xpos = Random.Range(minX, maxX);
             zpos = Random.Range(minZ, maxZ);
             treepoint = new Vector2(xpos, zpos);
-        //} while (!IsPointInPolygon(treepoint, poly));
+        } while (!IsPointInPolygon(treepoint, poly) || Physics.CheckBox(new Vector3(treepoint.x, 6f, treepoint.y), new Vector3(5f, 5f, 5f)));
         worldtrees.Add(Instantiate(Fountain, new Vector3(treepoint.x, 0.1f, treepoint.y), Quaternion.identity));
-        Bounds bounds = GameObject.FindWithTag("Terrain").GetComponent<Renderer>().bounds;
-        for (int i = 0; i < 1000; i++)
-        {
-            xpos = Random.Range(bounds.min.x, bounds.max.x);
-            zpos = Random.Range(bounds.min.z, bounds.max.z);
-            treepoint = new Vector2(xpos, zpos);
-            worldtrees.Add(Instantiate(trees[Random.Range(0, 3)], new Vector3(treepoint.x, 0.1f, treepoint.y), Quaternion.identity));
-        }
     }
     private void GetBoundingBox()
     {
         maxX = nodelist.OrderByDescending(x => x.Position.x).FirstOrDefault().Position.x;
         minX = nodelist.OrderByDescending(x => x.Position.x).LastOrDefault().Position.x;
-        maxZ = nodelist.OrderByDescending(x => x.Position.x).FirstOrDefault().Position.z;
-        minZ = nodelist.OrderByDescending(x => x.Position.x).LastOrDefault().Position.z;
+        maxZ = nodelist.OrderByDescending(x => x.Position.z).FirstOrDefault().Position.z;
+        minZ = nodelist.OrderByDescending(x => x.Position.z).LastOrDefault().Position.z;
         boundingBoxBL = new Vector3(minX, 0.1f, minZ);
         boundingBoxBR = new Vector3(maxX, 0.1f, minZ);
         boundingBoxTL = new Vector3(minX, 0.1f, maxZ);
@@ -99,7 +111,6 @@ public class ParkGenerator : MonoBehaviour
                       && /* if so, test if it is under the segment */
                       ((pointX - endX) < (pointY - endY) * (startX - endX) / (startY - endY));
         }
-        Debug.Log("returned " + inside);
         return inside;
     }
 }

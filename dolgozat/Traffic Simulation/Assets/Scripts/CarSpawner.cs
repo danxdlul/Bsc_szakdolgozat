@@ -74,15 +74,24 @@ namespace Assets.Scripts
         }
         public void setMaxCars(string n)
         {
-            maxCars = int.Parse(n);
+            if (int.Parse(n) > 0)
+            {
+                maxCars = int.Parse(n);
+            }            
         }
         public void setMaxBuses(string n)
         {
-            maxBuses = int.Parse(n);
+            if (int.Parse(n) > 0)
+            {
+                maxBuses = int.Parse(n);
+            }
         }
         public void setSpawnDelay(string t)
         {
-            spawndelay = int.Parse(t);
+            if (int.Parse(t) > 0)
+            {
+                spawndelay = int.Parse(t);
+            }
         }
     }
 }

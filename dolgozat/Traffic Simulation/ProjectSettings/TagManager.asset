@@ -13,6 +13,7 @@ TagManager:
   - BusStop
   - Bus
   - tree
+  - house
   layers:
   - Default
   - TransparentFX

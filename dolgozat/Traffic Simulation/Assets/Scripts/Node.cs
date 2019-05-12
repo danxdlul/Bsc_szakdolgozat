@@ -19,6 +19,7 @@ namespace Assets.Scripts
         public int branches { get; set; }
         public int level { get; set; }
         public int parentNodeIndex { get; set; }
+        public bool didSouth, didNorth, didWest, didEast;
 
         public Node(float xpos,float zpos,int branches,int level,string connectedfrom,int parent)
         {

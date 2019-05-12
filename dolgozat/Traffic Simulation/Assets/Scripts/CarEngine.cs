@@ -81,7 +81,7 @@ public class CarEngine : MonoBehaviour
             else if (hit.collider.CompareTag("Car") || hit.collider.CompareTag("Bus"))
             {
                 Debug.DrawLine(sensorStartPos, hit.point);
-                maxSpeed = Mathf.Clamp(hit.distance - 20f,0,8);
+                maxSpeed = Mathf.Clamp(hit.distance - 10f,0,8);
             }
             else if (hit.collider.CompareTag("BusStop") && hit.collider.gameObject.GetComponent<BusStopController>().busCurrentlyStopped)
             {
@@ -103,7 +103,7 @@ public class CarEngine : MonoBehaviour
             else if (hit.collider.CompareTag("Car") || hit.collider.CompareTag("Bus"))
             {
                 Debug.DrawLine(sensorStartPos, hit.point);
-                maxSpeed = Mathf.Clamp(hit.distance - 20f, 0, 8);
+                maxSpeed = Mathf.Clamp(hit.distance - 10f, 0, 8);
             }
         }
 
@@ -128,7 +128,7 @@ public class CarEngine : MonoBehaviour
             else if (hit.collider.CompareTag("Car") || hit.collider.CompareTag("Bus"))
             {
                 Debug.DrawLine(sensorStartPos, hit.point);
-                maxSpeed = Mathf.Clamp(hit.distance - 20f, 0, 8);
+                maxSpeed = Mathf.Clamp(hit.distance - 10f, 0, 8);
             }
         }
 
@@ -202,7 +202,7 @@ public class CarEngine : MonoBehaviour
 
         //right
         sensorStartPos += transform.right * sideSensorPosition;
-        if (Physics.Raycast(sensorStartPos, transform.forward, out hit, sensorLength))
+        if (Physics.Raycast(sensorStartPos, transform.forward, out hit, 10f))
         {
             if (hit.collider.CompareTag("Terrain"))
             {
