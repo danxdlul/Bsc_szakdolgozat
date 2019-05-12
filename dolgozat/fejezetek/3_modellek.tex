@@ -10,16 +10,16 @@ a lámpás útkereszteződés, az egyirányú út, valamint a többsávos út.
 \Section{A modellben használt elemek}
 Matematikailag a modell egy gráfból áll, melynek csomópontjai jelölik az útkereszteződéseket, vagy két egyenes útszakasz között az összekötő részt. Az élek jelölik magát az útszakaszokat, ezeknek az éleknek pedig számos tulajdonságai lehetnek amivel különbséget teszek több elem között.
 \subsection{Egyenes út}
-Alapvető egyenes útszakasz, ennek lehet több paramétere is. Ennek az elemnek elsősorban tartalmaznia kell a rá vonatkozó sebességhatárt, valamint az úton létező sávok számát.
-Az elem leírásához szükség van annak kezdő és végpontjára, valamint a sávok számára. További információt ad a modell többi részének, ha tartalmazza egy megközelítőleges égtájnak megfelelő irányt. Ebből következtetni lehet arra ha például kanyar következik, és ha igen akkor milyen irányban, csak arra van szükség rá hogy megnézzük milyen módon változik az utak hozzávetőleges iránya.
+Alapvető egyenes útszakasz, ennek lehet több paramétere is. Ennek az elemnek elsősorban tartalmaznia kell az úton létező sávok számát.
+Az elem leírásához szükség van annak kezdő és végpontjára. További információt ad a modell többi részének, ha tartalmazza egy megközelítőleges égtájnak megfelelő irányt. Ebből következtetni lehet arra ha például kanyar következik, és ha igen akkor milyen irányban, csak arra van szükség rá hogy megnézzük milyen módon változik az utak hozzávetőleges iránya.
 
 Alapvetően az út olyan szélességű, hogy elfér egymás mellett két jármű, ezért ha több sáv van csak arra kell figyelni hogy megfelelő helyen közlekedjenek az adott járművek. A gráfon való pozicíójának behatárolásához a kezdő és végpont az ő általa összekötött két csomópontot jelenti.
 \subsection{Egyirányú út}
-Hasonló az egyenes úthoz, viszont egyértelműen meg kell határozni a két végpont közül melyik a kiindulási, melyik a célpont. Hasonlóan az egyenes szakaszhoz, meg kell adni a sebességkorlátot, viszont ez az út kizárólag 1 sávos.
+Hasonló az egyenes úthoz, viszont egyértelműen meg kell határozni a két végpont közül melyik a kiindulási, melyik a célpont. Hasonlóan az egyenes szakaszhoz, azzal a különbséggel, hogy ez az út kizárólag 1 sávos.
 
 A gráfot tekintve itt a két összekötött csomópont között egy irányított él lesz, melynek kezdő és végpontjaként egyértelműen el kell jelölni a két pontot.
 \subsection{Kanyar}
-Vehető tulajdonképpen külön elemnek, de tulajdonképpen csak két egymást követő egyenes szakasz, melyek az őket összekötő elem mentén nem egyenes irányban folytatódnak. A kanyar iránya adódik az általa összekötött két egyenes útszakasz iránya által.
+Vehető tulajdonképpen külön elemnek, de lényegében csak két egymást követő egyenes szakasz, melyek az őket összekötő elem mentén nem egyenes irányban folytatódnak. A kanyar iránya adódik az általa összekötött két egyenes útszakasz iránya által.
 
 A gráfon kanyarnak tekinthető az olyan csomópont, melyből csak két él indul ki, ha ez a két él iránya egymástól eltérő, és nem ellentétes.
 \subsection{Útkereszteződés}
@@ -27,19 +27,45 @@ Három vagy több útszakasz találkozásánál használatos elem. Tulajdonsága
 Az útkereszteződés jellemezhető annak középpontjával, valamint az azt érintő utak halmazával.
 
 A gráfon ez azt jelenti, hogy amennyiben egy csomópontból legalább 3 él indul ki, az egy útkereszteződés.
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{utkereszt.png}
+\caption{Háromágú útkereszteződés lámpákkal}
+\label{fig:xroad}
+\end{figure}
 \subsection{Személygépjármű}
 Legalapvetőbb közlekedési jármű. Az autókról nyilván kell tartani azok jelenlegi pozícióját, mely abból adódik hogy éppen melyik élen haladnak, melyik csomópont felé, és attól milyen távolságra vannak. Minden jármű véletlenszerűen kiválasztott útvonalat kap, amin végig kell haladjon. Ezek az útvonalak a teljes gráfon egy-egy részgráfok. A jármű jellemzői közé tartozik annak sebessége, valamint a következő csomópontot elérve a várható haladási iránya, tehát előre, balra, vagy jobbra megy-e tovább. 
 
 Tudnia kell a vele egy úton közlekedő járművekől is, azok pozíciójától függ a viselkedése. A járművek kezdetben véletlenszerű helyen kezdenek, majd ha sikeresen eljutottak a célpontjukhoz 
 eltűnnek a modelből (leparkolt kocsinak tekintve). Ezen útvonal kijelölése egy véletlenszerűen kiválasztott csomóponttól indul, ahonnan véletlenszerű irányba indulunk el, majd a következő csomópontot elérve szintén új irányt választunk addig, ameddig vagy zsákutcába nem ér az autó, vagy eléri a paraméterként maximálisan kijelölt úthosszat. Szintén a paraméterezést tekintve ilyenkor új jármű jelenik meg ha jelenleg kevesebb van mint a megadott maximális érték.
 \subsection{Autóbusz}
-Kissé különlegesebb járműtípus, vonatkozik rá néhány további szabály. Többek között elsőbbsége van megállóból elindulva, valamint ha lehet próbál jobbra tartani, csak akkor használja a belső sávot ha többsávos úton balra kanyarodik. A buszmegállók között megkötött útvonalon kell haladnia, mindegyiknél pedig meg kell állnia. Ha elérte az útvonal végét megfordul, és visszafelé halad végig rajta. A szimuláció teljes ideje alatt az útvonalat követi, kezdetben az útvonal végéről elejétől indul.
+Kissé különlegesebb járműtípus, vonatkozik rá néhány további szabály. Többek között elsőbbsége van megállóból elindulva, valamint ha lehet próbál jobbra tartani,többsávos úton használhatja a külső sávot is egyenes haladásra és balra kanyarodásra. A buszmegállók között megkötött útvonalon kell haladnia, mindegyiknél pedig meg kell állnia. Ha elérte az útvonal végét megfordul, és visszafelé halad végig rajta. A szimuláció teljes ideje alatt az útvonalat követi, kezdetben az útvonal végéről elejétől indul.
 
 Ez az útvonal a gráfot tekintve egy legmélyebb szinten elhelyezkedő véletlenszerűen választott csomópont, valamint a tőle legtávolabb lévő csomópont közötti utat jelenti. Kijelölése könnyen megoldható ezen két csomópont szüleit végigkövetve a középen lévő kiindulási pontig.
 \subsection{Buszmegálló}
 Autóbusznak elhelyezett megállási pont. Két csomópont közötti él felezőpontján helyezkedik el, ezért leírásához elegendő az adott élt megadni. Szükséges információ a buszmegállók közötti minimum távolság, azaz hány csomópontnak kell lennie legalább két buszmegálló között. Ezt a számot véletlenszerűen fogom meghatározni minden buszmegálló elhelyezése után újra számítva.
 
 Ezen elem egy olyan csomópont, amelyből nem indul él, és nem is tart belé él.
+\subsection{Épületek}
+A gráf létrejötte után kijelölendő elemek. Az élek két oldalán helyezkednek el a házak, amelyek az alacsonyabb szinten lévő csomópontok között blokkházak, magasabb szinteknél pedig kertesházak. Az út két oldalán lévő elhelyezkedés szimmetrikus. A blokkok magassága változó.
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{epulet.png}
+\caption{Út két oldalán lévő épületek}
+\label{fig:builds}
+\end{figure}
+\subsection{Park}
+Szintén a gráf létrejötte után kerül elhelyezésre, kizárólag az utakkal teljesen közbezárt területeken. Az adott területen belülre fák kerülnek, valamint egy szökőkút.
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{park.png}
+\caption{Elkerített részen lévő park, kék négyzettel jelölve a szökőkutat, zöld pontokkal a fákat}
+\label{fig:parkmodel}
+\end{figure}
+\subsection{Útvonal}
+Ez az egy járműhőz tartozó egyedi haladási vonala az úthálózaton. Nem ugyan az, mint az útvonal éleinek kezdő és végpontja, ugyanis itt egyértelműen ki kell jelölni annak a sávnak a pontjait, amelyikben a jármű haladni fog. Útkereszteződésben ez segít a helyes irányba való kanyarodásban.
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{ut.png}
+\caption{Egy útkereszteződésbeli útvonalakat kijelölő pontok. Példa útvonal balra kanyarodáshoz (zöld), jobbra kanyarodáshoz (piros), egyenes haladáshoz (kék).}
+\label{fig:path}
+\end{figure}
 \subsection{Közlekedési szabályok}
 Néhány alapvető közlekedési szabály amelyet a járműveknek követniük kell, általában attól az elemtől függ ahol haladnak, valamint attól amelyhez tartanak
 \begin{itemize}

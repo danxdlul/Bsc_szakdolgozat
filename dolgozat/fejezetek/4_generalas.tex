@@ -5,6 +5,11 @@ valódi várost. A paraméterezéssel kapcsolatos elvárásokat könnyen meg leh
 elejét, élei pedig azoknak tartományát. A gráf 0. szintjét jelöltem el a hálózat középpontjának, innen mindig 4 irányba indulnak élek. Mivel az egy csomópontból kiinduló maximális élek számának 4-et választottam,
  ez garantálja hogy a középpontnak kijelölt ponttól minden irányba nagyjából egyenletes mértékben terjedjen az úthálózat. Minden további csomópont generálódásakor kapja meg 
 annak értékét, hogy mennyi irányba indulnak belőle élek. 
+\begin{figure}[H]
+\includegraphics[width=\textwidth,height=\textheight]{folyamat.png}
+\caption{A generálás lépéseinek egyszerűsített folyamatábrája}
+\label{fig:flowchart}
+\end{figure}
 \subsection{Generáló algoritmus}
 A csomópontok generálása a következőképpen történik:
 \begin{enumerate}
@@ -71,6 +76,24 @@ Magát a gráfot leíró objektum, mely tartalmaz 2 függvényt annak canvas-on 
 \subsection{Segédfüggvények}
 \subsubsection{intersects}
 Ez a függvény arra szolgál, hogy kiszámítsa két él metszi-e egymást. Ehhez két paramétert vár, edge1 és edge2 néven. Visszatérési értéke logikai típusú.
+Működésében a két szakaszból egyeneseket képez, majd ezek alapján az X = v1 + lambda*d1, X = v2 + gamma *d2 egyenletrendszer mátrixának kiszámolja a determinánsát. Ha ez 0, a két szakasz nem metszi egymást.
+Ellenkező esetben megnézi az egyenletrendszerben szereplő gamma és lambda értékeket, azaz a két egyenes mentén az irányvektor hányszorosát kell venni hogy elérkezzünk a ponthoz. Ha ez nem 0 és 1 közé esik, a metszéspont nincs a szakaszon belül.
+\begin{cpp}
+function intersects(edge1,edge2) {
+    let det, gamma, lambda;
+    det = (edge1.to.x - edge1.from.x) * (edge2.to.y - edge2.from.y) - 
+    (edge2.to.x - edge2.from.x) * (edge1.to.y - edge1.from.y);
+    if (det === 0) {
+        return false;
+    } else {
+        lambda = ((edge2.to.y - edge2.from.y) * (edge2.to.x - edge1.from.x)
+         + (edge2.from.x - edge2.to.x) * (edge2.to.y - edge1.from.y)) / det;
+        gamma = ((edge1.from.y - edge1.to.y) * (edge2.to.x - edge1.from.x)
+         + (edge1.to.x - edge1.from.x) * (edge2.to.y - edge1.from.y)) / det;
+        return (0 < lambda && lambda < 1) && (0 < gamma && gamma < 1);
+    }
+}
+\end{cpp}
 \subsubsection{distance}
 Két csomópont közötti távolság kiszámítására szolgáló függvény. Ehhez a két vektor által meghatározott szakasz hosszát számolja ki pitagorasz tétellel. Ezzel az eredménnyel tér vissza.
 \subsubsection{maxBranchesReached}
