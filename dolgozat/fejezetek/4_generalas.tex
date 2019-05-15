@@ -6,7 +6,7 @@ elejét, élei pedig azoknak tartományát. A gráf 0. szintjét jelöltem el a 
  ez garantálja hogy a középpontnak kijelölt ponttól minden irányba nagyjából egyenletes mértékben terjedjen az úthálózat. Minden további csomópont generálódásakor kapja meg 
 annak értékét, hogy mennyi irányba indulnak belőle élek. 
 \begin{figure}[H]
-\includegraphics[width=\textwidth,height=\textheight]{folyamat.png}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{folyamat.png}
 \caption{A generálás lépéseinek egyszerűsített folyamatábrája}
 \label{fig:flowchart}
 \end{figure}
@@ -224,7 +224,7 @@ Viszont ehhez még szükség van a szkript adattagjainak feltöltésére. Amint 
 
 Először is elkészítettem a materialokat, felhasználva egy alap útburkolat textúrát. Ezt a textúrát kissé átszerkesztve előállítottam a 3 úttípushoz szükséges materialokat, majd hozzárendeltem őket a szkripthez.
 
-Ezek után létrehoztam egy új objektumot a scene-ben, mely egy egyszerű négyzet alakú síklap. Ezen síklapot fogom felhasználni a csomópont jelölésére alkalmas sablonként. Létrehoztam ennek az objektumnak négy gyerekelemét, ezek a négy oldalán lévő jelzőlámpáknak felelnek meg. Ezeket az egyszerűség kedvéért egy alap kapszula alakzattal reprezentálom. Elheyeztem rajta egy sötétszürke, útra emlékeztető materialt. Ezt az objektumot a projekt fájljai közé helyezve létrejön róla egy sablon, ezt már hozzá lehet rendelni a generáló szkripthez.
+Ezek után létrehoztam egy új objektumot a scene-ben, mely egy egyszerű négyzet alakú síklap. Ezen síklapot fogom felhasználni a csomópont jelölésére alkalmas sablonként. Létrehoztam ennek az objektumnak négy gyerekelemét, ezek a négy oldalán lévő jelzőlámpáknak felelnek meg. Ezeket az egyszerűség kedvéért egy alap kapszula alakzattal reprezentálom. Elheyeztem rajta egy sötétszürke, útra emlékeztető materialt. Ezt az objektumot a projekt erőforrásai közé helyezve létrejön róla egy sablon, ezt már hozzá lehet rendelni a generáló szkripthez.
 
 A buszmegállók sablonját is hasonlóan készítettem el, egy szimpla kapszula alakzattal jelölöm. Ehhez az objektumhoz adtam egy új BoxCollider komponenst, mellyel a megálló által behatárolt területet tudom eljelölni. Ennek a komponensnek az isTrigger tulajdonságát engedélyezve lehet a fizikai motor igénybe vétele nélkül ellenőrizni azt, hogy mely objektumok léptek a területére. Ezzel készen léve hozzáadtam a sablont a szkripthez.
 

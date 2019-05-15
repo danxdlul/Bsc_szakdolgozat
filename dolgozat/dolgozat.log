@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.3.31)  12 MAY 2019 19:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.3.31)  15 MAY 2019 03:20
 entering extended mode
 **./dolgozat.tex
 (dolgozat.tex
@@ -650,7 +650,7 @@ Package epstopdf Info: Output file is already uptodate.
 
 pdfTeX warning: pdflatex.exe (file ./cimlap/ME_logo-eps-converted-to.pdf): PDF 
 inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<cimlap/ME_logo-eps-converted-to.pdf, id=191, 1324.95pt x 1266.7325pt>
+<cimlap/ME_logo-eps-converted-to.pdf, id=195, 1324.95pt x 1266.7325pt>
 File: cimlap/ME_logo-eps-converted-to.pdf Graphic file (type pdf)
 <use cimlap/ME_logo-eps-converted-to.pdf>
 Package pdftex.def Info: cimlap/ME_logo-eps-converted-to.pdf  used on input lin
@@ -752,7 +752,7 @@ l.34 \include{fejezetek/1_bevezetes}
 
  (fejezetek/2_kozlekedes.tex
 2. fejezet.
-<RTL.png, id=355, 376.40625pt x 219.82124pt>
+<RTL.png, id=360, 376.40625pt x 219.82124pt>
 File: RTL.png Graphic file (type png)
 <use RTL.png>
 Package pdftex.def Info: RTL.png  used on input line 14.
@@ -767,7 +767,7 @@ l.18
 
 
 ]
-<heatmap.png, id=360, 411.78844pt x 367.3725pt>
+<heatmap.png, id=365, 411.78844pt x 367.3725pt>
 File: heatmap.png Graphic file (type png)
 <use heatmap.png>
 Package pdftex.def Info: heatmap.png  used on input line 23.
@@ -784,7 +784,7 @@ e.2.1}) has been already used, duplicate ignored
                                                   \fi \fi 
 l.27 
       <./RTL.png>]
-<SUMO.png, id=366, 557.08125pt x 380.42125pt>
+<SUMO.png, id=371, 557.08125pt x 380.42125pt>
 File: SUMO.png Graphic file (type png)
 <use SUMO.png>
 Package pdftex.def Info: SUMO.png  used on input line 43.
@@ -831,7 +831,7 @@ Package hyperref Warning: Glyph not defined in PD1 encoding,
 Package hyperref Warning: Glyph not defined in PD1 encoding,
 (hyperref)                removing `\H' on input line 25.
 
-<utkereszt.png, id=390, 286.06876pt x 137.7647pt>
+<utkereszt.png, id=395, 286.06876pt x 137.7647pt>
 File: utkereszt.png Graphic file (type png)
 <use utkereszt.png>
 Package pdftex.def Info: utkereszt.png  used on input line 31.
@@ -847,18 +847,18 @@ Package hyperref Warning: Glyph not defined in PD1 encoding,
                                                   \fi \fi 
 l.37 
       <./utkereszt.png>]
-<epulet.png, id=398, 204.01219pt x 83.5622pt>
+<epulet.png, id=403, 204.01219pt x 83.5622pt>
 File: epulet.png Graphic file (type png)
 <use epulet.png>
 Package pdftex.def Info: epulet.png  used on input line 51.
 (pdftex.def)             Requested size: 441.01773pt x 180.64845pt.
  [10]
-<park.png, id=403, 402.75468pt x 141.52875pt>
+<park.png, id=408, 402.75468pt x 141.52875pt>
 File: park.png Graphic file (type png)
 <use park.png>
 Package pdftex.def Info: park.png  used on input line 58.
 (pdftex.def)             Requested size: 441.01773pt x 154.97375pt.
-<ut.png, id=404, 363.60844pt x 281.55188pt>
+<ut.png, id=409, 363.60844pt x 281.55188pt>
 File: ut.png Graphic file (type png)
 <use ut.png>
 Package pdftex.def Info: ut.png  used on input line 65.
@@ -889,17 +889,17 @@ l.81 \item V
 
  (fejezetek/4_generalas.tex
 4. fejezet.
-<folyamat.png, id=438, 768.8725pt x 1526.70375pt>
+<folyamat.png, id=443, 768.8725pt x 1526.70375pt>
 File: folyamat.png Graphic file (type png)
 <use folyamat.png>
 Package pdftex.def Info: folyamat.png  used on input line 9.
-(pdftex.def)             Requested size: 441.03064pt x 702.78146pt.
+(pdftex.def)             Requested size: 353.932pt x 702.78146pt.
 [15
 
 
 
 ]
-Overfull \vbox (47.13104pt too high) has occurred while \output is active []
+Overfull \vbox (29.7311pt too high) has occurred while \output is active []
 
 
 [16pdfTeX warning (ext4): destination with the same identifier (name{figure.4.1
@@ -950,7 +950,7 @@ Overfull \hbox (14.98691pt too wide) in paragraph at lines 92--93
  []
 
 [19] [20]
-<graph.png, id=499, 587.19376pt x 484.05844pt>
+<graph.png, id=504, 587.19376pt x 484.05844pt>
 File: graph.png Graphic file (type png)
 <use graph.png>
 Package pdftex.def Info: graph.png  used on input line 129.
@@ -962,7 +962,7 @@ re.4.2}) has been already used, duplicate ignored
                                                   \fi \fi 
 l.140 \subsubsection
                     {Node} <./graph.png>] [23] [24] [25]
-<unitygraph.png, id=529, 548.80031pt x 338.01282pt>
+<unitygraph.png, id=534, 548.80031pt x 338.01282pt>
 File: unitygraph.png Graphic file (type png)
 <use unitygraph.png>
 Package pdftex.def Info: unitygraph.png  used on input line 233.
@@ -981,18 +981,67 @@ l.37 \include{fejezetek/4_generalas}
 5. fejezet.
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\H' on input line 7.
+(hyperref)                removing `\H' on input line 3.
 
 [28
 
 
 
-]) [29]
+] [29]
+<editor.png, id=553, 712.91344pt x 574.39594pt>
+File: editor.png Graphic file (type png)
+<use editor.png>
+Package pdftex.def Info: editor.png  used on input line 39.
+(pdftex.def)             Requested size: 441.01773pt x 355.32422pt.
+ [30] [31pdfTeX warning (ext4): destination with the same identifier (name{figu
+re.5.1}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.53 \item
+          {Ha egy j√°rm≈± szenzora m√°sik j√°rm≈±vel tal√°lkozik, akkor a k√...
+ <./editor.png>] [32] [33] [34]
+Overfull \hbox (26.98703pt too wide) in paragraph at lines 165--166
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[35]
+Overfull \hbox (98.98776pt too wide) in paragraph at lines 181--182
+[][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (20.98697pt too wide) in paragraph at lines 182--183
+[][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[36]
+Overfull \hbox (56.98734pt too wide) in paragraph at lines 243--244
+[][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[37]
+Overfull \hbox (194.98874pt too wide) in paragraph at lines 282--283
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (194.98874pt too wide) in paragraph at lines 283--284
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[38] [39]
+Overfull \hbox (20.08597pt too wide) in paragraph at lines 363--364
+\T1/cmr/m/n/12 V·lt·sokn·l 5 m·-sod-per-cig v·r, ad-dig mind-kÈt ir·ny-bÛl pi-r
+os van, majd a LightSwitchTime-
+ []
+
+[40]) [41]
 \openout2 = `fejezetek/6_szimulacio.aux'.
 
  (fejezetek/6_szimulacio.tex
 6. fejezet.
-) [30
+) [42
 
 
 
@@ -1001,7 +1050,7 @@ Package hyperref Warning: Glyph not defined in PD1 encoding,
 
  (fejezetek/7_osszegzes.tex
 7. fejezet.
-) [31
+) [43
 
 
 
@@ -1024,14 +1073,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 6--9
 topdefault . aspx / tabid-[]9883 / 16931 _
  []
 
-) [32
+) [44
 
 
 
 ]
 \openout2 = `hasznalat/hasznalat.aux'.
 
- (hasznalat/hasznalat.tex) [33
+ (hasznalat/hasznalat.tex) [45
 
 
 ]
@@ -1049,17 +1098,17 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 46.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 46.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 46.
 Package rerunfilecheck Info: File `dolgozat.out' has not changed.
-(rerunfilecheck)             Checksum: 753F56EC05039A01F96227C656E8955A;3434.
+(rerunfilecheck)             Checksum: F4720DF54275742000E56BE36A0FC474;3498.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 46.
  ) 
 Here is how much of TeX's memory you used:
- 12135 strings out of 492945
- 178581 string characters out of 3126252
- 497585 words of memory out of 3000000
- 15606 multiletter control sequences out of 15000+200000
+ 12652 strings out of 492945
+ 185944 string characters out of 3126252
+ 501765 words of memory out of 3000000
+ 15880 multiletter control sequences out of 15000+200000
  25371 words of font info for 65 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 39i,12n,61p,643b,2019s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 39i,12n,61p,890b,2019s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\lord-\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\
 ecrm0800.pk> <C:\Users\lord-\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/
 ec/dpi600\ecsl1200.pk> <C:\Users\lord-\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour
@@ -1082,9 +1131,9 @@ msy10.pfb><C:/Users/lord-/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/
 amsfonts/latxfont/lcircle1.pfb><C:/Users/lord-/AppData/Local/Programs/MiKTeX 2.
 9/fonts/type1/public/txfonts/t1xbtt.pfb><C:/Users/lord-/AppData/Local/Programs/
 MiKTeX 2.9/fonts/type1/public/txfonts/t1xtt.pfb>
-Output written on dolgozat.pdf (39 pages, 869621 bytes).
+Output written on dolgozat.pdf (51 pages, 1191779 bytes).
 PDF statistics:
- 1195 PDF objects out of 1200 (max. 8388607)
- 141 named destinations out of 1000 (max. 500000)
- 432 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1533 PDF objects out of 1728 (max. 8388607)
+ 383 named destinations out of 1000 (max. 500000)
+ 445 words of extra memory for PDF output out of 10000 (max. 10000000)
 
