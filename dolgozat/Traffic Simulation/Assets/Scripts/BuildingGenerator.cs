@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class BuildingGenerator : MonoBehaviour
@@ -15,7 +16,7 @@ public class BuildingGenerator : MonoBehaviour
         {
             if(graph.Nodes.Count > 30)
             {
-                if (e.From.level < graph.Nodes.Count / 25)
+                if (e.From.level < graph.Edges.Max(x => x.From.level) / 1.5)
                 {
                     Vector3 theRoad = e.To.Position - e.From.Position;
                     Vector3 buildingslot = theRoad / 9f;

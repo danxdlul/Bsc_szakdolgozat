@@ -17,8 +17,8 @@ namespace Assets.Scripts
 
         public Path(List<Node> nodes, List<Edge> edges)
         {
-            Nodes = nodes;
-            Edges = edges;
+            this.Nodes = nodes;
+            this.Edges = edges;
             LeftLaneWPs = new Vector3[Nodes.Count];
             RightLaneWPs = new Vector3[Nodes.Count];
             WayPoints.Add(nodes[0].Position);
@@ -394,7 +394,7 @@ namespace Assets.Scripts
                 }
             }
         }
-        public void ListAllData()
+        /*public void ListAllData()
         {
             for(int i = 0; i < WayPoints.Count; i++)
             {
@@ -403,6 +403,6 @@ namespace Assets.Scripts
                 Debug.Log(Edges[i].From.Position);
                 Debug.Log(RightLaneWPs[i]);
             }
-        }
+        }*/
     }
 }

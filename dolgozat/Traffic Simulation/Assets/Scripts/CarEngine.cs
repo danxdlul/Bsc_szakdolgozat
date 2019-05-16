@@ -23,12 +23,10 @@ public class CarEngine : MonoBehaviour
     public float maxSpeed = 8f;
     public float angledSensor = 90f;
     public bool isBraking = false;
-    public float watafak = 0f;
     public bool laneSteering;
     public bool isInCrossRoad = false;
     public bool WillTurnRight;
     public bool WillGoStraight;
-    private bool LastTurnRight = false;
     public float targetSteerAngle = 0;
 
     [Header("Sensors")]
@@ -295,7 +293,6 @@ public class CarEngine : MonoBehaviour
     }
     private void CheckWaypointDistance()
     {
-        watafak = Vector3.Distance(transform.position, path.WayPoints[currentWayPoint]);
         if (Vector3.Distance(transform.position,path.WayPoints[currentWayPoint]) < 2.5f)
         {
             WillTurnRight = false;

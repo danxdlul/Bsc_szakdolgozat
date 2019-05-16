@@ -20,9 +20,25 @@ namespace Assets.Scripts
         public List<GameObject> Buses = new List<GameObject>();
         public GameObject CarPrefab;
         public GameObject BusPrefab;
+        private List<Edge> test = new List<Edge>();
+        public Path buspath;
+        public Path reversepath;
 
         void Start()
         {
+            startCoroutines();
+        }
+        public void startCoroutines()
+        {
+            test.Clear();
+            buspath = gameObject.GetComponent<RoadGenerator>().graph.BusPath;
+            
+            reversepath = gameObject.GetComponent<RoadGenerator>().graph.ReverseBusPath;
+            for (int i = reversepath.Edges.Count - 1; i >= 0; i--)
+            {
+                test.Add(reversepath.Edges[i]);
+            }
+            this.reversepath.Edges = test;
             StartCoroutine(CarSpawn());
             StartCoroutine(BusSpawn());
         }
@@ -46,8 +62,7 @@ namespace Assets.Scripts
                         currentCars--;
                     }
                 }
-            }
-            
+            }           
         }
         IEnumerator BusSpawn()
         {
@@ -57,8 +72,7 @@ namespace Assets.Scripts
                 if (currentBuses < maxBuses)
                 {
                     Buses.Add(Instantiate(BusPrefab));
-                    Buses.Last().GetComponent<BusEngine>().path = gameObject.GetComponent<RoadGenerator>().graph.BusPath;
-                    Buses.Last().GetComponent<BusEngine>().reversePath = gameObject.GetComponent<RoadGenerator>().graph.ReverseBusPath;
+                    Buses.Last().GetComponent<BusEngine>().setPaths(buspath,reversepath);
                     currentBuses++;
                 }
                 for (int i = 0; i < Buses.Count; i++)
@@ -91,6 +105,13 @@ namespace Assets.Scripts
             if (int.Parse(t) > 0)
             {
                 spawndelay = int.Parse(t);
+            }
+        }
+        public void setPathLength(string n)
+        {
+            if(int.Parse(n) > 1)
+            {
+                carPathMaxLength = int.Parse(n);
             }
         }
     }

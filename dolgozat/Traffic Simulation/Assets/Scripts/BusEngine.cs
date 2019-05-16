@@ -8,14 +8,11 @@ public class BusEngine : CarEngine
 {
     public bool isWaitingAtStop = false;
     public Path reversePath;
+    private List<Edge> test = new List<Edge>();
     private Path temp;
     // Start is called before the first frame update
     private void Start()
     {
-        foreach (Edge e in path.Edges)
-        {
-            Debug.Log(e.Direction);
-        }
         transform.position = path.WayPoints[0];
         if (path.WayPoints.Count > 1)
         {
@@ -23,7 +20,12 @@ public class BusEngine : CarEngine
         }
         frontSensorPosition = new Vector3(0, 0.8f, 2.8f);
     }
-    
+    public void setPaths(Path normal,Path reverse)
+    {
+        this.path = normal;
+        this.reversePath = reverse;
+        
+    }
     // Update is called once per frame
     private void FixedUpdate()
     {
@@ -59,7 +61,6 @@ public class BusEngine : CarEngine
     }
     private void CheckWaypointDistance()
     {
-        watafak = Vector3.Distance(transform.position, path.WayPoints[currentWayPoint]);
         if (Vector3.Distance(transform.position, path.WayPoints[currentWayPoint]) < 3.5f)
         {
             WillTurnRight = true;

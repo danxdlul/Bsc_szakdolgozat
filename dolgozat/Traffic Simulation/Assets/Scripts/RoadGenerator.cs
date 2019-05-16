@@ -287,8 +287,6 @@ public class RoadGenerator : MonoBehaviour
                             {
                                 foreach (Edge edg in graph.Edges)
                                 {
-                                    Debug.Log(edg.From.Position);
-                                    Debug.Log(edg.To.Position);
                                     if (edg != ed && edg != edge && edg != e && (edg.From == ed.From || edg.From == ed.To || edg.To == ed.From || edg.To == ed.To) && (edg.From == e.From || edg.From == e.To || edg.To == e.From || edg.To == e.To))
                                     {
                                         node3 = edg.From;
@@ -381,6 +379,7 @@ public class RoadGenerator : MonoBehaviour
     }
     public void GenerateANew()
     {
+        gameObject.GetComponent<CarSpawner>().StopAllCoroutines();
         foreach (GameObject obj in XRoadList)
         {
             Destroy(obj);
@@ -415,6 +414,7 @@ public class RoadGenerator : MonoBehaviour
             Destroy(obj);
         }
         Invoke("Start", 0.2f);
+        gameObject.GetComponent<CarSpawner>().Invoke("startCoroutines", 0.2f);
     }
     public void setMaxNodes(string n)
     {

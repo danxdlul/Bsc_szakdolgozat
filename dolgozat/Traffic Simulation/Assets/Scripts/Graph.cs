@@ -135,8 +135,6 @@ namespace Assets.Scripts
             BusNodes.AddRange(nodesfromEnd);
             edgesfromEnd.Reverse();
             BusEdges.AddRange(edgesfromEnd);
-            Debug.Log(BusNodes.Count);
-            Debug.Log(BusEdges.Count);
             this.ReverseBusPath = new Path(BusNodes, BusEdges);
             BusEdges.Reverse();
             BusNodes.Reverse();
