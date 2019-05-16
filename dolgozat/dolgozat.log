@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.3.31)  15 MAY 2019 03:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.3.31)  16 MAY 2019 07:09
 entering extended mode
 **./dolgozat.tex
 (dolgozat.tex
@@ -650,7 +650,7 @@ Package epstopdf Info: Output file is already uptodate.
 
 pdfTeX warning: pdflatex.exe (file ./cimlap/ME_logo-eps-converted-to.pdf): PDF 
 inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<cimlap/ME_logo-eps-converted-to.pdf, id=195, 1324.95pt x 1266.7325pt>
+<cimlap/ME_logo-eps-converted-to.pdf, id=211, 1324.95pt x 1266.7325pt>
 File: cimlap/ME_logo-eps-converted-to.pdf Graphic file (type pdf)
 <use cimlap/ME_logo-eps-converted-to.pdf>
 Package pdftex.def Info: cimlap/ME_logo-eps-converted-to.pdf  used on input lin
@@ -752,70 +752,70 @@ l.34 \include{fejezetek/1_bevezetes}
 
  (fejezetek/2_kozlekedes.tex
 2. fejezet.
-<RTL.png, id=360, 376.40625pt x 219.82124pt>
+<RTL.png, id=382, 376.40625pt x 219.82124pt>
 File: RTL.png Graphic file (type png)
 <use RTL.png>
-Package pdftex.def Info: RTL.png  used on input line 14.
+Package pdftex.def Info: RTL.png  used on input line 13.
 (pdftex.def)             Requested size: 441.01773pt x 257.57217pt.
 pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.18 
+l.17 
       [2
 
 
 
 ]
-<heatmap.png, id=365, 411.78844pt x 367.3725pt>
+<heatmap.png, id=390, 411.78844pt x 367.3725pt>
 File: heatmap.png Graphic file (type png)
 <use heatmap.png>
-Package pdftex.def Info: heatmap.png  used on input line 23.
+Package pdftex.def Info: heatmap.png  used on input line 21.
 (pdftex.def)             Requested size: 441.01773pt x 393.45464pt.
 pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.27 
+l.25 
       [3pdfTeX warning (ext4): destination with the same identifier (name{figur
 e.2.1}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.27 
+l.25 
       <./RTL.png>]
-<SUMO.png, id=371, 557.08125pt x 380.42125pt>
+<SUMO.png, id=401, 557.08125pt x 380.42125pt>
 File: SUMO.png Graphic file (type png)
 <use SUMO.png>
-Package pdftex.def Info: SUMO.png  used on input line 43.
+Package pdftex.def Info: SUMO.png  used on input line 40.
 (pdftex.def)             Requested size: 441.01773pt x 301.168pt.
 pdfTeX warning (ext4): destination with the same identifier (name{page.4}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.46 \end{figure}
+l.43 \end{figure}
                   [4pdfTeX warning (ext4): destination with the same identifier
  (name{figure.2.2}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.46 \end{figure}
+l.43 \end{figure}
                   <./heatmap.png>] [5pdfTeX warning (ext4): destination with th
 e same identifier (name{figure.2.3}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.58 \item -
+l.55 \item -
             -tls.left-green.time - ha egyszerre kap zÃ¶ldet az egyenesen hal...
  <./SUMO.png>]
-Overfull \hbox (10.92029pt too wide) in paragraph at lines 63--65
+Overfull \hbox (10.92029pt too wide) in paragraph at lines 60--62
 []\T1/cmr/m/n/12 A szoft-ver al-kal-mas a köz-le-ke-dé-si lám-pák tel-je-sít-mé
 -nyé-nek vizs-gá-la-tá-ra, olyan útvonal-
  []
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\H' on input line 68.
+(hyperref)                removing `\H' on input line 65.
 
 [6]) [7]
 \openout2 = `fejezetek/3_modellek.aux'.
@@ -831,11 +831,11 @@ Package hyperref Warning: Glyph not defined in PD1 encoding,
 Package hyperref Warning: Glyph not defined in PD1 encoding,
 (hyperref)                removing `\H' on input line 25.
 
-<utkereszt.png, id=395, 286.06876pt x 137.7647pt>
+<utkereszt.png, id=431, 292.09125pt x 128.48pt>
 File: utkereszt.png Graphic file (type png)
 <use utkereszt.png>
 Package pdftex.def Info: utkereszt.png  used on input line 31.
-(pdftex.def)             Requested size: 441.01773pt x 212.38739pt.
+(pdftex.def)             Requested size: 441.01773pt x 194.00555pt.
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
 (hyperref)                removing `\H' on input line 35.
@@ -847,22 +847,22 @@ Package hyperref Warning: Glyph not defined in PD1 encoding,
                                                   \fi \fi 
 l.37 
       <./utkereszt.png>]
-<epulet.png, id=403, 204.01219pt x 83.5622pt>
+<epulet.png, id=438, 292.09125pt x 91.34125pt>
 File: epulet.png Graphic file (type png)
 <use epulet.png>
 Package pdftex.def Info: epulet.png  used on input line 51.
-(pdftex.def)             Requested size: 441.01773pt x 180.64845pt.
+(pdftex.def)             Requested size: 441.01773pt x 137.92583pt.
  [10]
-<park.png, id=408, 402.75468pt x 141.52875pt>
+<park.png, id=443, 574.145pt x 187.70125pt>
 File: park.png Graphic file (type png)
 <use park.png>
 Package pdftex.def Info: park.png  used on input line 58.
-(pdftex.def)             Requested size: 441.01773pt x 154.97375pt.
-<ut.png, id=409, 363.60844pt x 281.55188pt>
+(pdftex.def)             Requested size: 441.01773pt x 144.18098pt.
+<ut.png, id=444, 336.25626pt x 283.0575pt>
 File: ut.png Graphic file (type png)
 <use ut.png>
 Package pdftex.def Info: ut.png  used on input line 65.
-(pdftex.def)             Requested size: 441.01773pt x 341.50366pt.
+(pdftex.def)             Requested size: 441.01773pt x 371.24857pt.
  [11pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
 2}) has been already used, duplicate ignored
 
@@ -889,17 +889,17 @@ l.81 \item V
 
  (fejezetek/4_generalas.tex
 4. fejezet.
-<folyamat.png, id=443, 768.8725pt x 1526.70375pt>
+<folyamat.png, id=478, 768.8725pt x 1526.70375pt>
 File: folyamat.png Graphic file (type png)
 <use folyamat.png>
 Package pdftex.def Info: folyamat.png  used on input line 9.
-(pdftex.def)             Requested size: 353.932pt x 702.78146pt.
+(pdftex.def)             Requested size: 345.98943pt x 687.01035pt.
 [15
 
 
 
 ]
-Overfull \vbox (29.7311pt too high) has occurred while \output is active []
+Overfull \vbox (13.95998pt too high) has occurred while \output is active []
 
 
 [16pdfTeX warning (ext4): destination with the same identifier (name{figure.4.1
@@ -950,25 +950,44 @@ Overfull \hbox (14.98691pt too wide) in paragraph at lines 92--93
  []
 
 [19] [20]
-<graph.png, id=504, 587.19376pt x 484.05844pt>
+<graph.png, id=539, 587.19376pt x 484.05844pt>
 File: graph.png Graphic file (type png)
 <use graph.png>
 Package pdftex.def Info: graph.png  used on input line 129.
 (pdftex.def)             Requested size: 441.01773pt x 363.55257pt.
- [21] [22pdfTeX warning (ext4): destination with the same identifier (name{figu
-re.4.2}) has been already used, duplicate ignored
+ [21]
+<generateuml.png, id=546, 1116.17pt x 1112.155pt>
+File: generateuml.png Graphic file (type png)
+<use generateuml.png>
+Package pdftex.def Info: generateuml.png  used on input line 136.
+(pdftex.def)             Requested size: 502.27187pt x 500.46513pt.
+
+Overfull \hbox (61.25414pt too wide) in paragraph at lines 136--137
+[][]
+ []
+
+[22pdfTeX warning (ext4): destination with the same identifier (name{figure.4.2
+}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.140 \subsubsection
-                    {Node} <./graph.png>] [23] [24] [25]
-<unitygraph.png, id=534, 548.80031pt x 338.01282pt>
+l.140 \subsection
+                 {OsztÃ¡lyok} <./graph.png>] [23pdfTeX warning (ext4): destinat
+ion with the same identifier (name{figure.4.3}) has been already used, duplicat
+e ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.145 \subsubsection
+                    {Node} <./generateuml.png>] [24] [25] [26] [27] [28]
+[29] [30] [31] [32] [33]
+<unitygraph.png, id=861, 829.59938pt x 333.49594pt>
 File: unitygraph.png Graphic file (type png)
 <use unitygraph.png>
-Package pdftex.def Info: unitygraph.png  used on input line 233.
-(pdftex.def)             Requested size: 441.01773pt x 271.63297pt.
-) [26] [27pdfTeX warning (ext4): destination with the same identifier (name{fig
-ure.4.3}) has been already used, duplicate ignored
+Package pdftex.def Info: unitygraph.png  used on input line 524.
+(pdftex.def)             Requested size: 441.01773pt x 177.28632pt.
+) [34pdfTeX warning (ext4): destination with the same identifier (name{figure.4
+.4}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
@@ -983,74 +1002,170 @@ l.37 \include{fejezetek/4_generalas}
 Package hyperref Warning: Glyph not defined in PD1 encoding,
 (hyperref)                removing `\H' on input line 3.
 
-[28
+[35
 
 
 
-] [29]
-<editor.png, id=553, 712.91344pt x 574.39594pt>
+] [36]
+<editor.png, id=876, 712.91344pt x 574.39594pt>
 File: editor.png Graphic file (type png)
 <use editor.png>
 Package pdftex.def Info: editor.png  used on input line 39.
 (pdftex.def)             Requested size: 441.01773pt x 355.32422pt.
- [30] [31pdfTeX warning (ext4): destination with the same identifier (name{figu
+ [37] [38pdfTeX warning (ext4): destination with the same identifier (name{figu
 re.5.1}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.53 \item
           {Ha egy jÃ¡rmÅ± szenzora mÃ¡sik jÃ¡rmÅ±vel talÃ¡lkozik, akkor a kÃ...
- <./editor.png>] [32] [33] [34]
-Overfull \hbox (26.98703pt too wide) in paragraph at lines 165--166
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ <./editor.png>] [39]
+<simuml.png, id=893, 804.00375pt x 1169.36874pt>
+File: simuml.png Graphic file (type png)
+<use simuml.png>
+Package pdftex.def Info: simuml.png  used on input line 75.
+(pdftex.def)             Requested size: 426.11996pt x 619.76248pt.
+ [40] [41pdfTeX warning (ext4): destination with the same identifier (name{figu
+re.5.2}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.81 
+      <./simuml.png>] [42] [43] [44] [45] [46] [47] [48] [49] [50] [51]
+Overfull \hbox (31.50685pt too wide) in paragraph at lines 477--478
+\T1/cmr/m/n/12 Váltásoknál 5 má-sod-per-cig vár, ad-dig mind-két irány-ba pi-ro
+-sat je-lez, majd a LightSwitchTime-
  []
 
-[35]
-Overfull \hbox (98.98776pt too wide) in paragraph at lines 181--182
-[][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (20.98697pt too wide) in paragraph at lines 182--183
-[][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-[36]
-Overfull \hbox (56.98734pt too wide) in paragraph at lines 243--244
-[][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-[37]
-Overfull \hbox (194.98874pt too wide) in paragraph at lines 282--283
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (194.98874pt too wide) in paragraph at lines 283--284
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-[38] [39]
-Overfull \hbox (20.08597pt too wide) in paragraph at lines 363--364
-\T1/cmr/m/n/12 Váltásoknál 5 má-sod-per-cig vár, ad-dig mind-két irány-ból pi-r
-os van, majd a LightSwitchTime-
- []
-
-[40]) [41]
+) [52]
 \openout2 = `fejezetek/6_szimulacio.aux'.
 
  (fejezetek/6_szimulacio.tex
 6. fejezet.
-) [42
+<params.png, id=1271, 159.59625pt x 226.59656pt>
+File: params.png Graphic file (type png)
+<use params.png>
+Package pdftex.def Info: params.png  used on input line 15.
+(pdftex.def)             Requested size: 441.01773pt x 626.16782pt.
+[53
 
 
 
-]
+] [54pdfTeX warning (ext4): destination with the same identifier (name{figure.6
+.1}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.21 
+      <./params.png>]
+<trafficLight.png, id=1282, 722.7pt x 305.64188pt>
+File: trafficLight.png Graphic file (type png)
+<use trafficLight.png>
+Package pdftex.def Info: trafficLight.png  used on input line 25.
+(pdftex.def)             Requested size: 441.01773pt x 186.51588pt.
+<smalltowntraffic.png, id=1283, 417.81094pt x 277.78781pt>
+File: smalltowntraffic.png Graphic file (type png)
+<use smalltowntraffic.png>
+Package pdftex.def Info: smalltowntraffic.png  used on input line 30.
+(pdftex.def)             Requested size: 441.01773pt x 293.23715pt.
+<carwaiting.png, id=1284, 399.74344pt x 224.33812pt>
+File: carwaiting.png Graphic file (type png)
+<use carwaiting.png>
+Package pdftex.def Info: carwaiting.png  used on input line 35.
+(pdftex.def)             Requested size: 441.01773pt x 247.5155pt.
+ [55pdfTeX warning (ext4): destination with the same identifier (name{figure.6.
+2}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.38 \end{figure}
+                  <./trafficLight.png>]
+<rofway.png, id=1292, 197.23688pt x 158.09062pt>
+File: rofway.png Graphic file (type png)
+<use rofway.png>
+Package pdftex.def Info: rofway.png  used on input line 40.
+(pdftex.def)             Requested size: 441.01773pt x 353.51749pt.
+ [56pdfTeX warning (ext4): destination with the same identifier (name{figure.6.
+3}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.44 
+     pdfTeX warning (ext4): destination with the same identifier (name{figure.6
+.4}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.44 
+      <./smalltowntraffic.png> <./carwaiting.png>]
+<verybig.png, id=1301, 858.95906pt x 310.91156pt>
+File: verybig.png Graphic file (type png)
+<use verybig.png>
+Package pdftex.def Info: verybig.png  used on input line 48.
+(pdftex.def)             Requested size: 441.01773pt x 159.63495pt.
+ [57pdfTeX warning (ext4): destination with the same identifier (name{figure.6.
+5}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.52 
+      <./rofway.png>]
+<village.png, id=1308, 583.42969pt x 323.70938pt>
+File: village.png Graphic file (type png)
+<use village.png>
+Package pdftex.def Info: village.png  used on input line 55.
+(pdftex.def)             Requested size: 441.01773pt x 244.70287pt.
+
+
+Package hyperref Warning: Glyph not defined in PD1 encoding,
+(hyperref)                removing `\H' on input line 60.
+
+
+Package hyperref Warning: Glyph not defined in PD1 encoding,
+(hyperref)                removing `\H' on input line 60.
+
+<increasedtraffic.png, id=1309, 317.68687pt x 316.18124pt>
+File: increasedtraffic.png Graphic file (type png)
+<use increasedtraffic.png>
+Package pdftex.def Info: increasedtraffic.png  used on input line 66.
+(pdftex.def)             Requested size: 441.01773pt x 438.96477pt.
+[58pdfTeX warning (ext4): destination with the same identifier (name{figure.6.6
+}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.69 \end{figure}
+                 pdfTeX warning (ext4): destination with the same identifier (n
+ame{figure.6.7}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.69 \end{figure}
+                  <./verybig.png> <./village.png>]
+<parks.png, id=1318, 1132.23pt x 314.67563pt>
+File: parks.png Graphic file (type png)
+<use parks.png>
+Package pdftex.def Info: parks.png  used on input line 73.
+(pdftex.def)             Requested size: 441.01773pt x 122.56934pt.
+) [59pdfTeX warning (ext4): destination with the same identifier (name{figure.6
+.8}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.39 \include{fejezetek/6_szimulacio}
+                                      <./increasedtraffic.png>] [60pdfTeX warni
+ng (ext4): destination with the same identifier (name{figure.6.9}) has been alr
+eady used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.39 \include{fejezetek/6_szimulacio}
+                                      <./parks.png>]
 \openout2 = `fejezetek/7_osszegzes.aux'.
 
  (fejezetek/7_osszegzes.tex
 7. fejezet.
-) [43
+) [61
 
 
 
@@ -1058,29 +1173,37 @@ os van, majd a LightSwitchTime-
 \openout2 = `irodalomjegyzek/irodalom.aux'.
 
  (irodalomjegyzek/irodalom.tex
-
-LaTeX Warning: Empty `thebibliography' environment on input line 9.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 6--9
-\T1/cmr/m/n/12 - []$\T1/cmtt/m/n/12 https : / / www . researchgate . net / publ
-ication / 228966705 _ A _ Review _ of _
+Underfull \hbox (badness 10000) in paragraph at lines 7--8
+[][]$\T1/cmtt/m/n/12 https : / / www . researchgate . net / publication / 22896
+6705 _ A _ Review _ of _
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 6--9
-\T1/cmr/m/n/12 - []$\T1/cmtt/m/n/12 https : / / www . dlr . de / ts / en / desk
-topdefault . aspx / tabid-[]9883 / 16931 _
+Underfull \hbox (badness 10000) in paragraph at lines 11--12
+[][]$\T1/cmtt/m/n/12 https : / / www . dlr . de / ts / en / desktopdefault . as
+px / tabid-[]9883 / 16931 _
  []
 
-) [44
+
+Underfull \hbox (badness 10000) in paragraph at lines 13--14
+[][]$\T1/cmtt/m/n/12 https : / / www . researchgate . net / publication / 31670
+0661 _ GIS _
+ []
+
+
+Overfull \hbox (11.72769pt too wide) in paragraph at lines 15--16
+[][]$\T1/cmtt/m/n/12 https : / / cloud . anylogic . com / model / 6322b634-[]2c
+c5-[]4d40-[]90cf-[]3bb44c825ea7 ?
+ []
+
+) [62
 
 
 
 ]
 \openout2 = `hasznalat/hasznalat.aux'.
 
- (hasznalat/hasznalat.tex) [45
+ (hasznalat/hasznalat.tex) [63
 
 
 ]
@@ -1098,17 +1221,17 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 46.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 46.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 46.
 Package rerunfilecheck Info: File `dolgozat.out' has not changed.
-(rerunfilecheck)             Checksum: F4720DF54275742000E56BE36A0FC474;3498.
+(rerunfilecheck)             Checksum: 5D2D13BE0ABEC3BDA5064281B6BC890A;3919.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 46.
  ) 
 Here is how much of TeX's memory you used:
- 12652 strings out of 492945
- 185944 string characters out of 3126252
- 501765 words of memory out of 3000000
- 15880 multiletter control sequences out of 15000+200000
+ 13419 strings out of 492945
+ 196986 string characters out of 3126252
+ 512086 words of memory out of 3000000
+ 16246 multiletter control sequences out of 15000+200000
  25371 words of font info for 65 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 39i,12n,61p,890b,2019s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 39i,12n,61p,1109b,2019s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\lord-\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\
 ecrm0800.pk> <C:\Users\lord-\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/
 ec/dpi600\ecsl1200.pk> <C:\Users\lord-\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour
@@ -1131,9 +1254,9 @@ msy10.pfb><C:/Users/lord-/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/
 amsfonts/latxfont/lcircle1.pfb><C:/Users/lord-/AppData/Local/Programs/MiKTeX 2.
 9/fonts/type1/public/txfonts/t1xbtt.pfb><C:/Users/lord-/AppData/Local/Programs/
 MiKTeX 2.9/fonts/type1/public/txfonts/t1xtt.pfb>
-Output written on dolgozat.pdf (51 pages, 1191779 bytes).
+Output written on dolgozat.pdf (69 pages, 4150127 bytes).
 PDF statistics:
- 1533 PDF objects out of 1728 (max. 8388607)
- 383 named destinations out of 1000 (max. 500000)
- 445 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2141 PDF objects out of 2487 (max. 8388607)
+ 773 named destinations out of 1000 (max. 500000)
+ 532 words of extra memory for PDF output out of 10000 (max. 10000000)
 

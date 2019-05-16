@@ -1,6 +1,6 @@
 \Chapter{Tervezés, implementáció}
 
-\section{A WebGL-ről}
+\Section{A WebGL-ről}
 A WebGL, azaz Web Graphics Library, egy 2D és 3D grafikus renderelésre képes JavaScript alapú API, amely lehetőséget ad interaktív grafika megjelenítésére a webböngészőkben, bármilyen más harmadik féltől származó bővítmény használata nélkül. Képes teljes mértékben hasznát venni a hardveres gyorsításnak, a képfeldolgozási utasításokat a GPU-val hajtatja végre. 
 
 Első verzióját 2011 március 3.-án adta ki a Khronos Group, azóta is ők fejlesztik. A Khronos Group emelett még sok más grafikai alkalmazásprogramozási felületet készít, melyek közül a két legismertebb talán az OpenGL és a Vulkan.
@@ -14,7 +14,7 @@ A WebGL API nagyon alacsony szintű természete miatt nem célszerű natívan pr
 Az egyik ilyen híres függvénykönyvtár a Three.js. A Three.js nagyon bő funkcionalitással rendelkezik, egyszerűen létrehozható vele scene, renderer, kamera. Képes irányított és pontszerű fényforrások kezelésére. Megkönnyíti a materialok használatát, animációk létrehozását, és még sok más hasznos funkciót tartalmaz.
 
 A Three.js-ben először is egy scene-t kell létrehoznunk, ebben az objektumban fog történni a kirajzolás. Ezután jön a renderer létrehozása, majd egy kamera objektum hozzáadása a scenehez. Ha ezek megvannak, a meglévő scenehez hozzá lehet adni a kívánt objektumokat, azaz fényforrásokat, irányítást megvalósító objektumokat, valamint mesheket. A mesheket a Three.js-ben lehetőség van JSON objektumokból betölteni, majd dinamikusan hozzájuk rendelni materialt. Az animate függvényben meghívva a renderer kirajzoló függvényét frissül a megjelenés.
-\section{Unity}
+\Section{Unity}
 A Unity Engine egy, a Unity Technologies által fejlesztett játékmotor. Elsőként az Apple Worldwide Developers Conference nevű rendezvényén mutatták be 2005-ben. Célja kezdetektől a játékfejlesztés folyamatának megkönnyítése. Ennek érdekében az új fejlesztők számára könnyen tanulhatóvá alakították ki a működését, sok ''Drag and Drop'' funkció található benne. Másik szempontból viszont több platformra is egyszerű vele fejleszteni, mára már több mint 25 különböző platformot támogat, ezzel megkönnyítve a cross-platform alkalmazások fejlesztését. Maga a motor elsősorban bár játékmotornak lett kialakítva, de sok más területen is használják, beleértve a filmipart, autóipart, és az építőipart.
 
 Kezdetben egy Boo nevű programozási nyelvet használt a különböző szkriptekhez, de ezt később felváltotta a JavaScripten alapuló UnityScript nevű nyelv. Mára viszont a UnityScriptnek is csak részleges támogatottsága van. Ez annyit tesz, hogy nem lehetséges többé ilyen szkripteket létrehozni a motor újabb verzióiban, de a régebbi projekteket amelyek ilyen típusú szkripteket tartalmaznak még tudja kezelni. A használatos nyelv helyette a C\#, melynek támogatottsága előreláthatólag a fejlesztők nyilatkozatai szerint a jövőben csak bővülni fog. Maga a motor futási időben C++ kódot futtat, ebbe ágyazódnak be wrapperekkel a más nyelven megírt szkriptek.
@@ -42,7 +42,7 @@ Az objektumokat el lehet látni tag-ekkel, melyek segítségével szkripteken be
 \end{figure}
 A projekt erőforrásaihoz lehetséges hozzáadni sablon GameObject objektumokat is, azaz a scene-en belül létrehozott egyik objektum jelenlegi állapotát mentjük le, az összes komponensével, azoknak jelenlegi állapotaival együtt. Az így lementett erőforrás szkriptek segítségével dinamikusan hozzáadható a scene-hez futási időben. A szkripteken belüli publikus adattagok inicializálhatóak az editorból, az inspector segítségével. Ezen adattagok bármilyen típust felvehetnek, beleértve minden különböző típusú erőforrást.
 Ezzel lehetséges referenciát átadni a szkripteknek egy adott GameObjectről, materialról, vagy bármilyen scene-en belüli objektum komponenséről.
-\section{Szimuláció tervezése}
+\Section{Szimuláció tervezése}
 A szimuláció felépítését tekintve a következők mondhatóak el. Először is felhasználja a már legenerált úthálózatot, azon a járművek mozgásának alapjaként szolgál egy véletlenszerű részgráf, amely a bejárandó útvonalat reprezentálja.
 A járművek mozgásához felhasználom a Unity fizikai motorját, amely kvázi realisztikusan képes szimulálni a kerekek mozgásából, azok ívéből a jármű haladási irányát, sebességét, illetve a fékezés szimulálásához felhasználható eszközt nyújt, mellyel ténylegesen csak a kerekek forgásának sebességét csökkentem, ami közvetetten csökkenti a jármű sebességét.
 \subsection{Szenzorok}
@@ -71,6 +71,114 @@ Ezekből a másolatokból törlök minden komponenst, és hozzáadok egy WheelCo
 A főobjektumba elhelyeztem rendszerint egy CarEngine és egy BusEngine szkriptet. A BusEngine a CarEngine leszármazottja, minimális módon fog eltérni az autó szkriptjétől.
 Végül a karosszériát reprezentáló objektumhoz hozzáadtam egy mesh collider komponenst, mely az ütközések vizsgálatára, a szenzorok működéséhez szükséges.
 \subsection{Szimulációs szkriptek}
+\begin{figure}[H]
+\includegraphics[scale=0.53,keepaspectratio]{simuml.png}
+\caption{A szimulációval foglalkozó szkriptek UML osztálydiagramja}
+\label{fig:simuml}
+\end{figure}
+\subsubsection{Path}
+Ez az osztály adja vissza a járműveknek az egyedi útvonalaikat. Adattagjai közé tartozik egy WayPoints nevű Vector3 lista, amely a célpontok koordinátáinak a listája, egy LeftLaneWPs és egy RightLaneWPs Vector3 tömb, amelyek a többsávos utak esetén tárolják a két a belső és külső sávra vonatkozó célpontokat. Tartalmaz továbbrá egy Node és egy Edge típusú listát, amely a gráf csomópontjait és éleit tartalmazza.
+
+Két csomópont között a haladási irány kiszámítására írtam egy GetRealDirection függvényt. Ez a függvény paraméterként megkapja a következő csomópont indexét, ami hogyha megegyezik a jelenlegi él célpontjával, akkor visszaadja az él haladási irányát, ellenkező esetben annak ellentetjét adja vissza.
+\begin{cpp}
+public string GetRealDirection(int idx)
+        {
+            if(Nodes[idx] == Edges[idx].To)
+            {
+                return Edges[idx].Direction;
+            }
+            else
+            {
+                switch (Edges[idx].Direction)
+                {
+                    case "north":
+                        return "south";
+                    case "south":
+                        return "north";
+                    case "west":
+                        return "east";
+                    case "east":
+                        return "west";
+                    default:
+                        return null;
+                }
+            }
+        }
+\end{cpp}
+
+Szintén írtam két függvényt annak meghatározására, hogy egy adott csomópont elérése után a jármű jobbra fog-e kanyarodni, illetve egyenesen megy-e tovább. Ezek a WillTurnRight és a WillGoStraight metódusok. Ezek működésükben a GetRealDirection metódust használják fel a jelenlegi és a következő csomópontra, majd a kettő kapott értéket vizsgálva meghatározzák hogy kanyarodik-e, illetve egyenes megy-e tovább.
+\begin{cpp}
+public bool WillTurnRight(int idx)
+        {
+            if(idx < Nodes.Count - 2)
+            {
+                string currentlyGoing = GetRealDirection(idx);
+                string willGo = GetRealDirection(idx + 1);
+                if ((currentlyGoing == "north" && willGo == "east") || 
+                (currentlyGoing == "east" && willGo == "south") ||
+                (currentlyGoing == "south" && willGo == "west") || 
+	     (currentlyGoing == "west" && willGo == "north"))
+                {
+                    return true;
+                }
+            }
+            
+            return false;
+        }
+\end{cpp}
+A másik metódus működésében megegyezik a fentivel, azzal különbséggel hogy a két érték egyenlőségének esetén ad igaz értéket, ellenkező esetben hamisat.
+
+Az útvonalat a konstruktor adja vissza, mely megkapja az érintett csomópontok és élek listáját. Először is megnézi hogy a kapott út tartalmaz-e éleket, vagy pedig csak egy pontból áll. Ha valós útvonal, akkor a kijelöli a kezdőpontot az első él irányának függvényében. Példaként ha dél felé tart az él, akkor a kezdőpont az első csomópont középpontja és bal felső csúcsa közötti felezőpont. Ha az él iránya dél felé tart, de kiindulási pontja a következő csomópont, akkor a kezdőpont a csomópont középpontja és jobb alsó csúcsa közötti felezőpont lesz.
+\begin{cpp}
+case "south":
+    if (nodes[1] == edges[0].From)
+    {
+        WayPoints[0] = (nodes[0].WorldCornerBR + 
+        WayPoints[0]) / 2;
+    }
+    else
+    {
+        WayPoints[0] = (nodes[0].WorldCornerTL +
+         WayPoints[0]) / 2;
+    }
+    break;
+\end{cpp}
+Ezek után végigiterál az útvonal további pontjain, ezzel megegyező módszerrel kiszámolja a célpontokat. Ha egy adott élen a sávok száma 2, akkor kiszámolja a RightLaneWPs és LeftLaneWPs adott indexű elemeit, majd a haladási iránynak megfelelően cseréli az adott célpontot a következő módon:
+\begin{cpp}
+if (edges[i - 1].Lanes == 2)
+{
+    LeftLaneWPs[i] = (point + 
+    WayPoints[WayPoints.Count - 1]) / 2;
+    RightLaneWPs[i] = (nodes[i].
+    WorldCornerBR + WayPoints[WayPoints.Count - 1]) / 2;
+}
+if (WillTurnRight(i-1))
+{
+    if(edges[i - 1].Lanes == 2)
+    {
+        WayPoints[WayPoints.Count - 1] = RightLaneWPs[i];
+    }
+    point = (nodes[i].WorldCornerBR + nodes[i].
+    WorldCornerTR) / 2;
+    WayPoints.Add((nodes[i].WorldCornerBR + point) / 2);
+}
+else if(!WillGoStraight(i-1))
+{
+    if (edges[i - 1].Lanes == 2)
+    {
+    WayPoints[WayPoints.Count - 1] = LeftLaneWPs[i];
+    }
+    point = (nodes[i].WorldCornerBL + nodes[i].
+    WorldCornerTL) / 2;
+    WayPoints.Add((nodes[i].WorldCornerTL + point) / 2);
+}
+else if(edges[i - 1].Lanes == 2)
+{
+    WayPoints[WayPoints.Count - 1] = LeftLaneWPs[i];
+}
+\end{cpp}
+
+A konstruktor lefutása után az osztály WayPoints adattagja már tartalmazza az útvonal bejárásához szükséges összes pontot.
 \subsubsection{CarSpawner}
 Ez a szkript felelős a buszok és az autók létrehozásáért. Tartalmazza a következő publikus adattagokat, amelyeket a felhasználói felületről futás közben lehet módosítani:
 \begin{itemize}
@@ -366,7 +474,7 @@ IEnumerator LightSwitcher()
         }
     }
 \end{cpp}
-Váltásoknál 5 másodpercig vár, addig mindkét irányból piros van, majd a LightSwitchTime-nak megfelelő ideig az egyik irányt átengedi, a másikat nem. A megszerzett renderer komponenseken keresztül ezt a materialok kicserélésével is szemlélteti.
+Váltásoknál 5 másodpercig vár, addig mindkét irányba pirosat jelez, majd a LightSwitchTime-nak megfelelő ideig az egyik irányt átengedi, a másikat nem. A megszerzett renderer komponenseken keresztül ezt a materialok kicserélésével is szemlélteti.
 
 Azt, hogy egy adott autó átmehet-e, a CarCanGo metódus adja vissza. Ezt a metódust a CarEngine hívja meg, amikor egyik szenzora útkereszteződést észlel. A függvény megkapja milyen irányból jön az autó, és ennek függvényében visszaad egy igaz vagy hamis értéket.
 \begin{cpp}

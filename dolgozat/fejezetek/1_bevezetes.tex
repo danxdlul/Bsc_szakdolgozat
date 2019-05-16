@@ -1,3 +1,21 @@
 \Chapter{Bevezetés}
 
-% 1-2 oldalas áttekintés a dolgozat motivációjáról, céljáról, fő módszereiről.
+Szakdolgozatom témájaként egy interaktív közlekedési modell elkészítését választottam. Ez a modell egy procedurálisan legenerált városból fog állni, amelyen megfigyelhető majd a járművek közlekedése. A várost procedurálisan generált dekoratív elemekkel is ellátom majd, amely így városkép tekintetében színes megjelenítést fog adni. 
+
+Az alkalmazás WebGL segítségével internetes böngészőben fog futni.
+A dolgozat, valamint a program forrásfájljainak verziókezelésére a GitHub-ot használom.
+Maga a program implementációjában a közlekedés fizikai realisztikusságára törekszem, az objektumok mozgása valós fizikai motorral kerül kiszámolásra.
+
+A dolgozat témaválasztását illetően nagyban befolyásolt a grafikai téma iránti érdeklődésem. Továbbá a jelenleg is nagy fejlesztés alatt álló, viszonylag friss technológia, a WebGL és az általa adott lehetőség, hogy a böngészőben futó kód közvetlen hozzáférést kap a számítógép videókártyájához szintén felkeltette érdeklődésemet. Szintén inspirált még döntésemben a tanulmányaim alatt grafikából megszerzett ismeretanyag.
+
+Mivel Unity Engine-ben való fejlesztéssel már korábban is foglalkoztam, onnan jött az ötlet hogy mivel a Unity képes WebGL platformra buildelni, ezért ebben a motorban fogom elkészíteni a programot.
+
+A program felhasználó általi kezelését egy külön felülettel fogom biztosítani, amelyen az egyes paraméterek állíthatóak, ezzel nyújtva a program interaktív mivoltát.
+
+Szakdolgozatomat az előbbiek megvalósításának lépéseit tekintve 5 részre tagoltam. Az első részben utánanézek az ebben a témában készült eddigi szoftvereknek, azok működését és felépítését fogom vizsgálni. 
+A következő részben elkészítem a várost, és a rajta történő közlekedést leíró alapvető matematikai modellt. 
+A harmadik részben a procedurális városgenerálás algoritmusát mutatom be, először annak vázlatos működését HTML Canvas elemen szemléltetve, majd Unity Engineben a teljes működést. 
+A következő rész a szimuláció tervezésével foglalkozik, ebben részletesebben kitérek a Unity-ben való fejlesztés lépéseire, magának a motornak a működésére. Ezen kívül természetesen részletezem a program implementációját, a szkriptekből kiemelt kódrészletek segítségével.
+Az utolsó részben bemutatom az elkészült szimuláció működését, szemléltetem a szimuláció egyes elemeinek változását a paraméterek változtatásakor.
+
+A modell megalkotása során nem törekszem minden közlekedési helyzet lefedésére, melyben a valóságban megjelenő összes közlekedési elem megjelenik. A hangsúlyt inkább a városkép kialakítására helyezem, mely így egy elfogadható városképet ad, olyan elemekkel díszítve mint a park, amely fákat és szökőkutat tartalmaz, többféle épület amelyek a városban való pozíciójuktól függnek, valamint a környezetben több helyen is megjelenő fák.
