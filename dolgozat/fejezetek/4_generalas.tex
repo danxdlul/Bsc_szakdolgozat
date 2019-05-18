@@ -175,14 +175,14 @@ Miután a kellő mennyiségű csomópont ki lett terjesztve, a függvény meghí
 Mivel a szimulációt a \textit{Unity Engine}-el fogom elkészíteni, első lépésben az előbbi JavaScript implementációt ki kell bővíteni. Ez főleg a kirajzoló függvények átírását fogja jelenteni, amelyben 2D canvas helyett most már 3D-s megjelenítésben kell gondolkozni, de ezen kívül a C\# programnyelvre való áttérés miatt lehetnek még minimális változtatások.
 
 \begin{figure}[H]
-\includegraphics[scale=0.45,keepaspectratio]{generateuml.png}
+\includegraphics[scale=0.4,keepaspectratio]{generateuml.png}
 \caption{A generálásban résztvevő osztályok UML osztálydiagramja}
 \label{fig:genuml}
 \end{figure}
 
 \subsection{Osztályok}
 
-A generáláshoz definiált osztályok hierarchiáját \aref{fig:genum1}. ábrán láthatjuk.
+A generáláshoz definiált osztályok hierarchiáját \aref{fig:genuml}. ábrán láthatjuk.
 
 \subsubsection{Util}
 
@@ -287,7 +287,8 @@ public Mesh GetRoadMesh()
 \end{cpp}
 A \texttt{GetLaneDividerMesh}, \texttt{GetLeftLaneDivider}, valamint a \texttt{GetRightLaneDivider} metódusok az előbbivel hasonló módon funkcionálnak, csak a csúcsok halmaza változik.
 
-Ám ezekkel a vonalakkal kapcsolatban szükség volt létrehoznom három Inverse metódust is, a \texttt{GetInverseLeftLaneDivider}, \texttt{GetInverseRightLaneDivider}, és a \texttt{GetInverseLaneDividerMesh} függvényeket. Erre az a magyarázat, hogy ezek alapvetően síkok, azaz a hátlapjaik nem láthatóak. 
+Ám ezekkel a vonalakkal kapcsolatban szükség volt létrehoznom három Inverse metódust is, a \texttt{GetInverseLeftLaneDivider}, \texttt{GetInverseRightLaneDivider}, és a \\
+\texttt{GetInverseLaneDividerMesh} függvényeket. Erre az a magyarázat, hogy ezek alapvetően síkok, azaz a hátlapjaik nem láthatóak. 
 
 Bár a \textit{Unity} tartalmaz megoldást ütközők konvexé alakítására, ez ebben az esetben nem mindig működik, mert gyakran a válaszvonal négy csúcsai koplanáris pontok. Ezért a következő megoldást választottam: a létrehozott síkokkal megegyező pozícióban létrehozom a síkok ellentétes irányba néző változatát. Ezt a feladatot látják el ezek az inverse metódusok, melyek az adott háromszög tömböt visszafelé járják be.
 
