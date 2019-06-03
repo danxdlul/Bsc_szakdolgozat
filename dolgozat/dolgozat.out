@@ -1,0 +1,52 @@
+\BOOKMARK [0][-]{chapter.1}{Bevezet\351s}{}% 1
+\BOOKMARK [0][-]{chapter.2}{T\351mak\366ri \341ttekint\351s}{}% 2
+\BOOKMARK [1][-]{section.2.1}{Hasonl\363 c\351l\372 szoftverek}{chapter.2}% 3
+\BOOKMARK [2][-]{subsection.2.1.1}{Road Traffic Library}{section.2.1}% 4
+\BOOKMARK [2][-]{subsection.2.1.2}{SUMO}{section.2.1}% 5
+\BOOKMARK [1][-]{section.2.2}{Megl\351vo t\351rk\351p-adatb\341zisok modellje}{chapter.2}% 6
+\BOOKMARK [1][-]{section.2.3}{GeoSpatial adatb\341zisok}{chapter.2}% 7
+\BOOKMARK [0][-]{chapter.3}{Matematikai modell r\351szletez\351se}{}% 8
+\BOOKMARK [1][-]{section.3.1}{Modell specifik\341l\341sa}{chapter.3}% 9
+\BOOKMARK [1][-]{section.3.2}{A modellben haszn\341lt elemek}{chapter.3}% 10
+\BOOKMARK [2][-]{subsection.3.2.1}{Egyenes \372t}{section.3.2}% 11
+\BOOKMARK [2][-]{subsection.3.2.2}{Egyir\341ny\372 \372t}{section.3.2}% 12
+\BOOKMARK [2][-]{subsection.3.2.3}{Kanyar}{section.3.2}% 13
+\BOOKMARK [2][-]{subsection.3.2.4}{\332tkeresztezod\351s}{section.3.2}% 14
+\BOOKMARK [2][-]{subsection.3.2.5}{Szem\351lyg\351pj\341rmu}{section.3.2}% 15
+\BOOKMARK [2][-]{subsection.3.2.6}{Aut\363busz}{section.3.2}% 16
+\BOOKMARK [2][-]{subsection.3.2.7}{Buszmeg\341ll\363}{section.3.2}% 17
+\BOOKMARK [2][-]{subsection.3.2.8}{\311p\374letek}{section.3.2}% 18
+\BOOKMARK [2][-]{subsection.3.2.9}{Park}{section.3.2}% 19
+\BOOKMARK [2][-]{subsection.3.2.10}{\332tvonal}{section.3.2}% 20
+\BOOKMARK [2][-]{subsection.3.2.11}{K\366zleked\351si szab\341lyok}{section.3.2}% 21
+\BOOKMARK [1][-]{section.3.3}{A modell krit\351riumai}{chapter.3}% 22
+\BOOKMARK [2][-]{subsection.3.3.1}{Gener\341l\341si szempont}{section.3.3}% 23
+\BOOKMARK [2][-]{subsection.3.3.2}{Szimul\341ci\363s szempont}{section.3.3}% 24
+\BOOKMARK [0][-]{chapter.4}{Gener\341l\341s}{}% 25
+\BOOKMARK [1][-]{section.4.1}{\332th\341l\363zat Gener\341l\341sa}{chapter.4}% 26
+\BOOKMARK [2][-]{subsection.4.1.1}{Gener\341l\363 algoritmus}{section.4.1}% 27
+\BOOKMARK [2][-]{subsection.4.1.2}{Az egyir\341ny\372 \372t}{section.4.1}% 28
+\BOOKMARK [1][-]{section.4.2}{Alapelemek megjelen\355t\351se HTML Canvas seg\355ts\351g\351vel}{chapter.4}% 29
+\BOOKMARK [2][-]{subsection.4.2.1}{Fejlesztoi k\366rnyezet fel\341ll\355t\341sa}{section.4.2}% 30
+\BOOKMARK [2][-]{subsection.4.2.2}{L\351trehozott oszt\341lyok}{section.4.2}% 31
+\BOOKMARK [2][-]{subsection.4.2.3}{Seg\351df\374ggv\351nyek}{section.4.2}% 32
+\BOOKMARK [2][-]{subsection.4.2.4}{A gener\341l\363 f\374ggv\351ny}{section.4.2}% 33
+\BOOKMARK [1][-]{section.4.3}{Az algoritmus implement\341l\341sa Unity-ben}{chapter.4}% 34
+\BOOKMARK [2][-]{subsection.4.3.1}{Oszt\341lyok}{section.4.3}% 35
+\BOOKMARK [2][-]{subsection.4.3.2}{A Scene l\351trehoz\341sa}{section.4.3}% 36
+\BOOKMARK [0][-]{chapter.5}{Tervez\351s, implement\341ci\363}{}% 37
+\BOOKMARK [1][-]{section.5.1}{A WebGL-rol}{chapter.5}% 38
+\BOOKMARK [1][-]{section.5.2}{Unity}{chapter.5}% 39
+\BOOKMARK [2][-]{subsection.5.2.1}{Unity WebGL}{section.5.2}% 40
+\BOOKMARK [2][-]{subsection.5.2.2}{Unity Editor}{section.5.2}% 41
+\BOOKMARK [1][-]{section.5.3}{Szimul\341ci\363 tervez\351se}{chapter.5}% 42
+\BOOKMARK [2][-]{subsection.5.3.1}{Szenzorok}{section.5.3}% 43
+\BOOKMARK [2][-]{subsection.5.3.2}{Sz\374ks\351ges objektumok}{section.5.3}% 44
+\BOOKMARK [2][-]{subsection.5.3.3}{Szimul\341ci\363s szkriptek}{section.5.3}% 45
+\BOOKMARK [0][-]{chapter.6}{Szimul\341ci\363k}{}% 46
+\BOOKMARK [1][-]{section.6.1}{A szimul\341ci\363 alakul\341sa param\351terez\351s f\374ggv\351ny\351ben}{chapter.6}% 47
+\BOOKMARK [2][-]{subsection.6.1.1}{Forgalmi szitu\341ci\363k}{section.6.1}% 48
+\BOOKMARK [2][-]{subsection.6.1.2}{\332th\341l\363zat m\351rete}{section.6.1}% 49
+\BOOKMARK [2][-]{subsection.6.1.3}{A forgalom surus\351ge az \372th\341l\363zat m\351ret\351nek f\374ggv\351ny\351ben}{section.6.1}% 50
+\BOOKMARK [0][-]{chapter.7}{\326sszegz\351s}{}% 51
+\BOOKMARK [0][-]{chapter*.39}{Irodalomjegyz\351k}{}% 52

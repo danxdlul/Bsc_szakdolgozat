@@ -1,0 +1,232 @@
+\documentclass{beamer}
+
+\usepackage{listings}
+\usepackage{color}
+
+% Code colorature
+\definecolor{paszt}{RGB}{252,252,252}
+\definecolor{keret}{RGB}{220,220,220}
+\lstset{
+backgroundcolor=\color{paszt},
+% showlines=true,
+framexleftmargin=4mm,
+framexrightmargin=4mm,
+framextopmargin=2mm,
+framexbottommargin=2mm,
+frameround=tttt,
+frame=trbl,
+rulecolor=\color{keret}
+}
+
+\usetheme{Copenhagen}
+\useinnertheme{rectangles}
+
+% ---- Mongo theme ----
+%\definecolor{light-background}{RGB}{210,250,170}
+%\definecolor{dark-background}{RGB}{128,92,64}
+%\usecolortheme[RGB={220,250,180}]{structure}
+
+% ---- Vanilla theme ----
+% \definecolor{light-background}{RGB}{250,250,190}
+% \definecolor{dark-background}{RGB}{128,92,64}
+% \usecolortheme[RGB={210, 210, 140}]{structure}
+
+% ---- Blue theme ----
+%\definecolor{light-background}{RGB}{200,220,240}
+%\definecolor{dark-background}{RGB}{100,110,120}
+%\usecolortheme[RGB={180, 200, 230}]{structure}
+
+% ---- Green theme ----
+\definecolor{light-background}{RGB}{229,237,204}
+\definecolor{dark-background}{RGB}{156,163,140}
+\usecolortheme[RGB={180, 210, 150}]{structure}
+
+\setbeamercolor{palette primary}{fg=black, bg=light-background}
+\setbeamercolor{palette quaternary}{fg=white,bg=dark-background}
+
+\setbeamercolor{title}{fg=black}
+\setbeamercolor{frametitle}{fg=black}
+
+% Set font
+%\usefonttheme{structurebold}
+
+\frenchspacing
+
+% Language packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[magyar]{babel}
+
+% AMS
+\usepackage{amssymb,amsmath}
+
+% Graphic packages
+\usepackage{graphicx}
+
+% Syntax highlighting
+% \usepackage{listings}
+
+%\usepackage{tikz}
+
+%\begin{figure}[htb]
+%\begin{center}
+%	\includegraphics[scale=0.4]{ps_times.png}
+%\end{center}
+%\end{figure}
+
+% ==============
+\begin{document}
+% ==============
+
+\title[Interaktív közlekedési modell]{
+{\Large Interaktív közlekedési modell procedurális generálása és megjelenítése WebGL segítségével}
+}
+\author[Kása Dániel Zoltán]{\Large Kása Dániel Zoltán}
+\date{Miskolci Egyetem, 2019. június 17.}
+
+% --------------------
+% Title page
+\frame{\titlepage}
+
+% --------------------
+\begin{frame}[fragile]
+\frametitle{Közelekési szimulációk}
+
+\textbf{Hasonló célú szoftverek}
+
+\begin{itemize}
+\item Road Traffic Library
+\item SUMO
+\end{itemize}
+
+Külön dián lehetnek hozzá képek is.
+
+\bigskip
+
+\textbf{GeoSpatial adatbázisok}
+
+Modellek bemutatása
+
+\bigskip
+
+A cél/feladat bemutatása
+
+\end{frame}
+
+% --------------------
+\begin{frame}[fragile]
+\frametitle{SUMO}
+
+Egy kép az alkalmazásról (ami a dolgozatban is van)
+
+\end{frame}
+
+% --------------------
+\begin{frame}[fragile]
+\frametitle{A matematikai modell elemei I.}
+
+Út, egyirányú út
+
+Kereszteződés
+
+\end{frame}
+
+% --------------------
+\begin{frame}[fragile]
+\frametitle{Kereszteződés ábra}
+
+
+\end{frame}
+
+% --------------------
+\begin{frame}[fragile]
+\frametitle{A matematikai modell elemei II.}
+
+Járművek
+
+Épületek, környezeti elemek
+
+\end{frame}
+
+% --------------------
+\begin{frame}[fragile]
+\frametitle{Úthálózat generálása}
+
+A generáló algoritmust kellene leírni
+
+5-6 pontba leírni a fő lépéseket.
+Az indoklást és részleteket elég lehet majd szóban mondani.
+
+\end{frame}
+
+% --------------------
+\begin{frame}[fragile]
+\frametitle{Unity WebGL}
+
+Kifejezetten a fejlesztőkörnyezet bemutatása
+
+\end{frame}
+
+% --------------------
+\begin{frame}[fragile]
+\frametitle{A generálás implementálása}
+
+Az elkészült program
+- struktúrája
+- funkciói
+- egyéb sajátosságai
+
+\end{frame}
+
+% --------------------
+\begin{frame}[fragile]
+\frametitle{Szimulációk}
+
+- Paraméterezés részletezése
+
+- DEMO
+
+\end{frame}
+
+% --------------------
+\begin{frame}[fragile]
+\frametitle{Összegzés}
+
+Elért eredmények tételes felsorolása
+
+- Definiáltam a közlekedési modell alapelemeit.
+- Megterveztem egy algoritmust az úthálózat és a hozzá tartozó városi környezet generálásához.
+- Megterveztem a grafikus megjelenítéshez szükséges szoftver.
+- Unity/WebGL segítségével implementáltam.
+- Teszteltem különféle paraméterezésű szimulációk esetében.
+
+További fejlesztési lehetőségek/tervek
+
+\end{frame}
+
+% --------------------
+\begin{frame}[fragile]
+\frametitle{Hivatkozások}
+
+\begin{itemize}
+
+\item Road Traffic Library
+\item SUMO
+\item WebGL
+\item Unity
+
+\end{itemize}
+
+\end{frame}
+
+% --------------------
+\begin{frame}[fragile]
+    \frametitle{\ }
+
+\begin{center}
+\Large \textbf{Köszönöm szépen a figyelmet!}
+\end{center}
+
+\end{frame}
+
+\end{document}
